@@ -1,0 +1,5 @@
+~/Git/dotfiles/.config/bookkeeper/config<->~/.config/bookkeeper/config
+
+# emacs
+~/Git/dotfiles/.emacs.d/src/->~/.emacs.d/src/
+~/Git/dotfiles/.emacs.d/init.el<->~/.emacs.d/init.el

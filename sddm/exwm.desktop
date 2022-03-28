@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=EXWM
+Comment=Emacs Window Manager
+Exec=/bin/sh /home/hydra/Git/dotfiles/sh/exwm.sh
+Type=Application
+DesktopNames=EXWM
