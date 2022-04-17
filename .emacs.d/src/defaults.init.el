@@ -1,23 +1,18 @@
 ;;; defaults.init.el
 
+
 ;;; modes
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(show-paren-mode 1)
+;; now a default in emacs 28.1
+;; (show-paren-mode 1)
 (fringe-mode 1)
-(global-visual-line-mode 1)
-(display-time-mode 1)
-(setq display-time-default-load-average nil)
-(recentf-mode -1)
-
-;; y/n instead of yes/no
-(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; fighting emacs tab defaults
 (global-set-key (kbd "TAB") 'tab-to-tab-stop)
-(setq indent-tabs-mode t)
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
+(setq-default tab-always-indent 'complete)
 
 ;; https://www.victorquinn.com/emacs-prevent-autosave-mess
 (setq backup-directory-alist
@@ -32,12 +27,13 @@
  create-lockfiles nil
  ring-bell-function 'ignore
  use-dialog-box nil
- mouse-autoselect-window t
- focus-follows-mouse t
  echo-keystrokes 0.2
  vc-follow-symlinks t
  load-prefer-newer t
- delete-old-versions t)
+ delete-old-versions t
+ use-short-answers t
+ backup-by-copying t			; don't delink hardlinks (?)
+ )
 
 ;;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -47,20 +43,17 @@
 	  '(("home"
 		 ("Dired" (mode . dired-mode))
 		 ("Magit" (mode . magit))
-		 ("Code" (or (filename . "Git")
-					 (mode . elisp-mode)
-					 (mode . yas-mode)
-					 (mode . company-mode)))
-		 ("Org"  (mode . org-mode))
 		 ("Writing" (or (mode . fountain-mode)
 						(mode . latex-mode)
 						(mode . markdown-mode)))
+		 ("Org"  (mode . org-mode))
+		 ("Code" (or (filename . "Git")
+					 (mode . prog-mode)))
 		 ("Emacs" (or (name . "^\\*scratch\\*$")
 					  (name . "^\\*Messages\\*$")
 					  (name . "^\\*Warnings\\*$")
 					  (name . "^\\*GNU Emacs\\*$")))
-		 ("EXWM" (mode . exwm-mode))
-		 ("Shell" (or (mode . vterm-mode)
+		 ("Shell" (or (mode . term-mode)
 					  (mode . eshell-mode)))
 		 ("LSP" (or (filename . "^\\*pyls\\*$")
 					(filename . "^\\*lsp-log\\*$")
@@ -74,3 +67,6 @@
 ;; windmove for S-{arrow} window movements
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
+
+;; dired
+(setq dired-kill-when-opening-new-dired-buffer t)

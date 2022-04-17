@@ -26,26 +26,6 @@
   (lisp-interaction-mode))
   ;;(insert initial-scratch-message))
 
-;; markdown live preview things
-;; source: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
-(defun my-markdown-filter (buffer)
-  (princ
-   (with-temp-buffer
-     (let ((tmp (buffer-name)))
-       (set-buffer buffer)
-       (set-buffer (markdown tmp))
-       (format "<!DOCTYPE html><html><title>Markdown preview</title><link rel=\"stylesheet\" href = \"https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css\"/>
-<body><article class=\"markdown-body\" style=\"box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;\">%s</article></body></html>" (buffer-string))))
-   (current-buffer)))
-(defun my-markdown-preview ()
-  "Preview markdown."
-  (interactive)
-  (unless (process-status "httpd")
-    (httpd-start))
-  (impatient-mode)
-  (imp-set-user-filter 'my-markdown-filter)
-  (imp-visit-buffer))
-
 ;; https://www.emacswiki.org/emacs/AutoSave#h5o-4
 ;; save all buffers
 (defun full-auto-save ()
@@ -65,22 +45,6 @@
                (error "Process not killed"))
            (error (format "Buffer %s has no process" (buffer-name))))
          nil)))
-
-;; hide some minor modes to unclutter modeline
-;; emacs.stackexchange.com/a/3928
-(defvar hidden-minor-modes
-  '(auto-sudoedit-mode
-    ivy-mode
-	eldoc-mode
-	visual-line-mode
-	mini-modeline-mode))
-(defun purge-minor-modes ()
-  (interactive)
-  (dolist (x hidden-minor-modes nil)
-    (let ((trg (cdr (assoc x minor-mode-alist))))
-      (when trg
-        (setcar trg "")))))
-(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
 
 ;;; bindings
 (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)

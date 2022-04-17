@@ -3,23 +3,20 @@ export OSH=/home/hydra/.oh-my-bash
 OSH_THEME="candy"
 completions=(
   git
-  ssh
 )
 aliases=(
   general
 )
 plugins=(
   git
-  bashmarks
 )
 source $OSH/oh-my-bash.sh
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
 
-# pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv virtualenv-init -)"
+# emacs
+# export LSP_USE_PLISTS=true
 
 # thefuck
 eval "$(thefuck --alias)"
