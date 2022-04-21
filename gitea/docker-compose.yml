@@ -1,3 +1,6 @@
+# a docker-compose file that initializes a docker container
+# hosting a gitea instance
+
 version: "3"
 
 networks:

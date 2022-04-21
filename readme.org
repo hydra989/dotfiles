@@ -9,9 +9,7 @@
 TODO: link to bookkeeper github repo
 #+END_COMMENT
 - bookkeeper for link management/dotfile deployment
-- sddm configs, for when/if those are needed
 - miscellaneous wallpapers & sh scripts
-
 
 *** depends on
 - pywal (if config files not modified)

@@ -25,6 +25,10 @@
   :ensure t
   :config
   (auto-sudoedit-mode 1))
+(use-package dtrt-indent
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'dtrt-indent-mode))
 (use-package linum-relative
   :ensure t
   :config
@@ -44,7 +48,6 @@
                          (memq (with-current-buffer buffer major-mode)
                                '(magit-process-mode
                                  magit-revision-mode
-                                 magit-diff-mode
                                  magit-stash-mode
                                  magit-status-mode)))
                     nil
@@ -243,3 +246,9 @@
 (use-package yaml-mode			;; yaml
   :ensure t
   :defer t)
+(use-package dockerfile-mode            ;; dockerfiles
+  :ensure t
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+  (put 'dockerfile-image-name 'safe-local-variable #'stringp))
