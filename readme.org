@@ -5,11 +5,10 @@
 - kitty
 - rofi
 - qutebrowser
+- bookkeeper for link management/dotfile deployment
+- miscellaneous wallpapers & sh scripts
 #+BEGIN_COMMENT
 TODO: link to bookkeeper github repo
 #+END_COMMENT
-- bookkeeper for link management/dotfile deployment
-- miscellaneous wallpapers & sh scripts
-
 *** depends on
 - pywal (if config files not modified)

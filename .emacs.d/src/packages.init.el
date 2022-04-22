@@ -27,7 +27,7 @@
   (auto-sudoedit-mode 1))
 (use-package dtrt-indent
   :ensure t
-  :config
+  :init
   (add-hook 'prog-mode-hook 'dtrt-indent-mode))
 (use-package linum-relative
   :ensure t

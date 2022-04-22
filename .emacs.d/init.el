@@ -14,7 +14,6 @@
 
 ;; https://www.emacswiki.org/emacs/DotEmacsModular
 (defconst emacs-config-directory "~/.emacs.d/" "")
-(setq custom-file "src/custom")
 (defun load-config-file (filelist)
   (dolist (file filelist)
     (load (expand-file-name 
@@ -25,9 +24,8 @@
 (load-config-file '(
 		    "src/packages.init"
 		    "src/func.init"
-		    "src/default.init"
+		    "src/defaults.init"
 		    "src/org-anno.init"
-		    custom-file
 		    ))
 
 ;; transparancy
