@@ -6,6 +6,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (fringe-mode 1)
+(global-auto-revert-mode 1)
 
 ;; fighting emacs tab defaults
 (global-set-key (kbd "TAB") 'tab-to-tab-stop)
@@ -31,6 +32,8 @@
  delete-old-versions t
  use-short-answers t
  backup-by-copying t			; don't delink hardlinks (?)
+ scroll-preserve-screen-position t
+ scroll-conservatively 101		; smooth scrolling
  )
 
 ;;; language specific settings

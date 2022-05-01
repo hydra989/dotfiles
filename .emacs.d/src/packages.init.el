@@ -27,13 +27,12 @@
   (auto-sudoedit-mode 1))
 (use-package dtrt-indent
   :ensure t
-  :init
-  (add-hook 'prog-mode-hook 'dtrt-indent-mode))
+  :hook (prog-mode . dtrt-indent-mode))
 (use-package linum-relative
   :ensure t
+  :hook (prog-mode . linum-relative-mode)
   :config
-  (setq linum-relative-backend 'display-line-numbers-mode)
-  (add-hook 'prog-mode-hook 'linum-relative-mode))
+  (setq linum-relative-backend 'display-line-numbers-mode))
 (use-package magit
   :ensure t
   :defer 2
@@ -76,6 +75,7 @@
   :config
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
 
 ;;; evil-mode
 (use-package evil
@@ -144,6 +144,19 @@
   :ensure t
   :config
   (global-hl-todo-mode))
+(use-package dashboard
+  :ensure t
+  :config
+  (setq
+   dashboard-center-content t
+   dashboard-set-footer nil
+   ; icons
+   dashboard-set-heading-icons t
+   dashboard-set-file-icons t
+   )
+  (setq dashboard-items '((recents . 5)
+                          ))
+  (dashboard-setup-startup-hook))
 
 
 ;; ivy
@@ -169,7 +182,18 @@
 ;;; lsp
 (use-package lsp-ui
   :ensure t
-  :after lsp-mode)
+  :after lsp-mode
+  :config
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-show-with-cursor t
+        lsp-ui-doc-show-with-mouse t
+        lsp-ui-doc-delay 0.5
+        lsp-ui-peek-enable t
+	lsp-ui-sideline-show-diagnostics t
+        ))
 (use-package lsp-mode
   :ensure t
   :after (company flycheck which-key)
@@ -190,11 +214,10 @@
   ;; lsp related settings
   (setq lsp-pyls-disable-warning t
 	lsp-pyls-plugins-pycodestyle-enabled nil
-	lsp-ui-doc-enable t
-	lsp-ui-sideline-show-diagnostics t
 	))
 (use-package company
   :ensure t
+  :hook (prog-mode . company-mode)
   :init
   (add-hook 'prog-mode-hook 'company-mode)
   (setq company-minimum-prefix-length 1
@@ -209,10 +232,15 @@
   :ensure t
   :after company
   :hook (company-mode . company-box-mode))
+(use-package company-quickhelp
+  :ensure t
+  :after company
+  :hook (company-mode . company-quickhelp-mode)
+  :config
+  (setq company-quickhelp-delay 0.5))
 (use-package flycheck
   :ensure t
-  :init
-  (add-hook 'prog-mode-hook 'flycheck-mode)
+  :hook (prog-mode . flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 

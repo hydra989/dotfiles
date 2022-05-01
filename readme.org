@@ -1,8 +1,8 @@
 * dotfiles
 
 *** contains
-- emacs w. lsp-mode, evil, org and friends
-- kitty
+- emacs w. lsp-mode, evil, org and friends & vim for little stuff
+- kitty w. bash + oh-my-bash
 - rofi
 - qutebrowser
 - bookkeeper for link management/dotfile deployment
