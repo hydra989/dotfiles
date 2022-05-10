@@ -1,2 +1,3 @@
 *.html
 *.md
+.ccls-cache/*
