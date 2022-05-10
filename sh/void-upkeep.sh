@@ -1,9 +1,6 @@
 #!/bin/bash
 
 # void-upkeep.sh
-#
-# a small upkeep script for my void linux
-# system. doesn't do anything too crazy.
 
 
 # packages

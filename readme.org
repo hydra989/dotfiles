@@ -6,7 +6,7 @@
 - rofi
 - qutebrowser
 - bookkeeper for link management/dotfile deployment
-- miscellaneous wallpapers & sh scripts
+- miscellaneous sh scripts
 #+BEGIN_COMMENT
 TODO: link to bookkeeper github repo
 #+END_COMMENT

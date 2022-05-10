@@ -16,11 +16,6 @@
 
 
 ;;; general
-(use-package ace-jump-mode
-  :ensure t
-  :after evil
-  :config
-  (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode))
 (use-package auto-sudoedit
   :ensure t
   :config
@@ -63,7 +58,7 @@
   :init
   (setq which-key-show-early-on-C-h t
 	which-key-seconday-delay 0.05
-	which-key-idle-delay 1.5)
+	which-key-idle-delay 1.0)
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode))
@@ -96,19 +91,16 @@
   :after evil
   :config
   (evil-collection-init))
-(use-package evil-god-state
+(use-package evil-easymotion
   :ensure t
   :after evil
   :config
-  (evil-define-key 'normal 'global (kbd ",") 'evil-execute-in-god-state)
-  (evil-define-key 'god global-map [escape] 'evil-god-state-bail))
+  (evilem-default-keybindings "SPC"))
 (use-package undo-fu
   :ensure t
   :after evil
   :config
-  (evil-define-key 'normal 'global "R" 'evil-redo)
-  (evil-define-key 'normal 'global "r" 'evil-replace-state))
-
+  (evil-define-key 'normal 'global "\C-r" 'evil-redo))
 
 ;;; appearance
 (when *theme-magic-enabled*
@@ -151,7 +143,7 @@
    dashboard-center-content t
    dashboard-set-footer nil
    ; icons
-   dashboard-set-heading-icons t
+   dashboard-set-heading-icons nil
    dashboard-set-file-icons t
    )
   (setq dashboard-items '((recents . 5)

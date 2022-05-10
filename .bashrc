@@ -3,6 +3,8 @@ export OSH=/home/hydra/.oh-my-bash
 OSH_THEME="candy"
 completions=(
   git
+  gh
+  hub
 )
 aliases=(
   general
