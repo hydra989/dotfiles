@@ -21,7 +21,7 @@
 
 ;;; general settings
 (setq
- backward-delete-char-untabify-method 'hungry
+ ;; backward-delete-char-untabify-method 'hungry
  make-backup-files nil
  create-lockfiles nil
  ring-bell-function 'ignore
@@ -61,7 +61,8 @@
 		 ("Emacs" (or (name . "^\\*scratch\\*$")
 			      (name . "^\\*Messages\\*$")
 			      (name . "^\\*Warnings\\*$")
-			      (name . "^\\*GNU Emacs\\*$")))
+			      (name . "^\\*GNU Emacs\\*$")
+			      (mode . emacs-lisp-mode)))
 		 ("Shell" (or (mode . term-mode)
 			      (mode . eshell-mode)))
 		 ("LSP" (or (filename . "^\\*pyls\\*$")

@@ -4,13 +4,19 @@
 ;;;		TODO: latex previews?
 ;;;		TODO: fallback font for hack?
 
-
 ;; performance things
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024))
 
+;; customization
 (defvar *theme-magic-enabled* t)	;; true for pywal environments
 (defvar *transparency* nil)
+(defvar *emacsclient* t)
+
+
+;; when set, start emacs server
+(when *emacsclient*
+  (server-start))
 
 ;; https://www.emacswiki.org/emacs/DotEmacsModular
 (defconst emacs-config-directory "~/.emacs.d/" "")

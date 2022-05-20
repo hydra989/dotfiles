@@ -49,6 +49,6 @@
 ;;; bindings
 (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
 (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
-(global-set-key (kbd "C-c C-' e") 'config-visit)
-(global-set-key (kbd "C-c C-' b") 'create-scratch-buffer)
-(global-set-key (kbd "C-c C-' s") 'full-auto-save)
+(global-set-key (kbd "C-' c") 'config-visit)
+(global-set-key (kbd "C-' b") 'create-scratch-buffer)
+(global-set-key (kbd "C-' s") 'full-auto-save)

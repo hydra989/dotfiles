@@ -1,15 +1,15 @@
 * dotfiles
 
 *** contains
-- emacs w. lsp-mode, evil, org and friends & vim for little stuff]
+- emacs w. lsp-mode, evil, org, etc & vim
 - deity (my dwm fork)
 - kitty w. bash + oh-my-bash
 - rofi
-- qutebrowser
 - bookkeeper for link management/dotfile deployment
 - miscellaneous sh scripts
 #+BEGIN_COMMENT
 TODO: link to bookkeeper, deity github repo
 #+END_COMMENT
-*** depends on
+*** depends on/also install
 - pywal (if config files not modified)
+- firefox w. tridactyl

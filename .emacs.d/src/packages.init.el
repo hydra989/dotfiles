@@ -16,17 +16,13 @@
 
 
 ;;; general
-(use-package auto-sudoedit
-  :ensure t
-  :config
-  (auto-sudoedit-mode 1))
 (use-package dtrt-indent
   :ensure t
-  :hook (prog-mode . dtrt-indent-mode))
+  :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
 (use-package linum-relative
   :ensure t
-  :hook (prog-mode . linum-relative-mode)
-  :config
+  :hook ((prog-mode emacs-lisp-mode) . linum-relative-mode)
+  :init
   (setq linum-relative-backend 'display-line-numbers-mode))
 (use-package magit
   :ensure t
@@ -55,6 +51,7 @@
   (magit-todos-mode))
 (use-package which-key
   :ensure t
+  :defer 1
   :init
   (setq which-key-show-early-on-C-h t
 	which-key-seconday-delay 0.05
@@ -63,14 +60,12 @@
   (which-key-setup-side-window-bottom)
   (which-key-mode))
 (use-package tree-sitter
-  :ensure t)
+  :ensure t
+  :hook (prog-mode . tree-sitter-mode))
 (use-package tree-sitter-langs
   :ensure t
   :after tree-sitter
-  :config
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
 
 ;;; evil-mode
 (use-package evil
@@ -188,13 +183,13 @@
         ))
 (use-package lsp-mode
   :ensure t
-  :after (company flycheck which-key)
+  :after (company flycheck which-key yasnippet)
+  :hook ((c-mode python-mode) . lsp)
   :init
+  (yas-reload-all)
+  
   (add-hook 'prog-mode-hook	'yas-minor-mode)
   (add-hook 'lsp-mode-hook	#'lsp-enable-which-key-integration)
-  ;; language-specific
-  (add-hook 'python-mode-hook 'lsp)
-  (add-hook 'c-mode-hook 'lsp)
   :config
   ;; direct lsp config
   (setq lsp-lens-enable nil)
@@ -211,7 +206,6 @@
   :ensure t
   :hook (prog-mode . company-mode)
   :init
-  (add-hook 'prog-mode-hook 'company-mode)
   (setq company-minimum-prefix-length 1
 	company-idle-delay 0.0
 	company-show-numbers t
@@ -235,6 +229,8 @@
   :hook (prog-mode . flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+(use-package yasnippet
+  :ensure t)
 
 
 ;; treemacs
@@ -265,7 +261,9 @@
 ;;; language-specific
 (use-package yaml-mode			;; yaml
   :ensure t
-  :defer t)
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 (use-package dockerfile-mode            ;; dockerfiles
   :ensure t
   :defer t
