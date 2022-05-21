@@ -3,21 +3,24 @@
 *** contains
 - nixos configs
 - emacs w. lsp-mode, evil, org, etc & vim
-- dwm with various patches
 - kitty w. bash + oh-my-bash
 - rofi
 - bookkeeper for link management/dotfile deployment
 - miscellaneous sh scripts
 #+BEGIN_COMMENT
-TODO: link to bookkeeper, deity github repo
+TODO: link to bookkeeper, dwm github repo
 #+END_COMMENT
+
+My setups also utilize a handful of tools such as dwm and firefox, the configs for
+which either aren't included or can be found elsewhere.
 
 *** nix
 - canary: barebones dev environment, made with proxmox in mind, ethernet
 - songbird: less minimal dev env + steam setup, wifi, bluetooth, power management emphasis
 
-configuration.nix isn't modular in nature---to swap between the configs, edit the source code.
-all it takes is commenting one line out and uncommenting the other.
+configuration.nix loads the machine active-machine.nix, which is a hardlink to one of the
+machine files in the nix/machines folder. bookkeeper manages this for me, ensuring the
+active machine matches the hostname.
 
 #+BEGIN_COMMENT
 TODO:   warpd,

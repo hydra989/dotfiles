@@ -270,3 +270,8 @@
   :init
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
   (put 'dockerfile-image-name 'safe-local-variable #'stringp))
+(use-package nix-mode			;; nix
+  :ensure t
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode)))

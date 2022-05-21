@@ -46,6 +46,8 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-show-empty-filter-groups nil
 	  ibuffer-expert t
+	  ;; a few of these are redundant---
+	  ;; ibuffer gives me problems with consistency
 	  ibuffer-saved-filter-groups
 	  '(("home"
 		 ("Dired" (mode . dired-mode))
@@ -57,7 +59,9 @@
 				(mode . markdown-mode)))
 		 ("Org"  (mode . org-mode))
 		 ("Code" (or (filename . "Git")
-			     (mode . prog-mode)))
+			     (mode . prog-mode)
+			     (mode . python-mode)
+			     (mode . lsp-mode)))
 		 ("Emacs" (or (name . "^\\*scratch\\*$")
 			      (name . "^\\*Messages\\*$")
 			      (name . "^\\*Warnings\\*$")

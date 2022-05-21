@@ -13,3 +13,20 @@
 
 # bash
 ~/s/dotfiles/.bashrc<->~/.bashrc
+
+# vim
+~/s/dotfiles/.vimrc<->~/.vimrc
+
+
+# canary specifics
+! HOSTNAME:canary
+~/s/dotfiles/nix/configuration.nix<->/etc/nixos/configuration.nix
+! HOSTNAME:canary
+~/s/dotfiles/nix/machines/canary.nix<->/etc/nixos/active-machine.nix
+
+
+# songbird specifics
+! HOSTNAME:songbird
+~/s/dotfiles/nix/configuration.nix<->/etc/nixos/configuration.nix
+! HOSTNAME:songbird
+~/s/dotfiles/nix/machines/songbird.nix<->/etc/nixos/active-machine.nix

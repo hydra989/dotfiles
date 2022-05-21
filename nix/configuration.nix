@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }: 
 {
-  imports = [ ./hardware-configuration.nix
-	      ./machines/canary.nix
-	      # ./machines/songbird.nix
-	    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./active-machine.nix
+            ];
 
   boot = {
     loader.efi.canTouchEfiVariables = true;
@@ -15,19 +15,26 @@
   networking.useDHCP = false;
   
   environment.systemPackages = with pkgs; [
+    # dev tools
     emacs git gh vim
+
+    # gui
     firefox kitty rofi
+
+    # languages
     python3
   ];
 
   services.xserver = {
     enable = true;
+
     displayManager = {
       lightdm = {
         enable = true;
         greeter.enable = true;
       };
     };
+
     windowManager.dwm.enable = true;
   };
   
@@ -41,4 +48,3 @@
   
   system.stateVersion = "21.11";
 }
-
