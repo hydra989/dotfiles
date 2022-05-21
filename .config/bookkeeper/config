@@ -11,8 +11,5 @@
 # kitty
 ~/s/dotfiles/.config/kitty/kitty.conf<->~/.config/kitty/kitty.conf
 
-# qutebrowser
-~/s/dotfiles/.config/qutebrowser/config.py<->~/.config/qutebrowser/config.py
-
 # bash
 ~/s/dotfiles/.bashrc<->~/.bashrc

@@ -1,8 +1,9 @@
 * dotfiles
 
 *** contains
+- nixos configs
 - emacs w. lsp-mode, evil, org, etc & vim
-- deity (my dwm fork)
+- dwm with various patches
 - kitty w. bash + oh-my-bash
 - rofi
 - bookkeeper for link management/dotfile deployment
@@ -10,6 +11,18 @@
 #+BEGIN_COMMENT
 TODO: link to bookkeeper, deity github repo
 #+END_COMMENT
-*** depends on/also install
-- pywal (if config files not modified)
-- firefox w. tridactyl
+
+*** nix
+- canary: barebones dev environment, made with proxmox in mind, ethernet
+- songbird: less minimal dev env + steam setup, wifi, bluetooth, power management emphasis
+
+configuration.nix isn't modular in nature---to swap between the configs, edit the source code.
+all it takes is commenting one line out and uncommenting the other.
+
+#+BEGIN_COMMENT
+TODO:   warpd,
+	port nix configs,
+	bash vs zsh?
+	find a bar for dwm,
+	.editorconfig?
+#+END_COMMENT
