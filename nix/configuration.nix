@@ -19,23 +19,30 @@
     emacs git gh vim
 
     # gui
-    firefox kitty rofi
+    firefox kitty rofi calibre deluge vlc feh
 
     # languages
     python3
+
+    # games
+    cataclysm-dda
   ];
 
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
 
-    displayManager = {
-      lightdm = {
-        enable = true;
-        greeter.enable = true;
+      displayManager = {
+        lightdm = {
+          enable = true;
+          greeter.enable = true;
+        };
       };
+
+      windowManager.dwm.enable = true;
     };
 
-    windowManager.dwm.enable = true;
+    flatpak.enable = true;
   };
   
   users.users.hydra = {

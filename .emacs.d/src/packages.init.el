@@ -16,6 +16,11 @@
 
 
 ;;; general
+(use-package avy
+  :ensure t
+  :after evil
+  :config
+  (evil-define-key 'normal 'global (kbd "SPC") 'avy-goto-char))
 (use-package dtrt-indent
   :ensure t
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
@@ -86,11 +91,12 @@
   :after evil
   :config
   (evil-collection-init))
-(use-package evil-easymotion
+(use-package evil-snipe
   :ensure t
   :after evil
   :config
-  (evilem-default-keybindings "SPC"))
+  (evil-define-key 'visual evil-snipe-local-mode-map "z" 'evil-snipe-s)
+  (evil-define-key 'visual evil-snipe-local-mode-map "Z" 'evil-snipe-S))
 (use-package undo-fu
   :ensure t
   :after evil
@@ -264,7 +270,7 @@
   :defer t
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-(use-package dockerfile-mode            ;; dockerfiles
+(use-package dockerfile-mode    ;; dockerfiles
   :ensure t
   :defer t
   :init
@@ -275,3 +281,9 @@
   :defer t
   :init
   (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode)))
+(use-package go-mode            ;; go
+  :ensure t
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  (add-hook 'go-mode #'lsp-mode-deferred))

@@ -1,0 +1,9 @@
+[url "https://github.com/"]
+	 insteadOf = gh:
+
+[url "https://gist.github.com/"]
+	 insteadOf = gist:
+
+[user]
+	name = Hayden Curfman
+	email = hcurfman@keemail.me

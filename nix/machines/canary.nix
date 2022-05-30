@@ -2,6 +2,8 @@
 {
   networking = {
     hostName = "canary";
-    interfaces.ens18.useDHCP = true;
   };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
 }

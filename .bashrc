@@ -1,3 +1,6 @@
+export EDITOR="vim"
+export VISUAL="emacsclient -c -a emacs"
+
 # oh-my-bash stuff
 export OSH=/home/hydra/.oh-my-bash
 OSH_THEME="candy"
@@ -16,9 +19,6 @@ source $OSH/oh-my-bash.sh
 
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
-
-# emacs
-# export LSP_USE_PLISTS=true
 
 # thefuck
 eval "$(thefuck --alias)"

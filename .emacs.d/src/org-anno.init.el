@@ -15,6 +15,7 @@
   :defer t)
 (use-package markdown-mode		;; markdown
   :ensure t
+  :defer t
   :mode ("\\.md\\'" . gfm-mode)
   :commands (markdown-mode gfm-mode)
   :config

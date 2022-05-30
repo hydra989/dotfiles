@@ -10,7 +10,7 @@
 
 ;; customization
 (defvar *theme-magic-enabled* t)	;; true for pywal environments
-(defvar *transparency* nil)
+(defvar *transparency* t)
 (defvar *emacsclient* t)
 
 
@@ -36,8 +36,9 @@
 
 ;; transparancy
 (when *transparency*
-  (set-frame-parameter (selected-frame) 'alpha '(85 . 75))
-  (add-to-list 'default-frame-alist '(alpha . (85 . 75))))
+  (set-frame-parameter (selected-frame) 'alpha '(90 . 85))
+  (add-to-list 'default-frame-alist '(alpha . (75 . 65))))
 
-(load-theme 'monokai-pro t)
+(load-theme 'cyberpunk t)
 (set-frame-font "Hack-11.5" nil t)
+(theme-magic-from-emacs)

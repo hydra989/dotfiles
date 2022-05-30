@@ -6,13 +6,19 @@
 - kitty w. bash + oh-my-bash
 - rofi
 - bookkeeper for link management/dotfile deployment
-- miscellaneous sh scripts
+- miscellaneous sh scripts, wallpapers
 #+BEGIN_COMMENT
 TODO: link to bookkeeper, dwm github repo
 #+END_COMMENT
 
 My setups also utilize a handful of tools such as dwm and firefox, the configs for
-which either aren't included or can be found elsewhere.
+which either aren't included or can be found elsewhere. My emacs files are split up into
+an init.el and a src/ directory, in which are a small handful of elisp files that init.el
+loads on startup.
+
+Wallpapers I collect over time, so note that they aren't mine/I didn't make them. I've
+tried to collect their sources in sources.txt over time, but it'll likely be somewhat
+of a mess at any given time.
 
 *** nix
 - canary: barebones dev environment, made with proxmox in mind, ethernet
@@ -24,8 +30,7 @@ active machine matches the hostname.
 
 #+BEGIN_COMMENT
 TODO:   warpd,
-	port nix configs,
-	bash vs zsh?
-	find a bar for dwm,
-	.editorconfig?
+        bash vs zsh vs fish?
+	    find a bar for dwm,
+	    .editorconfig?
 #+END_COMMENT

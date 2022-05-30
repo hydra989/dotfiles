@@ -1,0 +1,33 @@
+{
+	"canary": [
+		{
+			"type": "hardlink",
+			"~/s/dotfiles/nix/machines/canary.nix": "/etc/nixos/active-machine.nix",
+			"~/s/dotfiles/nix/configuration.nix": "/etc/nixos/configuration.nix"
+		}
+	],
+    "songbird": [
+	    {
+            "type": "hardlink",
+            "~/s/dotfiles/nix/machines/songbird.nix": "/etc/nixos/active-machine.nix",
+			"~/s/dotfiles/nix/configuration.nix": "/etc/nixos/configuration.nix"
+	    }
+    ],
+    "default": [
+	    {
+			"type": "hardlink",
+			"~/s/dotfiles/.bashrc": "~/.bashrc",
+			"~/s/dotfiles/.gitconfig": "~/.gitconfig",
+			"~/s/dotfiles/.vimrc": "~/.vimrc",
+			"~/s/dotfiles/.config/bookkeeper/config.json": "~/.config/bookkeeper/config.json",
+			"~/s/dotfiles/.config/rofi/config.rasi": "~/.config/rofi/config.rasi",
+			"~/s/dotfiles/.config/kitty/kitty.conf": "~/.config/kitty/kitty.conf",
+			"~/sdotfiles/.emacs.d/init.el": "~/.emacs.d/init.el"
+	    },
+		{
+			"type": "symlink",
+			"~/s/dotfiles/.emacs.d/src/": "~/.emacs.d/src/",
+			"~/s/dotfiles/.wallpaper/": "~/.wallpaper/"
+		}
+    ]
+}
