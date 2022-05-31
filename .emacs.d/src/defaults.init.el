@@ -66,8 +66,8 @@
 		 ("Code" (or
 				  (filename . "Git")
 				  (mode . prog-mode)
-				  (mode . python-mode)
-				  (mode . lsp-mode)))
+				  (mode . lsp-mode)
+				  (mode . nix-mode)))
 		 ("Emacs" (or
 				   (name . "^\\*scratch\\*$")
 				   (name . "^\\*Messages\\*$")

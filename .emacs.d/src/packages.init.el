@@ -35,18 +35,6 @@
   :config
   (with-eval-after-load 'magit-mode
 	  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
-  ;; https://github.com/magit/magit/issues/2541
-  (setq magit-display-buffer-function
-      (lambda (buffer)
-        (display-buffer
-         buffer (if (and (derived-mode-p 'magit-mode)
-                         (memq (with-current-buffer buffer major-mode)
-                               '(magit-process-mode
-                                 magit-revision-mode
-                                 magit-stash-mode
-                                 magit-status-mode)))
-                    nil
-                  '(display-buffer-same-window))))))
 (use-package magit-todos
   :ensure t
   :after magit
@@ -229,7 +217,7 @@
   :after company
   :hook (company-mode . company-quickhelp-mode)
   :config
-  (setq company-quickhelp-delay 0.5))
+  (setq company-quickhelp-delay 0.4))
 (use-package flycheck
   :ensure t
   :hook (prog-mode . flycheck-mode)

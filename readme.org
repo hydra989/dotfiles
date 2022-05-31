@@ -21,8 +21,8 @@ tried to collect their sources in sources.txt over time, but it'll likely be som
 of a mess at any given time.
 
 *** nix
-- canary: barebones dev environment, made with proxmox in mind, ethernet
-- songbird: less minimal dev env + steam setup, wifi, bluetooth, power management emphasis
+- canary: my desktop---dev env + steam, wifi, bluetooth, less minimal than songbird overall
+- songbird: relatively minimal dev env + steam setup, wifi, bluetooth, power management emphasis
 
 configuration.nix loads the machine active-machine.nix, which is a hardlink to one of the
 machine files in the nix/machines folder. bookkeeper manages this for me, ensuring the

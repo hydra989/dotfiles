@@ -36,8 +36,8 @@
 
 ;; transparancy
 (when *transparency*
-  (set-frame-parameter (selected-frame) 'alpha '(90 . 85))
-  (add-to-list 'default-frame-alist '(alpha . (75 . 65))))
+  (set-frame-parameter (selected-frame) 'alpha '(92 . 85))
+  (add-to-list 'default-frame-alist '(alpha . (90 . 85))))
 
 (load-theme 'cyberpunk t)
 (set-frame-font "Hack-11.5" nil t)

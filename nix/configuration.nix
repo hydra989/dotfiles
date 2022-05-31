@@ -13,20 +13,30 @@
   nixpkgs.overlays = [ (import ./overlay/overlay.nix {}) ];
   
   networking.useDHCP = false;
+
+  sound.enable = true;
   
   environment.systemPackages = with pkgs; [
     # dev tools
     emacs git gh vim
 
     # gui
-    firefox kitty rofi calibre deluge vlc feh
+    firefox kitty rofi calibre deluge vlc pywal
 
     # languages
     python3
 
     # games
     cataclysm-dda
+
+    # tui
+    tty-clock thefuck
   ];
+
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [ dejavu_fonts hack ];
+  };
 
   services = {
     xserver = {
@@ -43,12 +53,18 @@
     };
 
     flatpak.enable = true;
+    printing.enable = true;
   };
   
   users.users.hydra = {
     isNormalUser = true;
     home = "/home/hydra";
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+  };
+
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = true;
   };
   
   time.timeZone = "America/New_York";
