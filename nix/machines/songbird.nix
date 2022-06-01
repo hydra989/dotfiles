@@ -4,8 +4,9 @@
     hostName = "songbird";
   };
 
-  boot.initrd.kernelModules = [ "amdgpu" ]
+  boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.libinput.enable = true;
   hardware.opengl = {
     driSupport = true;
     # may be needed for steam?
