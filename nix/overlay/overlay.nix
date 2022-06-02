@@ -1,10 +1,11 @@
 {}: self: super:
 {
   dwm = super.dwm.overrideAttrs (oldAttrs: rec {
+    version = "6.2";
     patches = [
       (super.fetchpatch {
-        url = "https://dwm.suckless.org/patches/xresources/dwm-xresources-20210314.diff";
-        sha256 = "0g0jgwrssf0jbmaiw8pygzzcf15ldx7gjwiwaq2css2avimfcy1p";
+        url = "https://dwm.suckless.org/patches/xresources/dwm-xresources-6.2.diff";
+        sha256 = "0z7sbnlh6zhm1fxc62zyx7zmd1ci195gbj7mdsnpcxi1bwaml814";
       })
       (super.fetchpatch {
         url = "https://raw.githubusercontent.com/hydra989/dwm/master/hydra.dwm.patch";
