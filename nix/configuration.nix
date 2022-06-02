@@ -49,6 +49,11 @@
     fonts = with pkgs; [ dejavu_fonts hack-font ];
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   services = {
     xserver = {
       enable = true;
@@ -68,8 +73,6 @@
     printing.enable = true;
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  
   users.users.hydra = {
     isNormalUser = true;
     home = "/home/hydra";
