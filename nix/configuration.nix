@@ -35,7 +35,7 @@
     # dev tools
     emacs git gh vim
     # gui
-    firefox kitty rofi calibre deluge vlc pywal
+    firefox kitty rofi calibre deluge vlc pywal spotify
     # languages
     python3
     # games
@@ -45,8 +45,8 @@
   ];
 
   fonts = {
-    enableFontDir = true;
-    fonts = with pkgs; [ dejavu_fonts hack ];
+    fontDir.enable = true;
+    fonts = with pkgs; [ dejavu_fonts hack-font ];
   };
 
   services = {
@@ -67,6 +67,8 @@
     flatpak.enable = true;
     printing.enable = true;
   };
+
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   
   users.users.hydra = {
     isNormalUser = true;
