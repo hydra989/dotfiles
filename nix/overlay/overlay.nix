@@ -5,7 +5,7 @@
     patches = [
       (super.fetchpatch {
         url = "https://raw.githubusercontent.com/hydra989/dotfiles/master/dwm/implement-deity-mode.patch";
-        sha256 = "129xj5zbwrrhsqp0izi0603kizk3vmg005f1368zwz2gag6f08a6;
+        sha256 = "129xj5zbwrrhsqp0izi0603kizk3vmg005f1368zwz2gag6f08a6";
       })
       (super.fetchpatch {
         url = "https://raw.githubusercontent.com/hydra989/dotfiles/master/dwm/xresources-6.2.patch";
