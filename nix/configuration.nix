@@ -11,7 +11,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ (import ./overlay/overlay.nix {}) ];
+  # nixpkgs.overlays = [ (import ./overlay/overlay.nix {}) ];
 
   networking = {
     useDHCP = false;
@@ -35,7 +35,7 @@
     # dev tools
     emacs git gh vim
     # gui
-    firefox kitty rofi calibre deluge vlc pywal spotify
+    firefox kitty rofi calibre deluge vlc pywal picom
     # languages
     python3
     # games
@@ -69,7 +69,9 @@
       windowManager.dwm.enable = true;
     };
 
+    emacs.enable = true;
     flatpak.enable = true;
+    picom.enable = true;
     printing.enable = true;
   };
 
