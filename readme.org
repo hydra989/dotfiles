@@ -4,6 +4,7 @@
 - nixos configs
 - emacs w. lsp-mode, evil, org, etc & vim
 - kitty w. bash + oh-my-bash
+- a handful of patches for dwm (specifically 6.2) in dwm/
 - rofi
 - bookkeeper for link management/dotfile deployment
 - miscellaneous sh scripts, wallpapers
@@ -11,7 +12,7 @@
 TODO: link to bookkeeper, dwm github repo
 #+END_COMMENT
 
-My setups also utilize a handful of tools such as dwm and firefox, the configs for
+My setups also utilize a handful of tools such firefox, the configs for
 which either aren't included or can be found elsewhere. My emacs files are split up into
 an init.el and a src/ directory, in which are a small handful of elisp files that init.el
 loads on startup.

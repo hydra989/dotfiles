@@ -33,6 +33,17 @@
   :ensure t
   :defer 2
   :config
+  (setq magit-display-buffer-function
+      (lambda (buffer)
+        (display-buffer
+         buffer (if (and (derived-mode-p 'magit-mode)
+                         (memq (with-current-buffer buffer major-mode)
+                               '(magit-process-mode
+                                 magit-revision-mode
+                                 magit-stash-mode
+                                 magit-status-mode)))
+                    nil
+                  '(display-buffer-same-window))))))
   (with-eval-after-load 'magit-mode
 	  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 (use-package magit-todos
