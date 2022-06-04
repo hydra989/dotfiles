@@ -57,7 +57,7 @@
 				   (mode . magit-mode)
 				   (mode . magit-revision-mode)
 				   (mode . magit-diff-mode)
-				   (mode . magit-process-mode))
+				   (mode . magit-process-mode)))
 		 ("Writing" (or
 					 (mode . fountain-mode)
 					 (mode . latex-mode)

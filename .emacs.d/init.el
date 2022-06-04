@@ -11,12 +11,7 @@
 ;; customization
 (defvar *theme-magic-enabled* t)	;; true for pywal environments
 (defvar *transparency* t)
-(defvar *emacsclient* t)
 
-
-;; when set, start emacs server
-(when *emacsclient*
-  (server-start))
 
 ;; https://www.emacswiki.org/emacs/DotEmacsModular
 (defconst emacs-config-directory "~/.emacs.d/" "")
@@ -36,8 +31,8 @@
 
 ;; transparancy
 (when *transparency*
-  (set-frame-parameter (selected-frame) 'alpha '(92 . 85))
-  (add-to-list 'default-frame-alist '(alpha . (90 . 85))))
+  (set-frame-parameter (selected-frame) 'alpha '(82 . 75))
+  (add-to-list 'default-frame-alist '(alpha . (70 . 65))))
 
 (load-theme 'cyberpunk t)
 (set-frame-font "Hack-11.5" nil t)

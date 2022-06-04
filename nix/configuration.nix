@@ -40,13 +40,13 @@
     # dev tools
     emacs git gh vim
     # gui
-    firefox kitty rofi calibre deluge vlc pywal picom steam
+    firefox kitty rofi calibre deluge vlc pywal picom
     # languages
     python3
     # games
-    cataclysm-dda
+    cataclysm-dda steam
     # tui
-    tty-clock thefuck
+    tty-clock thefuck neofetch
 
     (dwm.overrideAttrs (oldAttrs: rec {
       src = fetchFromGitHub {
@@ -83,8 +83,7 @@
       windowManager.dwm.enable = true;
     };
 
-    emacs.enable = true;
-    flatpak.enable = true;
+    # flatpak.enable = true;
     picom.enable = true;
     printing.enable = true;
   };
