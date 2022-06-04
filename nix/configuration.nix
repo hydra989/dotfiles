@@ -23,7 +23,12 @@
   };
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    driSupport = true;
+    driSupport32Bit = true;
+
+    pulseaudio.enable = true;
+  };
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
