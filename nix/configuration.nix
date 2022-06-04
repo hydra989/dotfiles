@@ -40,13 +40,22 @@
     # dev tools
     emacs git gh vim
     # gui
-    firefox kitty rofi calibre deluge vlc pywal picom
+    firefox kitty rofi calibre deluge vlc pywal picom steam
     # languages
     python3
     # games
     cataclysm-dda
     # tui
     tty-clock thefuck
+
+    (dwm.overrideAttrs (oldAttrs: rec {
+      src = fetchFromGitHub {
+        owner = "hydra989";
+        repo = "dwm-6.2-fork";
+        rev = "25a1954a81c8c389591270ef0c7bd535663bca8d";
+        sha256 = "sha256-36yYV7bDlb5cISlK4Ak6csuKint5ZVPQogCysHNcAhs=";
+      };
+    }))
   ];
 
   fonts = {
