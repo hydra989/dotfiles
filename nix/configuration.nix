@@ -1,4 +1,9 @@
 { config, lib, pkgs, ... }: 
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -8,9 +13,19 @@
   boot = {
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = true;
+    supportedFilesystems = [ "ntfs" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nix.autoOptimizeStore = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
   # nixpkgs.overlays = [ (import ./overlay/overlay.nix {}) ];
 
   networking = {
@@ -23,6 +38,7 @@
   };
 
   sound.enable = true;
+
   hardware = {
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
@@ -38,16 +54,17 @@
   
   environment.systemPackages = with pkgs; [
     # dev tools
-    emacs git gh vim
+    unstable.emacs git gh vim
     # gui
     firefox kitty rofi calibre deluge vlc pywal picom
     # languages
-    python3
+    python3 pylint python-language-server
     # games
-    cataclysm-dda steam
+    cataclysm-dda unstable.steam
     # tui
-    tty-clock thefuck neofetch
+    tty-clock thefuck neofetch tor
 
+    # dwm
     (dwm.overrideAttrs (oldAttrs: rec {
       src = fetchFromGitHub {
         owner = "hydra989";
@@ -63,6 +80,7 @@
     fonts = with pkgs; [ dejavu_fonts hack-font ];
   };
 
+  # enable for flatpak
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -84,6 +102,7 @@
     };
 
     # flatpak.enable = true;
+    devmon.enable = true;
     picom.enable = true;
     printing.enable = true;
   };
@@ -95,9 +114,11 @@
     initialPassword = "rorschach";
   };
 
-  security.sudo = {
-    enable = true;
-    wheelNeedsPassword = true;
+  security= {
+    sudo = {
+      enable = true;
+      wheelNeedsPassword = true;
+    };
   };
   
   time.timeZone = "America/New_York";

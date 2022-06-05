@@ -53,18 +53,9 @@
   (setq magit-todos-ignored-keywords '(""))
   :config
   (magit-todos-mode))
-(use-package which-key
-  :ensure t
-  :defer 1
-  :init
-  (setq which-key-show-early-on-C-h t
-	which-key-seconday-delay 0.05
-	which-key-idle-delay 1.0)
-  :config
-  (which-key-setup-side-window-bottom)
-  (which-key-mode))
 (use-package tree-sitter
   :ensure t
+  :defer t
   :hook (prog-mode . tree-sitter-mode))
 (use-package tree-sitter-langs
   :ensure t
@@ -121,12 +112,12 @@
   :ensure t
   :config
   (setq feebleline-msg-functions
-		'((feebleline-line-number		:post "" :fmt "%4s")
-		  (feebleline-column-number		:pre ":" :fmt "%-2s")
+		'((feebleline-line-number		    :post "" :fmt "%4s")
+		  (feebleline-column-number		    :pre ":" :fmt "%-2s")
 		  (feebleline-file-directory		:face feebleline-dir-face :post "")
 		  (feebleline-file-or-buffer-name	:face font-lock-warning-face :post "")
 		  (feebleline-file-modified-star	:face font-lock-warning-face :post "")
-		  (magit-get-current-branch		:face feebleline-git-face :pre " -> ")
+		  (magit-get-current-branch		    :face feebleline-git-face :pre " -> ")
 		  ))
   (feebleline-mode 1))
 (use-package all-the-icons

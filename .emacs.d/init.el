@@ -35,5 +35,5 @@
   (add-to-list 'default-frame-alist '(alpha . (70 . 65))))
 
 (load-theme 'cyberpunk t)
-(set-frame-font "Hack-11.5" nil t)
+(set-frame-font "Hack-10.5" nil t)
 (theme-magic-from-emacs)
