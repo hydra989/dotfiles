@@ -23,8 +23,8 @@
 
 ;; transparancy
 (when *transparency*
-  (set-frame-parameter (selected-frame) 'alpha '(86 . 79))
-  (add-to-list 'default-frame-alist '(alpha . (70 . 65))))
+  (set-frame-parameter (selected-frame) 'alpha '(96 . 90))
+  (add-to-list 'default-frame-alist '(alpha . (82 . 77))))
 
 ;; general appearance
 (load-theme 'cyberpunk t)
