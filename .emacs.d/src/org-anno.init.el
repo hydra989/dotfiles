@@ -19,6 +19,6 @@
   :defer t
   :commands (markdown-mode gfm-mode)
   :init
-  (add-to-alist 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
   :config
   (setq markdown-command "pandoc"))

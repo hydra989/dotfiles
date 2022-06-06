@@ -24,9 +24,18 @@
 (use-package dtrt-indent
   :ensure t
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
+(use-package ibuffer-vc
+  :ensure t
+  :config
+  (add-hook 'ibuffer-hook
+			(lambda ()
+			  (ibuffer-vc-set-filter-groups-by-vc-root)
+			  (unless (eq ibuffer-sorting-mode 'major-mode)
+				(ibuffer-do-sort-by-major-mode)))))
 (use-package linum-relative
   :ensure t
-  :hook ((prog-mode emacs-lisp-mode) . linum-relative-mode)
+  :defer t
+  :hook (company-mode . linum-relative-mode)
   :init
   (setq linum-relative-backend 'display-line-numbers-mode))
 (use-package magit
@@ -45,7 +54,7 @@
                     nil
                   '(display-buffer-same-window))))))
   (with-eval-after-load 'magit-mode
-	  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
+	(add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 (use-package magit-todos
   :ensure t
   :after magit
@@ -129,7 +138,7 @@
   (global-hl-todo-mode))
 (use-package dashboard
   :ensure t
-  :config
+  :init
   (setq
    dashboard-center-content t
    dashboard-set-footer nil
@@ -139,6 +148,7 @@
    )
   (setq dashboard-items '((recents . 5)
                           ))
+  :config
   (dashboard-setup-startup-hook))
 
 
@@ -175,18 +185,19 @@
         lsp-ui-doc-show-with-mouse t
         lsp-ui-doc-delay 0.5
         lsp-ui-peek-enable t
-	lsp-ui-sideline-show-diagnostics t
+		lsp-ui-sideline-show-diagnostics t
         ))
 (use-package lsp-mode
   :ensure t
-  :after (company flycheck which-key yasnippet)
+  :defer t
   :hook ((c-mode python-mode) . lsp)
   :init
-  (yas-reload-all)
   
   (add-hook 'prog-mode-hook	'yas-minor-mode)
   (add-hook 'lsp-mode-hook	#'lsp-enable-which-key-integration)
   :config
+  (yas-reload-all)
+  
   ;; direct lsp config
   (setq lsp-lens-enable nil)
 
@@ -196,10 +207,11 @@
   
   ;; lsp related settings
   (setq lsp-pyls-disable-warning t
-	lsp-pyls-plugins-pycodestyle-enabled nil
-	))
+		lsp-pyls-plugins-pycodestyle-enabled nil
+		))
 (use-package company
   :ensure t
+  :defer t
   :hook (prog-mode . company-mode)
   :init
   (setq company-minimum-prefix-length 1
@@ -212,34 +224,39 @@
   (setq company-backends '((company-yasnippet company-dabbrev-code company-capf company-keywords company-files))))
 (use-package company-box
   :ensure t
-  :after company
+  :defer t
   :hook (company-mode . company-box-mode))
 (use-package company-quickhelp
   :ensure t
-  :after company
+  :defer t
   :hook (company-mode . company-quickhelp-mode)
   :config
   (setq company-quickhelp-delay 0.4))
 (use-package flycheck
   :ensure t
+  :defer t
   :hook (prog-mode . flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 (use-package yasnippet
-  :ensure t)
+  :ensure t
+  :defer t)
 
 
 ;; treemacs
 (use-package treemacs
   :ensure t
+  :defer t
   :init
   (global-set-key (kbd "C-c t") 'treemacs)
   :config
   (setq-default treemacs-use-follow-mode t
-		treemacs-use-filewatch-mode t
-		treemacs-use-git-mode 'deferred)
-  (require 'treemacs-all-the-icons)
+				treemacs-use-filewatch-mode t
+				treemacs-use-git-mode 'deferred)
   (treemacs-load-theme "all-the-icons"))
+(use-package treemacs-all-the-icons
+  :ensure t
+  :defer t)
 (use-package treemacs-evil
   :after (treemacs evil)
   :ensure t)

@@ -16,7 +16,7 @@ in
     supportedFilesystems = [ "ntfs" ];
   };
 
-  nix.autoOptimizeStore = true;
+  nix.optimise.automatic = true;
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -62,7 +62,7 @@ in
     # games
     cataclysm-dda unstable.steam
     # tui
-    tty-clock thefuck neofetch tor
+    tty-clock thefuck neofetch tor feh
 
     # dwm
     (dwm.overrideAttrs (oldAttrs: rec {
@@ -77,7 +77,7 @@ in
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [ dejavu_fonts hack-font ];
+    fonts = with pkgs; [ dejavu_fonts hack-font terminus_font ];
   };
 
   # enable for flatpak
@@ -120,8 +120,8 @@ in
       wheelNeedsPassword = true;
     };
   };
-  
+
   time.timeZone = "America/New_York";
-  
+
   system.stateVersion = "22.05";
 }

@@ -34,58 +34,19 @@
  backup-by-copying t			; don't delink hardlinks (?)
  scroll-preserve-screen-position t
  scroll-conservatively 101		; smooth scrolling
+ frame-inhibit-implied-resize t
  )
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;; language specific settings
+;; language specific settings
 (setq
  ; c
  c-default-style "linux"
  )
 
-;;; ibuffer
+;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(setq ibuffer-show-empty-filter-groups nil
-	  ibuffer-expert t
-	  ;; a few of these are redundant---
-	  ;; ibuffer gives me problems with consistency
-	  ibuffer-saved-filter-groups
-	  '(("home"
-		 ("Dired" (mode . dired-mode))
-		 ("Magit" (or
-				   (mode . magit-mode)
-				   (mode . magit-revision-mode)
-				   (mode . magit-diff-mode)
-				   (mode . magit-process-mode)))
-		 ("Writing" (or
-					 (mode . fountain-mode)
-					 (mode . latex-mode)
-					 (mode . markdown-mode)))
-		 ("Org"  (mode . org-mode))
-		 ("Code" (or
-				  (filename . "Git")
-				  (mode . prog-mode)
-				  (mode . lsp-mode)
-				  (mode . nix-mode)))
-		 ("Emacs" (or
-				   (name . "^\\*scratch\\*$")
-				   (name . "^\\*Messages\\*$")
-				   (name . "^\\*Warnings\\*$")
-				   (name . "^\\*GNU Emacs\\*$")
-				   (mode . emacs-lisp-mode)))
-		 ("Shell" (or
-				   (mode . term-mode)
-				   (mode . eshell-mode)))
-		 ("LSP" (or
-				 (filename . "^\\*pylsp\\*$")
-				 (filename . "^\\*lsp-log\\*$")
-				 (filename . "^\\*pylsp::stderr\\*$")))
-		 )))
-(add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-auto-mode 1)
-	    (ibuffer-switch-to-saved-filter-groups "home")))
 
 ;; windmove for S-{arrow} window movements
 (when (fboundp 'windmove-default-keybindings)

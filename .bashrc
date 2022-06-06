@@ -1,9 +1,9 @@
 export EDITOR="vim"
-export VISUAL="emacsclient -c -a emacs"
+export VISUAL="emacs"
 
 # oh-my-bash stuff
 export OSH=/home/hydra/.oh-my-bash
-OSH_THEME="candy"
+OSH_THEME="90210"
 completions=(
   git
   gh
@@ -26,3 +26,4 @@ eval "$(thefuck --alias)"
 # aliases
 alias clock='tty-clock -c -u -t'
 alias reboot='sudo reboot'
+alias unixporn='clear && neofetch'
