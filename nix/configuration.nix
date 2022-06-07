@@ -68,9 +68,9 @@ in
     (dwm.overrideAttrs (oldAttrs: rec {
       src = fetchFromGitHub {
         owner = "hydra989";
-        repo = "dwm-6.2-fork";
-        rev = "25a1954a81c8c389591270ef0c7bd535663bca8d";
-        sha256 = "sha256-36yYV7bDlb5cISlK4Ak6csuKint5ZVPQogCysHNcAhs=";
+        repo = "dwm-6.2";
+        rev = "84a60040472476905fb2c7937a95593976628060";
+        sha256 = "sha256-5boGhmTlNCMTMJI1U3jqV+XftOL6CTYBfpChmi7Eynk=";
       };
     }))
   ];
@@ -103,7 +103,11 @@ in
 
     # flatpak.enable = true;
     devmon.enable = true;
-    picom.enable = true;
+    picom = {
+      enable = true;
+      backend = "xrender";
+      vSync = true;
+    };
     printing.enable = true;
   };
 
