@@ -1,15 +1,20 @@
 * dotfiles
 
-*** contains
-- nixos configs
-- emacs w. lsp-mode, evil, org, etc & vim
-- kitty w. bash + oh-my-bash
-- a handful of patches for dwm (specifically 6.2) in dwm/
-- rofi
+- *distro*: nixos
+- *wm*: awesomewm
+- *dm*: lightdm
+- *compositor*: picom
+- *$EDITOR*: emacs, vim
+- *terminal*: kitty w. bash + oh-my-bash
+- *launcher*: rofi
+- *browser*: firefox (not included)
+
+alongside:
+- pywal for synchronizing themes through emacs' theme-magic
 - bookkeeper for link management/dotfile deployment
 - miscellaneous sh scripts, wallpapers
 #+BEGIN_COMMENT
-TODO: link to bookkeeper, dwm github repo
+TODO: link to bookkeeper github repo
 #+END_COMMENT
 
 My setups also utilize a handful of tools such firefox, the configs for
@@ -32,6 +37,6 @@ active machine matches the hostname.
 #+BEGIN_COMMENT
 TODO:   warpd,
         bash vs zsh vs fish?
-	    find a bar for dwm,
+	    find a bar for awesome,
 	    .editorconfig?
 #+END_COMMENT
