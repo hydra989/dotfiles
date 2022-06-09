@@ -28,6 +28,6 @@
 
 ;; general appearance
 (load-theme 'cyberpunk t)
-(add-to-list 'default-frame-alist '(font . "Hack-10"))
+(add-to-list 'default-frame-alist '(font . "Terminus-11"))
 (when *theme-magic-enabled*
   (theme-magic-from-emacs))

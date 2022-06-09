@@ -10,6 +10,6 @@
   hardware.opengl.enable = true;
 
   environment.systemPackages = with pkgs; [
-    lutris
+    unstable.lutris
   ];
 }

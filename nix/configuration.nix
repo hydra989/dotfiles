@@ -59,20 +59,11 @@ in
     firefox kitty rofi calibre deluge vlc pywal picom
     # languages
     python3 pylint python-language-server
+    gcc clang-tools # clangtools for clangd
     # games
-    cataclysm-dda unstable.steam
+    dwarf-fortress cataclysm-dda unstable.steam wineWowPackages.staging
     # tui
     tty-clock thefuck neofetch tor feh
-
-    # dwm
-    (dwm.overrideAttrs (oldAttrs: rec {
-      src = fetchFromGitHub {
-        owner = "hydra989";
-        repo = "dwm-6.2";
-        rev = "84a60040472476905fb2c7937a95593976628060";
-        sha256 = "sha256-5boGhmTlNCMTMJI1U3jqV+XftOL6CTYBfpChmi7Eynk=";
-      };
-    }))
   ];
 
   fonts = {
@@ -81,10 +72,10 @@ in
   };
 
   # enable for flatpak
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  # xdg.portal = {
+  #  enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
 
   services = {
     xserver = {
@@ -98,14 +89,14 @@ in
         };
       };
 
-      windowManager.dwm.enable = true;
+      windowManager.awesome.enable = true;
     };
 
     # flatpak.enable = true;
     devmon.enable = true;
     picom = {
       enable = true;
-      backend = "xrender";
+      backend = "glx";
       vSync = true;
     };
     printing.enable = true;

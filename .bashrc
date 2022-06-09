@@ -27,3 +27,4 @@ eval "$(thefuck --alias)"
 alias clock='tty-clock -c -u -t'
 alias reboot='sudo reboot'
 alias unixporn='clear && neofetch'
+alias rescan='nmcli device wifi rescan'

@@ -242,7 +242,6 @@
   :ensure t
   :defer t)
 
-
 ;; treemacs
 (use-package treemacs
   :ensure t
@@ -252,11 +251,12 @@
   :config
   (setq-default treemacs-use-follow-mode t
 				treemacs-use-filewatch-mode t
-				treemacs-use-git-mode 'deferred)
-  (treemacs-load-theme "all-the-icons"))
+				treemacs-use-git-mode 'deferred))
 (use-package treemacs-all-the-icons
   :ensure t
-  :defer t)
+  :after treemacs
+  :config
+  (treemacs-load-theme "all-the-icons"))
 (use-package treemacs-evil
   :after (treemacs evil)
   :ensure t)
