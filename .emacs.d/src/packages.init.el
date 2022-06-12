@@ -35,7 +35,7 @@
 (use-package linum-relative
   :ensure t
   :defer t
-  :hook (company-mode . linum-relative-mode)
+  :hook (prog-mode . linum-relative-mode)
   :init
   (setq linum-relative-backend 'display-line-numbers-mode))
 (use-package magit
@@ -94,8 +94,7 @@
   :ensure t
   :after evil
   :config
-  (evil-define-key 'visual evil-snipe-local-mode-map "z" 'evil-snipe-s)
-  (evil-define-key 'visual evil-snipe-local-mode-map "Z" 'evil-snipe-S))
+  (evil-snipe-mode +1))
 (use-package undo-fu
   :ensure t
   :after evil
@@ -123,9 +122,9 @@
   (setq feebleline-msg-functions
 		'((feebleline-line-number		    :post "" :fmt "%4s")
 		  (feebleline-column-number		    :pre ":" :fmt "%-2s")
-		  (feebleline-file-directory		:face feebleline-dir-face :post "")
-		  (feebleline-file-or-buffer-name	:face font-lock-warning-face :post "")
-		  (feebleline-file-modified-star	:face font-lock-warning-face :post "")
+		  (feebleline-file-directory		    :face feebleline-dir-face :post "")
+		  (feebleline-file-or-buffer-name	    :face font-lock-warning-face :post "")
+		  (feebleline-file-modified-star	    :face font-lock-warning-face :post "")
 		  (magit-get-current-branch		    :face feebleline-git-face :pre " -> ")
 		  ))
   (feebleline-mode 1))

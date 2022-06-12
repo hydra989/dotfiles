@@ -16,8 +16,12 @@ in
     supportedFilesystems = [ "ntfs" ];
   };
 
-  nix.optimise.automatic = true;
-
+  nix = {
+    optimise.automatic = true;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
   nixpkgs.config = {
     allowUnfree = true;
     packageOverrides = pkgs: {
@@ -26,7 +30,14 @@ in
       };
     };
   };
-  # nixpkgs.overlays = [ (import ./overlay/overlay.nix {}) ];
+
+  # emacs
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+  services.emacs.package = pkgs.emacsNativeComp;
 
   networking = {
     useDHCP = false;
@@ -46,24 +57,28 @@ in
     pulseaudio.enable = true;
   };
 
+  # for virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
-  
+
   environment.systemPackages = with pkgs; [
     # dev tools
-    unstable.emacs git gh vim
+    git gh vim virt-manager
     # gui
     firefox kitty rofi calibre deluge vlc pywal picom
     # languages
     python3 pylint python-language-server
-    gcc clang-tools # clangtools for clangd
+    gcc gdb clang-tools # clangtools for clangd
     # games
     dwarf-fortress cataclysm-dda unstable.steam wineWowPackages.staging
     # tui
-    tty-clock thefuck neofetch tor feh
+    tty-clock thefuck neofetch tor feh maim
   ];
 
   fonts = {
@@ -73,8 +88,8 @@ in
 
   # enable for flatpak
   # xdg.portal = {
-  #  enable = true;
-  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  #   enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # };
 
   services = {
@@ -105,7 +120,9 @@ in
   users.users.hydra = {
     isNormalUser = true;
     home = "/home/hydra";
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [
+      "wheel" "networkmanager" "video" "audio" "libvirtd"
+    ];
     initialPassword = "rorschach";
   };
 
