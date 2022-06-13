@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
   networking = {
     hostName = "canary";
     interfaces.wlan0.useDHCP = true;

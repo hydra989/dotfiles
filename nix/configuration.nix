@@ -31,14 +31,6 @@ in
     };
   };
 
-  # emacs
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
-  ];
-  services.emacs.package = pkgs.emacsNativeComp;
-
   networking = {
     useDHCP = false;
     networkmanager = {
@@ -61,17 +53,29 @@ in
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
+  # emacs
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+  services.emacs.package = pkgs.emacsNativeComp;
+
+  # zsh
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "ys";
+    };
   };
 
   environment.systemPackages = with pkgs; [
     # dev tools
-    git gh vim virt-manager
+    git gh vim virt-manager emacsNativeComp
     # gui
-    firefox kitty rofi calibre deluge vlc pywal picom
+    firefox alacritty rofi calibre deluge vlc pywal picom polybar
     # languages
     python3 pylint python-language-server
     gcc gdb clang-tools # clangtools for clangd
@@ -124,16 +128,23 @@ in
       "wheel" "networkmanager" "video" "audio" "libvirtd"
     ];
     initialPassword = "rorschach";
+    shell = pkgs.zsh;
   };
 
-  security= {
+  security = {
     sudo = {
       enable = true;
       wheelNeedsPassword = true;
     };
   };
 
+  # localization/defaults
   time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
 
   system.stateVersion = "22.05";
 }

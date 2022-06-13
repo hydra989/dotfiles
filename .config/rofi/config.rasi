@@ -1,9 +1,9 @@
 configuration {
 	modi: "run,drun";
-	font: "hack 10";
+	font: "terminus 12";
 	timeout {
-		delay: 10;
+		delay: 15;
 		action: "kb-cancel";
 	}
 }
-@import "~/.cache/wal/colors-rofi-light"
+@import "~/.cache/wal/colors-rofi-dark"

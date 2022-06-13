@@ -4,23 +4,19 @@
 - *wm*: awesomewm
 - *dm*: lightdm
 - *compositor*: picom
+- *bar*: polybar
 - *$EDITOR*: emacs, vim
-- *terminal*: kitty w. bash + oh-my-bash
+- *terminal*: alacritty w. zsh + oh-my-zsh
 - *launcher*: rofi
-- *browser*: firefox (not included)
+- *browser*: firefox
 
 alongside:
 - pywal for synchronizing themes through emacs' theme-magic
-- bookkeeper for link management/dotfile deployment
 - miscellaneous sh scripts, wallpapers
-#+BEGIN_COMMENT
-TODO: link to bookkeeper github repo
-#+END_COMMENT
 
-My setups also utilize a handful of tools such firefox, the configs for
-which either aren't included or can be found elsewhere. My emacs files are split up into
-an init.el and a src/ directory, in which are a small handful of elisp files that init.el
-loads on startup.
+My setups also utilize a handful of tools, such as firefox, where the configs just
+aren't included. My emacs files are split up into an init.el and a src/ directory,
+in which are a small handful of elisp files that init.el loads on startup.
 
 Wallpapers I collect over time, so note that they aren't mine/I didn't make them. I've
 tried to collect their sources in sources.txt over time, but it'll likely be somewhat
@@ -28,15 +24,12 @@ of a mess at any given time.
 
 *** nix
 - canary: my desktop---dev env + steam, wifi, bluetooth, less minimal than songbird overall
-- songbird: relatively minimal dev env + steam setup, wifi, bluetooth, power management emphasis
+- songbird: my laptop---dev env + steam, wifi, bluetooth, power management, amdgpu
 
 configuration.nix loads the machine active-machine.nix, which is a hardlink to one of the
-machine files in the nix/machines folder. bookkeeper manages this for me, ensuring the
-active machine matches the hostname.
+machine files in the nix/machines folder. 
 
 #+BEGIN_COMMENT
 TODO:   warpd,
-        bash vs zsh vs fish?
-	    find a bar for awesome,
 	    .editorconfig?
 #+END_COMMENT

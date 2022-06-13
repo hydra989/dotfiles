@@ -37,7 +37,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- set defaults
-terminal   = "kitty"
+terminal   = "alacritty"
 editor     = os.getenv("VISUAL") or os.getenv("EDITOR")
 editor_cmd = terminal .. editor
 rofi       = "rofi -show drun -show-icons"
@@ -88,7 +88,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "0x1", "0x2", "0x3", "steam", "media" }, s, awful.layout.layouts[1])
 
 end)
 
