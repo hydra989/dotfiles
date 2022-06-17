@@ -7,10 +7,9 @@ in
 {
   imports = [
     (import "${home-manager}/nixos")
-    ./hardware-configuration.nix
-    ./active-machine.nix
+    ./machines/canary.nix
     ./home.nix
-            ];
+  ];
 
   boot = {
     loader.efi.canTouchEfiVariables = true;

@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ./hardware-configuration-canary.nix
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   nixpkgs.localSystem = {

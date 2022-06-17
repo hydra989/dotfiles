@@ -6,7 +6,8 @@
 - *compositor*: picom
 - *bar*: polybar
 - *$EDITOR*: emacs, vim
-- *terminal*: alacritty w. zsh + oh-my-zsh
+- *terminal*: alacritty
+- *shell*: zsh + oh-my-zsh
 - *launcher*: rofi
 - *browser*: firefox
 
@@ -19,15 +20,15 @@ aren't included. My emacs files are split up into an init.el and a src/ director
 in which are a small handful of elisp files that init.el loads on startup.
 
 Wallpapers I collect over time, so note that they aren't mine/I didn't make them. I've
-tried to collect their sources in sources.txt over time, but it'll likely be somewhat
+tried to collect their sources in a sources.txt over time, but it'll likely be somewhat
 of a mess at any given time.
 
 *** nix
-- canary: my desktop---dev env + steam, wifi, bluetooth, less minimal than songbird overall
-- songbird: my laptop---dev env + steam, wifi, bluetooth, power management, amdgpu
+- canary: my desktop---dev env + steam/lutris, wifi/bluetooth, nvidia
+- songbird: my laptop---dev env + steam, wifi/bluetooth, power management, amdgpu
 
-configuration.nix loads the machine active-machine.nix, which is a hardlink to one of the
-machine files in the nix/machines folder. 
+configuration.nix should be manually changed to import etiher canary.nix or songbird.nix
+based on the machine.
 
 #+BEGIN_COMMENT
 TODO:   warpd,
