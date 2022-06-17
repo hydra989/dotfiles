@@ -1,13 +1,15 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 let
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+  home-manager = builtins.fetchTarball {
+    url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  };
 in
 {
   imports = [
+    (import "${home-manager}/nixos")
     ./hardware-configuration.nix
     ./active-machine.nix
+    ./home.nix
             ];
 
   boot = {
@@ -22,13 +24,13 @@ in
       experimental-features = nix-command flakes
     '';
   };
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      pulseaudio = true;
     };
+
+    localSystem.system = "x86_64-linux";
   };
 
   networking = {
@@ -46,10 +48,15 @@ in
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
 
-    pulseaudio.enable = true;
+    bluetooth.enable = true;
+
+    pulseaudio = {
+      enable = true;
+      support32Bit = true;
+    };
   };
 
-  # for virt-manager
+  # virt-manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
@@ -61,13 +68,21 @@ in
   ];
   services.emacs.package = pkgs.emacsNativeComp;
 
-  # zsh
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
+  programs = {
+    # steam
+    steam = {
       enable = true;
-      plugins = [ "git" ];
-      theme = "ys";
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    # zsh
+    zsh = {
+      enable = true;
+      ohMyZsh = {
+        enable = true;
+        plugins = [ "git" ];
+        theme = "ys";
+      };
     };
   };
 
@@ -75,19 +90,19 @@ in
     # dev tools
     git gh vim virt-manager emacsNativeComp
     # gui
-    firefox alacritty rofi calibre deluge vlc pywal picom polybar
+    firefox alacritty rofi calibre deluge vlc pywal picom polybar xfce.thunar
     # languages
     python3 pylint python-language-server
-    gcc gdb clang-tools # clangtools for clangd
+    gcc gdb bear clang-tools
     # games
-    dwarf-fortress cataclysm-dda unstable.steam wineWowPackages.staging
+    dwarf-fortress cataclysm-dda wineWowPackages.staging
     # tui
     tty-clock thefuck neofetch tor feh maim
   ];
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [ dejavu_fonts hack-font terminus_font ];
+    fonts = with pkgs; [ dejavu_fonts hack-font terminus_font siji ];
   };
 
   # enable for flatpak
@@ -112,6 +127,7 @@ in
     };
 
     # flatpak.enable = true;
+    blueman.enable = true;
     devmon.enable = true;
     picom = {
       enable = true;

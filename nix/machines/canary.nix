@@ -2,6 +2,11 @@
 {
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
+  nixpkgs.localSystem = {
+    gcc.arch = "znver3";
+    gcc.tune = "znver3";
+  };
+
   networking = {
     hostName = "canary";
     interfaces.wlan0.useDHCP = true;
@@ -12,6 +17,6 @@
   hardware.opengl.enable = true;
 
   environment.systemPackages = with pkgs; [
-    unstable.lutris
+    lutris
   ];
 }
