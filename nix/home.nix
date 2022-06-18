@@ -1,19 +1,24 @@
 { config, pkgs, ... }:
 {
   home-manager.users.hydra = {
+    programs.home-manager.enable = true;
+    home.stateVersion = "22.05";
+    home.homeDirectory = "/home/hydra";
+
+    # dotfiles
     home.file = {
-      ".vimrc".source = ./s/dotfiles/.vimrc;
-      ".zshrc".source = ./s/dotfiles/.zshrc;
-      ".wallpaper".source = ./s/dotfiles/.wallpaper;
-      ".emacs.d/init.el".source = ./s/dotfiles/.emacs.d/init.el;
-      ".emacs.d/src".source = ./s/dotfiles/.emacs.d/src;
+      ".vimrc".source = ../.vimrc;
+      ".zshrc".source = ../.zshrc;
+      ".wallpaper".source = ../.wallpaper;
+      ".emacs.d/init.el".source = ../.emacs.d/init.el;
+      ".emacs.d/src".source = ../.emacs.d/src;
     };
 
     xdg.configFile = {
-      "alacritty/alacritty.yml".source = ./s/dotfiles/.config/alacritty/alacritty.yml;
-      "awesome/rc.lua".source = ./s/dotfiles/.config/awesome/rc.lua;
-      "polybar/config.ini".source = ./s/dotfiles/.config/polybar/config.ini;
-      "rofi/config.rasi".source = ./s/dotfiles/.config/rofi/config.rasi;
+      "alacritty/alacritty.yml".source = ../.config/alacritty/alacritty.yml;
+      "awesome/rc.lua".source = ../.config/awesome/rc.lua;
+      "polybar/config.ini".source = ../.config/polybar/config.ini;
+      "rofi/config.rasi".source = ../.config/rofi/config.rasi;
     };
   };
 }

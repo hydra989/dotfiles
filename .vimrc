@@ -26,4 +26,3 @@ nnoremap k gk
 
 " source pywal colors
 source ~/.cache/wal/colors-wal.vim
-

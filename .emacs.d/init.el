@@ -2,7 +2,6 @@
 ;;;
 ;;;		TODO: latex previews?
 
-
 ;; performance things
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024))
@@ -11,13 +10,23 @@
 (defvar *theme-magic-enabled* t)	;; true for pywal environments
 (defvar *transparency* t)
 
-;; https://www.emacswiki.org/emacs/LoadingLispFiles
-(defun load-directory (dir)
-  (let ((load-it (lambda (f)
-					 (load-file (concat (file-name-as-directory dir) f)))
-				   ))
-	(mapc load-it (directory-files dir nil "\\.el$"))))
-(load-directory "~/.emacs.d/src")
+;; init melpa so packages.init.el doesn't throw a fit
+(package-initialize)
+(setq package-check-signature nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+;; https://www.emacswiki.org/emacs/DotEmacsModular
+(defconst hydra:emacs-config-dir "/home/hydra/.emacs.d/src/" "")
+(defun hydra:load-config-file (filelist)
+  (dolist (file filelist)
+    (load (expand-file-name
+           (concat hydra:emacs-config-dir file)))
+     ))
+(hydra:load-config-file '("defaults.init.el"
+		                  "packages.init.el"
+			              "func.init.el"
+			              "org-anno.init.el"
+                        ))
 
 ;; transparancy
 (when *transparency*
@@ -27,16 +36,8 @@
 ;; general appearance
 (load-theme 'cyberpunk t)
 (add-to-list 'default-frame-alist '(font . "Terminus-11"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(emojify yasnippet yaml-mode writeroom-mode which-key use-package undo-fu treemacs-magit treemacs-evil treemacs-all-the-icons tree-sitter-langs theme-magic org-noter nix-mode monokai-pro-theme magit-todos lua-mode lsp-ui lsp-treemacs linum-relative ibuffer-vc go-mode fountain-mode flycheck feebleline evil-snipe evil-collection dtrt-indent dockerfile-mode dashboard cyberpunk-theme counsel company-quickhelp company-box base16-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;; seperate custom file
+(setq custom-file "/home/hydra/.emacs.d/custom.el")
+(when (file-exists-p custom-file)
+  (load custom-file))

@@ -16,7 +16,7 @@
 ;; this isn't mine, but not sure where i found it
 (defun config-visit ()
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file "/home/hydra/.emacs.d/init.el"))
 
 ;; stolen from emacswiki
 (defun create-scratch-buffer nil

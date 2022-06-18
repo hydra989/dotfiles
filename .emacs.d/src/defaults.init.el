@@ -34,7 +34,8 @@
  backup-by-copying t			; don't delink hardlinks (?)
  scroll-preserve-screen-position t
  scroll-conservatively 101		; smooth scrolling
- frame-inhibit-implied-resize t
+ frame-inhibit-implied-resize t ; shouldn't wildly resize during startup
+ frame-resize-pixelwise t
  )
 
 (fset 'yes-or-no-p 'y-or-n-p)

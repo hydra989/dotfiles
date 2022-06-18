@@ -2,17 +2,10 @@
 
 
 ;;; use-package
-(package-initialize)
-(setq package-check-signature nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (unless package-archive-contents
   (package-refresh-contents))
-(eval-when-compile
-  (dolist (package '(use-package))
-	(unless (package-installed-p package)
-	  (package-install package))
-	(require package)))
 (setq package-native-compile t)
+(require 'package)
 
 
 ;;; general
@@ -23,6 +16,7 @@
   (evil-define-key 'normal 'global (kbd "SPC") 'avy-goto-char))
 (use-package dtrt-indent
   :ensure t
+  :defer t
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
 (use-package ibuffer-vc
   :ensure t
@@ -293,3 +287,8 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
   (add-hook 'go-mode #'lsp-mode-deferred))
+(use-package lua-mode           ;; lua
+  :ensure t
+  :defer t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.llua\\'" . lua-mode)))

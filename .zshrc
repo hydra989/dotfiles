@@ -14,6 +14,7 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+zstyle ':omz:update' mode disabled
 
 export EDITOR="vim"
 export VISUAL="emacs"
