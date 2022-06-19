@@ -38,22 +38,25 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # dev tools
-    git gh vim virt-manager emacsNativeComp
     # gui
-    firefox alacritty rofi calibre deluge vlc pywal picom polybar xfce.thunar
+    firefox alacritty rofi calibre deluge vlc pywal
+    polybar picom xfce.thunar maim feh alacritty
+    # dev tools
+    git gh vim emacsNativeComp virt-manager
     # languages
     python3 pylint python-language-server
     gcc gdb bear clang-tools
+    # tui
+    tty-clock thefuck neofetch tor
     # games
     dwarf-fortress cataclysm-dda wineWowPackages.staging
-    # tui
-    tty-clock thefuck neofetch tor feh maim
   ];
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [ dejavu_fonts hack-font terminus_font siji ];
+    fonts = with pkgs; [
+      dejavu_fonts hack-font terminus_font font-awesome
+    ];
   };
 
   # enable for flatpak

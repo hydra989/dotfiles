@@ -336,7 +336,10 @@ awful.rules.rules = {
           "ConfigManager",  -- Thunderbird's about:config.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-      }, properties = { floating = true }}
+	}, properties = { floating = true }},
+
+	{ rule = { class = "polybar" },
+	  properties = { border_width = 0; } }
 }
 
 -- Signal function to execute when a new client appears.
@@ -361,4 +364,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.util.spawn("polybar")
+awful.spawn("polybar")

@@ -14,6 +14,7 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+
 zstyle ':omz:update' mode disabled
 
 export EDITOR="vim"
@@ -31,4 +32,4 @@ alias reboot='sudo reboot'
 alias unixporn='clear && neofetch'
 alias rescan='nmcli device wifi rescan'
 alias nixrebuild='sudo nixos-rebuild switch -I nixos-config=/home/hydra/s/dotfiles/nix/configuration.nix'
-alias cleantrash='sudo sh ./home/hydra/s/dotfiles/empty_trash.sh'
+alias cleantrash='sudo sh /home/hydra/s/dotfiles/empty_trash.sh'

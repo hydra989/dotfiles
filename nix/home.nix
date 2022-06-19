@@ -1,5 +1,14 @@
 { config, pkgs, ... }:
 {
+  users.users.hydra = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel" "networkmanager" "video" "audio" "libvirtd"
+    ];
+    initialPassword = "rorschach";
+    shell = pkgs.zsh;
+  };
+
   home-manager.users.hydra = {
     programs.home-manager.enable = true;
     home.stateVersion = "22.05";
@@ -19,6 +28,8 @@
       "awesome/rc.lua".source = ../.config/awesome/rc.lua;
       "polybar/config.ini".source = ../.config/polybar/config.ini;
       "rofi/config.rasi".source = ../.config/rofi/config.rasi;
+      "rofi/rofi-network-manager.rasi".source = ../.config/rofi/rofi-network-manager.rasi;
+      "rofi/rofi-network-manager.conf".source = ../.config/rofi/rofi-network-manager.conf;
     };
   };
 }

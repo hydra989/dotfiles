@@ -47,20 +47,6 @@ in
   };
 
   services = {
-    xserver = {
-      enable = true;
-      layout = "us";
-
-      displayManager = {
-        lightdm = {
-          enable = true;
-          greeter.enable = true;
-        };
-      };
-
-      windowManager.awesome.enable = true;
-    };
-
     blueman.enable = true;
     devmon.enable = true;
     picom = {
@@ -69,16 +55,12 @@ in
       vSync = true;
     };
     printing.enable = true;
-  };
-
-  # TODO: home-manager-ify this?
-  users.users.hydra = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel" "networkmanager" "video" "audio" "libvirtd"
-    ];
-    initialPassword = "rorschach";
-    shell = pkgs.zsh;
+    xserver = {
+      enable = true;
+      layout = "us";
+      displayManager.lightdm.enable = true;
+      windowManager.awesome.enable = true;
+    };
   };
 
   security = {

@@ -20,6 +20,7 @@
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
 (use-package ibuffer-vc
   :ensure t
+  :defer t
   :config
   (add-hook 'ibuffer-hook
 			(lambda ()
@@ -160,6 +161,7 @@
   (counsel-mode))
 (use-package swiper
   :ensure t
+  :defer t
   :after ivy
   :config
   (global-set-key "\C-s" 'swiper))

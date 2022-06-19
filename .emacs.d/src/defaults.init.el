@@ -9,9 +9,9 @@
 (global-auto-revert-mode 1)
 
 ;; fighting emacs tab defaults
-(setq-default indent-tabs-mode t)
-(setq-default tab-always-indent 't)
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode t
+			  tab-always-indent 't
+			  tab-width 4)
 
 ;; https://www.victorquinn.com/emacs-prevent-autosave-mess
 (setq backup-directory-alist
