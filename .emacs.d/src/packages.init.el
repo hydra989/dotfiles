@@ -20,7 +20,6 @@
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
 (use-package ibuffer-vc
   :ensure t
-  :defer t
   :config
   (add-hook 'ibuffer-hook
 			(lambda ()
@@ -35,7 +34,6 @@
   (setq linum-relative-backend 'display-line-numbers-mode))
 (use-package magit
   :ensure t
-  :defer 2
   :config
   (setq magit-display-buffer-function
       (lambda (buffer)
@@ -130,20 +128,6 @@
   :ensure t
   :config
   (global-hl-todo-mode))
-(use-package dashboard
-  :ensure t
-  :init
-  (setq
-   dashboard-center-content t
-   dashboard-set-footer nil
-   ; icons
-   dashboard-set-heading-icons nil
-   dashboard-set-file-icons t
-   )
-  (setq dashboard-items '((recents . 5)
-                          ))
-  :config
-  (dashboard-setup-startup-hook))
 
 
 ;; ivy

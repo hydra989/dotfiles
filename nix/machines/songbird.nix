@@ -7,10 +7,7 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  nixpkgs.localSystem = {
-    gcc.arch = "znver1";
-    gcc.tune = "znver1";
-  };
+  nix.systemFeatures = [ "gccarch-znver1" "big-parallel" ];
 
   services = {
     # amdgpu

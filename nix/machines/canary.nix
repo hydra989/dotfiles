@@ -4,17 +4,9 @@
     ./hardware-configuration-canary.nix
   ];
 
+  nix.systemFeatures = [ "gccarch-znver3" "big-parallel" ];
+  # TODO: tuned kernel? currently throwing error with nvidia.
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-  nix.systemFeatures = [ "gccarch-znver3" ];
-
-  nixpkgs.localSystem = lib.recursiveUpdate
-    (lib.systems.elaborate {
-      system = "x86_64-linux";
-    }) {
-      platform.gcc.arch = "znver3";
-      platform.gcc.tune = "znver3";
-    };
 
   networking = {
     hostName = "canary";

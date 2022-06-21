@@ -36,6 +36,7 @@
  scroll-conservatively 101		; smooth scrolling
  frame-inhibit-implied-resize t ; shouldn't wildly resize during startup
  frame-resize-pixelwise t
+ native-comp-deferred-compilation t
  )
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -47,6 +48,7 @@
  )
 
 ;; ibuffer
+(autoload 'ibuffer "ibuffer" "List buffers." t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; windmove for S-{arrow} window movements

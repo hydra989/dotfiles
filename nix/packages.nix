@@ -1,23 +1,8 @@
 { config, lib, pkgs, ... }:
 {
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      pulseaudio = true;
-    };
-  };
-
   # virt-manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-
-  # emacs
-  services.emacs.package = pkgs.emacsNativeComp;
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
-  ];
 
   programs = {
     # steam
@@ -39,17 +24,17 @@
 
   environment.systemPackages = with pkgs; [
     # gui
-    firefox alacritty rofi calibre deluge vlc pywal
-    polybar picom xfce.thunar maim feh alacritty
+    firefox alacritty calibre deluge vlc
+    xfce.thunar maim feh pywal
     # dev tools
-    git gh vim emacsNativeComp virt-manager
+    git gh virt-manager
     # languages
     python3 pylint python-language-server
-    gcc gdb bear clang-tools
+    gcc gdb bear clang-tools binutils
     # tui
     tty-clock thefuck neofetch tor
     # games
-    dwarf-fortress cataclysm-dda wineWowPackages.staging
+    dwarf-fortress cataclysm-dda
   ];
 
   fonts = {

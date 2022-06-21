@@ -90,7 +90,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "0x1", "0x2", "0x3", "steam", "media" }, s, awful.layout.layouts[1])
-
 end)
 
 -- mouse bindings
@@ -301,7 +300,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
+      properties = { -- border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
@@ -312,6 +311,11 @@ awful.rules.rules = {
 					 titlebars_enabled = false
      }
     },
+
+	{ rule = { },
+	  except_any = { class = { "Polybar" } },
+	  properties = { border_width = beautiful.border_width }
+	},
 
     -- Floating clients.
     { rule_any = {
@@ -336,10 +340,7 @@ awful.rules.rules = {
           "ConfigManager",  -- Thunderbird's about:config.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-	}, properties = { floating = true }},
-
-	{ rule = { class = "polybar" },
-	  properties = { border_width = 0; } }
+	}, properties = { floating = true }}
 }
 
 -- Signal function to execute when a new client appears.
@@ -364,4 +365,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.spawn("polybar")
+awful.spawn.with_shell("polybar")
