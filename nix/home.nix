@@ -27,6 +27,7 @@
       "alacritty/alacritty.yml".source = ../.config/alacritty/alacritty.yml;
       "awesome/rc.lua".source = ../.config/awesome/rc.lua;
       "polybar/config.ini".source = ../.config/polybar/config.ini;
+      "polybar/launch.sh".source = ../.config/polybar/launch.sh;
       "rofi/config.rasi".source = ../.config/rofi/config.rasi;
       "rofi/rofi-network-manager.rasi".source = ../.config/rofi/rofi-network-manager.rasi;
       "rofi/rofi-network-manager.conf".source = ../.config/rofi/rofi-network-manager.conf;

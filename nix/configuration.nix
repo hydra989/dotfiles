@@ -5,9 +5,8 @@ in
 {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/canary.nix
-    ./lto.nix
     ./packages.nix
+    ./machines/canary.nix
     ./home.nix
   ];
 
@@ -22,12 +21,6 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-  };
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      pulseaudio = true;
-    };
   };
 
   networking = {

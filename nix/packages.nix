@@ -1,5 +1,17 @@
 { config, lib, pkgs, ... }:
 {
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      pulseaudio = true;
+    };
+    overlays = [
+      (import (builtins.fetchTarball {
+        url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      }))
+    ];
+  };
+
   # virt-manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
@@ -14,6 +26,8 @@
     # zsh
     zsh = {
       enable = true;
+      syntaxHighlighting.enable = true;
+      autosuggestions.enable = true;
       ohMyZsh = {
         enable = true;
         plugins = [ "git" ];
@@ -25,14 +39,14 @@
   environment.systemPackages = with pkgs; [
     # gui
     firefox alacritty calibre deluge vlc
-    xfce.thunar maim feh pywal
+    xfce.thunar maim feh pywal keepassxc
     # dev tools
     git gh virt-manager
     # languages
-    python3 pylint python-language-server
-    gcc gdb bear clang-tools binutils
+    python3 python3Packages.pip pylint python-language-server
+    gcc gdb bear clang-tools
     # tui
-    tty-clock thefuck neofetch tor
+    tty-clock thefuck neofetch tor killall
     # games
     dwarf-fortress cataclysm-dda
   ];

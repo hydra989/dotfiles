@@ -18,14 +18,73 @@
   :ensure t
   :defer t
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
-(use-package ibuffer-vc
+(use-package bufler
   :ensure t
-  :config
-  (add-hook 'ibuffer-hook
-			(lambda ()
-			  (ibuffer-vc-set-filter-groups-by-vc-root)
-			  (unless (eq ibuffer-sorting-mode 'major-mode)
-				(ibuffer-do-sort-by-major-mode)))))
+  :init
+  ;; default bufler config with exwm group
+  (bufler-defgroups
+   (group
+    ;; Subgroup collecting all named workspaces.
+    (auto-workspace))
+   (group
+    ;; Subgroup collecting all `help-mode' and `info-mode' buffers.
+    (group-or "*Help/Info*"
+              (mode-match "*Help*" (rx bos "help-"))
+              (mode-match "*Info*" (rx bos "info-"))))
+   ;; TODO: test this ---
+   (group
+    (mode-match "*EXWM*"))
+   ;; -------------------
+   (group
+    ;; Subgroup collecting all special buffers (i.e. ones that are not
+    ;; file-backed), except `magit-status-mode' buffers (which are allowed to fall
+    ;; through to other groups, so they end up grouped with their project buffers).
+    (group-and "*Special*"
+               (lambda (buffer)
+                 (unless (or (funcall (mode-match "Magit" (rx bos "magit-status"))
+                                      buffer)
+                             (funcall (mode-match "Dired" (rx bos "dired"))
+                                      buffer)
+                             (funcall (auto-file) buffer))
+                   "*Special*")))
+    (group
+     ;; Subgroup collecting these "special special" buffers
+     ;; separately for convenience.
+     (name-match "**Special**"
+                 (rx bos "*" (or "Messages" "Warnings" "scratch" "Backtrace") "*")))
+    (group
+     ;; Subgroup collecting all other Magit buffers, grouped by directory.
+     (mode-match "*Magit* (non-status)" (rx bos (or "magit" "forge") "-"))
+     (auto-directory))
+    ;; Subgroup for Helm buffers.
+    (mode-match "*Helm*" (rx bos "helm-"))
+    ;; Remaining special buffers are grouped automatically by mode.
+    (auto-mode))
+   ;; All buffers under "~/.emacs.d" (or wherever it is).
+   (dir user-emacs-directory)
+   (group
+    ;; Subgroup collecting buffers in `org-directory' (or "~/org" if
+    ;; `org-directory' is not yet defined).
+    (dir (if (bound-and-true-p org-directory)
+             org-directory
+           "~/org"))
+    (group
+     ;; Subgroup collecting indirect Org buffers, grouping them by file.
+     ;; This is very useful when used with `org-tree-to-indirect-buffer'.
+     (auto-indirect)
+     (auto-file))
+    ;; Group remaining buffers by whether they're file backed, then by mode.
+    (group-not "*special*" (auto-file))
+    (auto-mode))
+   (group
+    ;; Subgroup collecting buffers in a version-control project,
+    ;; grouping them by directory.
+    (auto-project))
+   ;; Group remaining buffers by directory, then major mode.
+   (auto-directory)
+   (auto-mode)
+   :config
+   (global-set-key (kbd "C-x C-b") 'bufler))
 (use-package linum-relative
   :ensure t
   :defer t
@@ -58,7 +117,7 @@
 (use-package tree-sitter
   :ensure t
   :defer t
-  :hook (prog-mode . tree-sitter-mode))
+  :hook (lsp-mode . tree-sitter-mode))
 (use-package tree-sitter-langs
   :ensure t
   :after tree-sitter
@@ -115,9 +174,9 @@
   (setq feebleline-msg-functions
 		'((feebleline-line-number		    :post "" :fmt "%4s")
 		  (feebleline-column-number		    :pre ":" :fmt "%-2s")
-		  (feebleline-file-directory		    :face feebleline-dir-face :post "")
-		  (feebleline-file-or-buffer-name	    :face font-lock-warning-face :post "")
-		  (feebleline-file-modified-star	    :face font-lock-warning-face :post "")
+		  (feebleline-file-directory        :face feebleline-dir-face :post "")
+		  (feebleline-file-or-buffer-name	:face font-lock-warning-face :post "")
+		  (feebleline-file-modified-star	:face font-lock-warning-face :post "")
 		  (magit-get-current-branch		    :face feebleline-git-face :pre " -> ")
 		  ))
   (feebleline-mode 1))
@@ -128,6 +187,21 @@
   :ensure t
   :config
   (global-hl-todo-mode))
+(use-package dashboard
+  :ensure t
+  :config
+  (when *server*
+    (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))))
+  (when (eq *server* nil)
+    (setq dashboard-set-init-info t))
+  (setq dashboard-center-content t
+        dashboard-set-heading-icons t
+        dashboard-set-file-icons t
+        dashboard-set-footer nil
+        dashboard-items '((recents.5)
+                          )
+        )
+  (dashboard-setup-startup-hook))
 
 
 ;; ivy

@@ -2,16 +2,19 @@
 ;;;
 ;;;		TODO: latex previews?
 
+
+;; performance things
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
+
+;; customization
+(defvar *theme-magic-enabled* t)	;; true for pywal environments
+(defvar *transparency* t)
+(defvar *server* t)
+(defvar *exwm* nil)
+
 ;; reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 (let ((file-name-handler-alist nil))
-  ;; performance things
-  (setq gc-cons-threshold 100000000)
-  (setq read-process-output-max (* 1024 1024))
-
-  ;; customization
-  (defvar *theme-magic-enabled* t)	;; true for pywal environments
-  (defvar *transparency* t)
-
   ;; init melpa so packages.init.el doesn't throw a fit
   (package-initialize)
   (setq package-check-signature nil)
@@ -43,3 +46,7 @@
   (setq custom-file "/home/hydra/.emacs.d/custom.el")
   (when (file-exists-p custom-file)
 	(load custom-file)))
+
+;; start the server
+(when *server*
+  (server-start))

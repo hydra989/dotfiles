@@ -5,7 +5,7 @@
 - *dm*: lightdm
 - *compositor*: picom
 - *bar*: polybar
-- *$EDITOR*: emacs, vim
+- *$EDITOR*: emacs(client), vim
 - *terminal*: alacritty
 - *shell*: zsh + oh-my-zsh
 - *launcher*: rofi

@@ -1,4 +1,13 @@
 { config, pkgs, ... }:
+let
+  songbird = import <nixpkgs> {
+    localSystem = {
+      gcc.arch = "znver1";
+      gcc.tune = "znver1";
+      system = "x86_64-linux";
+    };
+  };
+in
 {
   networking = {
     hostName = "songbird";
@@ -27,4 +36,13 @@
       amdvlk
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    songbird.emacsNativeComp
+    songbird.picom
+    songbird.polybar
+    # songbird.rofi
+    # songbird.vim
+    songbird.wineWowPackages.staging
+  ];
 }

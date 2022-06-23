@@ -37,6 +37,7 @@
  frame-inhibit-implied-resize t ; shouldn't wildly resize during startup
  frame-resize-pixelwise t
  native-comp-deferred-compilation t
+ comp-async-report-warnings-errors nil
  )
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -46,10 +47,6 @@
  ; c
  c-default-style "linux"
  )
-
-;; ibuffer
-(autoload 'ibuffer "ibuffer" "List buffers." t)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; windmove for S-{arrow} window movements
 (when (fboundp 'windmove-default-keybindings)

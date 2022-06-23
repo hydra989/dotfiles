@@ -64,23 +64,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
 }
 
--- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 
@@ -94,7 +77,6 @@ end)
 
 -- mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -148,8 +130,6 @@ globalkeys = gears.table.join(
 	          {description = "open a terminal", group = "launcher"}),
 	awful.key({ modkey,           }, ";", function () awful.spawn(rofi) end,
 	          {description = "open rofi", group = "launcher"}),
-	awful.key({ modkey, "Shift",  }, "j", function () awful.spawn("firefox") end,
-	          {description = "launch firefox", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -298,24 +278,20 @@ root.keys(globalkeys)
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { -- border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-					 titlebars_enabled = false
+    -- all clients will match this rule...
+   { rule = { },
+	 except_any = { class = { "Polybar" } }, -- ...except polybar
+     properties = { border_width = beautiful.border_width,
+                    border_color = beautiful.border_normal,
+                    focus = awful.client.focus.filter,
+                    raise = true,
+                    keys = clientkeys,
+                    buttons = clientbuttons,
+                    screen = awful.screen.preferred,
+                    placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+					titlebars_enabled = false
      }
     },
-
-	{ rule = { },
-	  except_any = { class = { "Polybar" } },
-	  properties = { border_width = beautiful.border_width }
-	},
 
     -- Floating clients.
     { rule_any = {
@@ -365,4 +341,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-awful.spawn.with_shell("polybar")
+awful.spawn.with_shell("sh /home/hydra/.config/polybar/launch.sh")

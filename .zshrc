@@ -16,9 +16,6 @@ bindkey -v
 
 zstyle ':omz:update' mode disabled
 
-export EDITOR="vim"
-export VISUAL="emacs"
-
 # calibre
 export CALIBRE_USE_DARK_PALETTE=1
 
@@ -29,6 +26,6 @@ eval "$(thefuck --alias)"
 alias clock='tty-clock -c -u -t'
 alias reboot='sudo reboot'
 alias unixporn='clear && neofetch'
-alias rescan='nmcli device wifi rescan'
+#alias rescan='nmcli device wifi rescan'
 alias nixrebuild='sudo nixos-rebuild switch -I nixos-config=/home/hydra/s/dotfiles/nix/configuration.nix'
 alias cleantrash='sudo sh /home/hydra/s/dotfiles/empty_trash.sh'
