@@ -33,7 +33,7 @@
               (mode-match "*Info*" (rx bos "info-"))))
    ;; TODO: test this ---
    (group
-    (mode-match "*EXWM*"))
+    (mode-match "*EXWM*" (rx bos "exwm-")))
    ;; -------------------
    (group
     ;; Subgroup collecting all special buffers (i.e. ones that are not
@@ -82,7 +82,7 @@
     (auto-project))
    ;; Group remaining buffers by directory, then major mode.
    (auto-directory)
-   (auto-mode)
+   (auto-mode))
    :config
    (global-set-key (kbd "C-x C-b") 'bufler))
 (use-package linum-relative
@@ -192,13 +192,13 @@
   :config
   (when *server*
     (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))))
-  (when (eq *server* nil)
+  (if (not (= *server* t))
     (setq dashboard-set-init-info t))
   (setq dashboard-center-content t
         dashboard-set-heading-icons t
         dashboard-set-file-icons t
         dashboard-set-footer nil
-        dashboard-items '((recents.5)
+        dashboard-items '((recents . 5)
                           )
         )
   (dashboard-setup-startup-hook))

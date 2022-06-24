@@ -30,11 +30,6 @@ in
       package = canary.emacsNativeComp;
       enable = true; # likely redundant
     };
-    openssh = {
-      enable = true;
-      passwordAuthentication = true;
-      permitRootLogin = "yes";
-    };
   };
 
   hardware.opengl.enable = true;

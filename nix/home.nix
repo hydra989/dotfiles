@@ -26,6 +26,7 @@
     xdg.configFile = {
       "alacritty/alacritty.yml".source = ../.config/alacritty/alacritty.yml;
       "awesome/rc.lua".source = ../.config/awesome/rc.lua;
+      "nixpkgs/config.nix".source = ../.config/nixpkgs/config.nix;
       "polybar/config.ini".source = ../.config/polybar/config.ini;
       "polybar/launch.sh".source = ../.config/polybar/launch.sh;
       "rofi/config.rasi".source = ../.config/rofi/config.rasi;
