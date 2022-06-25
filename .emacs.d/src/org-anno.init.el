@@ -1,6 +1,13 @@
 ;;; org-anno.init.el
 
 
+;;; general
+(use-package annotate           ;; replacement for google docs suggestions
+  :ensure t
+  :defer t
+  :hook (writeroom-mode . annotate-mode))
+
+
 ;;; org-mode
 (use-package org-noter			;; annotating with docview
   :ensure t

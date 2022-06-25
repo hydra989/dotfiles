@@ -38,7 +38,7 @@
 
   environment.systemPackages = with pkgs; [
     # gui
-    firefox alacritty calibre deluge vlc
+    firefox calibre deluge vlc
     xfce.thunar maim feh pywal keepassxc
     # dev tools
     git gh virt-manager
@@ -54,7 +54,7 @@
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
-      dejavu_fonts hack-font terminus_font font-awesome
+      dejavu_fonts hack-font terminus_font font-awesome nerdfonts
     ];
   };
 

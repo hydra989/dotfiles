@@ -36,6 +36,7 @@ in
 
   environment.systemPackages = with pkgs; [
     lutris
+    alacritty # exwm on laptop, uses vterm in emacs
 
     # tunings
     canary.emacsNativeComp

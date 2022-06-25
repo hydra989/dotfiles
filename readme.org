@@ -1,7 +1,7 @@
 * dotfiles
 
 - *distro*: nixos
-- *wm*: awesomewm
+- *wm*: awesomewm, exwm
 - *dm*: lightdm
 - *compositor*: picom
 - *bar*: polybar
@@ -24,11 +24,17 @@ tried to collect their sources in a sources.txt over time, but it'll likely be s
 of a mess at any given time.
 
 *** nix
-- canary: my desktop---dev env + steam/lutris, wifi/bluetooth, nvidia
-- songbird: my laptop---dev env + steam, wifi/bluetooth, power management, amdgpu
 
-configuration.nix should be manually changed to import etiher canary.nix or songbird.nix
+- canary: my desktop---awesomewm, znver3 tunings
+- songbird: my laptop---exwm + extra power management stuff, znver1 tunings
+
+configuration.nix should be manually changed to import either canary.nix or songbird.nix
 based on the machine.
+
+*** non-packaged dependencies
+
+- https://github.com/nickclyde/rofi-bluetooth
+- https://github.com/P3rf/rofi-network-manager
 
 #+BEGIN_COMMENT
 TODO:   warpd,

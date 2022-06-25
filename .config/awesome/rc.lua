@@ -302,12 +302,11 @@ awful.rules.rules = {
         class = {
           "Arandr",
           "Blueman-manager",
-          "Gpick",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "xtightvncviewer"},
-
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
+          ".blueman-manager-wrapped",
+          --"Gpick",
+          "Thunar",
+          "Tor Browser",
+        },
         name = {
           "Event Tester",  -- xev.
         },
