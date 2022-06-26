@@ -3,7 +3,7 @@
   users.users.hydra = {
     isNormalUser = true;
     extraGroups = [
-      "wheel" "networkmanager" "video" "audio" "libvirtd"
+      "wheel" "networkmanager" "video" "audio" "libvirtd" "docker"
     ];
     initialPassword = "rorschach";
     shell = pkgs.zsh;

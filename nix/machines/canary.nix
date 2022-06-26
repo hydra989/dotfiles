@@ -27,19 +27,21 @@ in
     xserver.videoDrivers = [ "nvidia" ];
 
     emacs = {
-      package = canary.emacsNativeComp;
+      package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.multi-vterm ]));
       enable = true; # likely redundant
     };
   };
 
   hardware.opengl.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    lutris
-    alacritty # exwm on laptop, uses vterm in emacs
+  environment.systemPackages = [
+    pkgs.lutris
+    pkgs.alacritty # exwm on laptop, uses vterm in emacs
 
     # tunings
-    canary.emacsNativeComp
+    ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [
+      epkgs.vterm epkgs.multi-vterm
+    ]))
     canary.picom
     canary.polybar
     canary.rofi

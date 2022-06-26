@@ -52,3 +52,4 @@
 (global-set-key (kbd "C-' c") 'config-visit)
 (global-set-key (kbd "C-' b") 'create-scratch-buffer)
 (global-set-key (kbd "C-' s") 'full-auto-save)
+(global-set-key (kbd "C-' t") 'multi-vterm)

@@ -57,11 +57,11 @@
    ; (dir (if (bound-and-true-p org-directory)
    ;          org-directory
    ;        "~/org"))
-    (group
-     (auto-indirect)
-     (auto-file))
-    (group-not "*special*" (auto-file))
-    (auto-mode))
+   ; (group
+   ;   (auto-indirect)
+   ;   (auto-file))
+   ; (group-not "*special*" (auto-file))
+   ; (auto-mode))
    (group
     (auto-project))
    (auto-directory)
@@ -191,7 +191,6 @@
   :config
   (global-set-key "\C-s" 'swiper))
 
-
 ;;; lsp
 (use-package lsp-ui
   :ensure t
@@ -210,7 +209,7 @@
 (use-package lsp-mode
   :ensure t
   :defer t
-  :hook ((c-mode python-mode) . lsp)
+  :hook ((c-mode) . lsp)
   :init
   
   (add-hook 'prog-mode-hook	'yas-minor-mode)
@@ -269,7 +268,7 @@
   :init
   (global-set-key (kbd "C-c t") 'treemacs)
   :config
-  (setq-default treemacs-use-follow-mode t
+  (setq-default treemacs-use-follow-mode nil
 				treemacs-use-filewatch-mode t
 				treemacs-use-git-mode 'deferred))
 (use-package treemacs-all-the-icons
@@ -289,7 +288,6 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
   (lsp-treemacs-sync-mode))
-
 
 ;;; language-specific
 (use-package yaml-mode			;; yaml
@@ -319,3 +317,8 @@
   :defer t
   :init
   (add-to-list 'auto-mode-alist '("\\.llua\\'" . lua-mode)))
+(use-package elpy               ;; python
+  :ensure t
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))

@@ -38,7 +38,9 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    songbird.emacsNativeComp
+    ((pkgs.emacsPackagesFor songbird.emacsNativeComp).emacsWithPackages (epkgs: [
+      epkgs.vterm epkgs.multi-vterm
+    ]))
     songbird.picom
     songbird.polybar
     # songbird.rofi
