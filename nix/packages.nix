@@ -39,15 +39,16 @@
   environment.systemPackages = with pkgs; [
     # gui
     firefox calibre deluge vlc
-    xfce.thunar maim feh pywal keepassxc
+    xfce.thunar xfce.thunar-archive-plugin
+    maim feh pywal keepassxc
 
     # dev tools
-    git gh virt-manager
+    git gh virt-manager docker
 
     # languages
     python3 python3Packages.pip pylint
     gcc gdb bear clang-tools
-    npm
+    nodePackages.npm
 
     # tui
     tty-clock thefuck neofetch tor killall
@@ -55,6 +56,10 @@
     # games
     dwarf-fortress cataclysm-dda
   ];
+
+  # docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = true;
 
   fonts = {
     fontDir.enable = true;

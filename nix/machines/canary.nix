@@ -27,7 +27,7 @@ in
     xserver.videoDrivers = [ "nvidia" ];
 
     emacs = {
-      package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.multi-vterm ]));
+      package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.multi-vterm epkgs.use-package ]));
       enable = true; # likely redundant
     };
   };
@@ -40,7 +40,7 @@ in
 
     # tunings
     ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [
-      epkgs.vterm epkgs.multi-vterm
+      epkgs.vterm epkgs.multi-vterm epkgs.use-package
     ]))
     canary.picom
     canary.polybar
@@ -48,4 +48,6 @@ in
     canary.vim
     canary.wineWowPackages.staging
   ];
+
+  virtualisation.docker.enableNvidia = true;
 }
