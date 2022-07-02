@@ -93,14 +93,13 @@
 (use-package magit-todos
   :ensure t
   :after magit
-  :init
-  (setq magit-todos-ignored-keywords '(""))
   :config
+  (setq magit-todos-ignored-keywords '(""))
   (magit-todos-mode))
 (use-package tree-sitter
   :ensure t
   :defer t
-  :hook (lsp-mode . tree-sitter-mode))
+  :hook ((lsp-mode elpy-mode) . tree-sitter-mode))
 (use-package tree-sitter-langs
   :ensure t
   :after tree-sitter
@@ -113,6 +112,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-fu)
   :config
+  (evil-set-initial-state 'bufler-mode 'emacs)
   (evil-set-leader 'normal (kbd ";"))
   (evil-mode))
 ;;(use-package evil-commentary
@@ -170,6 +170,15 @@
   :ensure t
   :config
   (global-hl-todo-mode))
+(use-package dashboard
+  :ensure t
+  :after counsel-projectile
+  :config
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  (setq dashboard-set-init-info nil
+        dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name
+        )
+  (dashboard-setup-startup-hook))
 
 ;; ivy
 (use-package ivy
@@ -191,14 +200,21 @@
   :config
   (global-set-key "\C-s" 'swiper))
 
-;;; lsp
+;; projectile
+(use-package projectile
+  :ensure t)
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode))
+
+;; lsp
 (use-package lsp-ui
   :ensure t
   :after lsp-mode
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-  
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references) 
   (setq lsp-ui-doc-enable t
         lsp-ui-doc-show-with-cursor t
         lsp-ui-doc-show-with-mouse t
@@ -316,7 +332,7 @@
   :ensure t
   :defer t
   :init
-  (add-to-list 'auto-mode-alist '("\\.llua\\'" . lua-mode)))
+  (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-mode)))
 (use-package elpy               ;; python
   :ensure t
   :defer t

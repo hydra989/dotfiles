@@ -7,8 +7,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set ruler		" modeline cursor location
-set showcmd		" show partially complete commands
+set ruler			" modeline cursor location
+set showcmd			" show partially complete commands
 set incsearch		" incremental search
 set laststatus=2
 set autowrite		" autowrite before commands
@@ -19,6 +19,9 @@ set nojoinspaces	" one space not two after punctuation
 set number
 set splitbelow
 set splitright
+set mouse=a
+set clipboard^=unnamed
+
 
 " jump visual lines
 nnoremap j gj

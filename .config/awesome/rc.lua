@@ -315,8 +315,11 @@ awful.rules.rules = {
           "ConfigManager",  -- Thunderbird's about:config.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-	}, properties = { floating = true }}
-}
+	}, properties = { floating = true }},
+
+    -- Steam
+    { rule = { class = "Steam" },
+      properties = { tag = screen[1].tags[4] } } }
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)

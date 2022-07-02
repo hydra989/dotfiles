@@ -36,7 +36,8 @@ in
 
   environment.systemPackages = [
     pkgs.lutris
-    pkgs.alacritty # exwm on laptop, uses vterm in emacs
+    pkgs.alacritty    # exwm on laptop uses vterm within emacs
+    pkgs.cudatoolkit  # so nix-shell doesn't redownload this continually
 
     # tunings
     ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [

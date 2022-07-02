@@ -5,10 +5,10 @@
 - *dm*: lightdm
 - *compositor*: picom
 - *bar*: polybar
-- *$EDITOR*: emacs(client), vim
+- *$EDITOR*: emacs, emacsclient, vim
 - *terminal*: alacritty
 - *shell*: zsh + oh-my-zsh
-- *launcher*: rofi
+- *launcher*: rofi or emacs' counsel
 - *browser*: firefox
 
 alongside:

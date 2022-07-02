@@ -39,8 +39,18 @@
 	(add-to-list 'default-frame-alist '(alpha . (82 . 77))))
 
   ;; general appearance
-  (load-theme 'cyberpunk t)
-  (add-to-list 'default-frame-alist '(font . "Terminus-11"))
+  (defun load-initial-theme (frame)
+	(select-frame frame)
+	(load-theme 'cyberpunk t))
+  (defun server-configure-font (frame)
+	(select-frame frame)
+	(set-frame-font "Terminus-11" t t))
+  (if (daemonp) ; set theme
+	  (add-hook 'after-make-frame-functions #'load-initial-theme)
+	(load-theme 'cyberpunk t))
+  (if (daemonp) ; set font
+      (add-hook 'after-make-frame-functions #'server-configure-font)
+	(set-frame-font "Terminus-11" t t))
 
   ;; seperate custom file
   (setq custom-file "/home/hydra/.emacs.d/custom.el")

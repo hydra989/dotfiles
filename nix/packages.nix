@@ -52,6 +52,7 @@
 
     # tui
     tty-clock thefuck neofetch tor killall
+    unzip lm_sensors cmatrix
 
     # games
     dwarf-fortress cataclysm-dda
