@@ -317,9 +317,16 @@ awful.rules.rules = {
         }
 	}, properties = { floating = true }},
 
-    -- Steam
-    { rule = { class = "Steam" },
-      properties = { tag = screen[1].tags[4] } } }
+    -- Steam & company
+    { rule_any = { class = {
+                   "Steam",
+                   "galaxyclient.exe", -- GOG Galaxy
+             } },
+      properties = { tag = screen[1].tags[4],
+                     floating = true
+      }
+    }
+}
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)

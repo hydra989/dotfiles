@@ -14,8 +14,6 @@ in
   ];
 
   nix.systemFeatures = [ "gccarch-znver3" "big-parallel" ];
-  # TODO: tuned kernel? currently throwing error with nvidia.
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   networking = {
     hostName = "canary";
@@ -51,4 +49,11 @@ in
   ];
 
   virtualisation.docker.enableNvidia = true;
+
+  environment.sessionVariables = rec {
+    EMACS_SERVER       = "y"; # use emacsclient/emacsserver?
+    EMACS_EXWM         = "n"; # load exwm configuration?
+    EMACS_TRANSPARENCY = "y"; # transparency on/off?
+    EMACS_PYWAL        = "y"; # use theme-magic with pywal?
+  };
 }

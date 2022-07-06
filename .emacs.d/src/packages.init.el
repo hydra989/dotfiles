@@ -137,7 +137,7 @@
   (evil-define-key 'normal 'global "\C-r" 'evil-redo))
 
 ;;; appearance
-(when *theme-magic-enabled*
+(if (string-equal *theme-magic-enabled* "y")
   (use-package theme-magic
     :ensure t
     :config
@@ -173,12 +173,11 @@
 (use-package dashboard
   :ensure t
   :after counsel-projectile
-  :config
+  :init
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (setq dashboard-set-init-info nil
         dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name
-        )
-  (dashboard-setup-startup-hook))
+        ))
 
 ;; ivy
 (use-package ivy

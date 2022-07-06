@@ -31,11 +31,20 @@ in
     };
 
     xdg.configFile = {
+      # alacritty
       "alacritty/alacritty.yml".source = ../.config/alacritty/alacritty.yml;
+
+      # awesomewm
       "awesome/rc.lua".source = ../.config/awesome/rc.lua;
+
+      # nix
       "nixpkgs/config.nix".source = ../.config/nixpkgs/config.nix;
+
+      # polybar
       "polybar/config.ini".source = ../.config/polybar/config.ini;
       "polybar/launch.sh".source = ../.config/polybar/launch.sh;
+
+      # rofi
       "rofi/config.rasi".source = ../.config/rofi/config.rasi;
       "rofi/rofi-network-manager.rasi".source = ../.config/rofi/rofi-network-manager.rasi;
       "rofi/rofi-network-manager.conf".source = ../.config/rofi/rofi-network-manager.conf;

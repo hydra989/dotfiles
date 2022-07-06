@@ -1,6 +1,4 @@
 ;;; init.el
-;;;
-;;;		TODO: latex previews?
 
 
 ;; performance things
@@ -8,10 +6,10 @@
 (setq read-process-output-max (* 1024 1024))
 
 ;; customization
-(defvar *theme-magic-enabled* t)	;; true for pywal environments
-(defvar *transparency* t)
-(defvar *server* t)
-(defvar *exwm* nil)
+(defvar *theme-magic-enabled* (getenv "EMACS_PYWAL"))
+(defvar *transparency* (getenv "EMACS_TRANSPARENCY"))
+(defvar *server* (getenv "EMACS_SERVER"))
+(defvar *exwm* (getenv "EMACS_EXWM"))
 
 ;; reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 (let ((file-name-handler-alist nil))
@@ -27,30 +25,28 @@
       (load (expand-file-name
 			 (concat hydra:emacs-config-dir file)))
       ))
-  (hydra:load-config-file '("defaults.init.el"
+  (hydra:load-config-file '(
+							"defaults.init.el"
 							"packages.init.el"
 							"func.init.el"
 							"org-anno.init.el"
 							))
 
-  ;; transparancy
-  (when *transparency*
-	(set-frame-parameter (selected-frame) 'alpha '(96 . 90))
-	(add-to-list 'default-frame-alist '(alpha . (82 . 77))))
 
   ;; general appearance
-  (defun load-initial-theme (frame)
+  (defun gui-init (frame)
 	(select-frame frame)
-	(load-theme 'cyberpunk t))
-  (defun server-configure-font (frame)
-	(select-frame frame)
-	(set-frame-font "Terminus-11" t t))
-  (if (daemonp) ; set theme
-	  (add-hook 'after-make-frame-functions #'load-initial-theme)
-	(load-theme 'cyberpunk t))
-  (if (daemonp) ; set font
-      (add-hook 'after-make-frame-functions #'server-configure-font)
-	(set-frame-font "Terminus-11" t t))
+	(load-theme 'cyberpunk t)
+	(set-frame-font "Terminus-11" t t)
+	(dashboard-setup-startup-hook)
+	;; transparancy
+	(if (string-equal *transparency* "y")
+	  (set-frame-parameter (selected-frame) 'alpha '(96 . 90))
+	  (add-to-list 'default-frame-alist '(alpha . (82 . 77)))))
+
+  (if (daemonp)
+	  (add-hook 'after-make-frame-functions #'gui-init)
+	(gui-init))
 
   ;; seperate custom file
   (setq custom-file "/home/hydra/.emacs.d/custom.el")
@@ -58,5 +54,5 @@
 	(load custom-file)))
 
 ;; start the server
-(when *server*
+(if (string-equal *server* "y")
   (server-start))
