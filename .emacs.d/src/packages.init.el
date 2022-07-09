@@ -112,7 +112,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-fu)
   :config
-  (evil-set-initial-state 'bufler-mode 'emacs)
+  (evil-set-initial-state 'bufler-list-mode 'emacs)
   (evil-set-leader 'normal (kbd ";"))
   (evil-mode))
 ;;(use-package evil-commentary
@@ -176,7 +176,11 @@
   :init
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (setq dashboard-set-init-info nil
+        dashboard-set-heading-icons t
+        dashboard-center-content t
         dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name
+        dashboard-items '((projects . 10)
+                          )
         ))
 
 ;; ivy
@@ -204,6 +208,7 @@
   :ensure t)
 (use-package counsel-projectile
   :ensure t
+  :after projectile
   :config
   (counsel-projectile-mode))
 

@@ -16,9 +16,6 @@ bindkey -v
 
 zstyle ':omz:update' mode disabled
 
-# calibre
-export CALIBRE_USE_DARK_PALETTE=1
-
 # thefuck
 eval "$(thefuck --alias)"
 

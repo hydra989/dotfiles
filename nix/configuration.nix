@@ -7,6 +7,7 @@
   ];
 
   boot = {
+    cleanTmpDir = true;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = true;
     supportedFilesystems = [ "ntfs" ];
@@ -44,13 +45,17 @@
 
   services = {
     blueman.enable = true;
+
     devmon.enable = true;
+
     picom = {
       enable = true;
       backend = "glx";
       vSync = true;
     };
+
     printing.enable = true;
+
     xserver = {
       enable = true;
       layout = "us";

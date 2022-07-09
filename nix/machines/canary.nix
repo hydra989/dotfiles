@@ -28,6 +28,13 @@ in
       package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.multi-vterm epkgs.use-package ]));
       enable = true; # likely redundant
     };
+
+    syncthing = {
+      enable = true;
+      user = "hydra";
+      dataDir = "/opt/syncthing";
+      configDir = "/home/hydra/.config/syncthing";
+    };
   };
 
   hardware.opengl.enable = true;
@@ -51,9 +58,10 @@ in
   virtualisation.docker.enableNvidia = true;
 
   environment.sessionVariables = rec {
-    EMACS_SERVER       = "y"; # use emacsclient/emacsserver?
-    EMACS_EXWM         = "n"; # load exwm configuration?
-    EMACS_TRANSPARENCY = "y"; # transparency on/off?
-    EMACS_PYWAL        = "y"; # use theme-magic with pywal?
+    EMACS_SERVER             = "y"; # use emacsclient/emacsserver?
+    EMACS_EXWM               = "n"; # load exwm configuration?
+    EMACS_TRANSPARENCY       = "y"; # transparency on/off?
+    EMACS_PYWAL              = "y"; # use theme-magic with pywal?
+    CALIBRE_USE_DARK_PALETTE = "1";
   };
 }

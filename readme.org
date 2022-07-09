@@ -36,6 +36,12 @@ based on the machine.
 - https://github.com/nickclyde/rofi-bluetooth
 - https://github.com/P3rf/rofi-network-manager
 
+
+*** notes
+
+- polybar colors are hardcoded to cyberpunk theme---could redo and use xresources colors
+  that pywal generates on emacs theme switch
+
 #+BEGIN_COMMENT
 TODO:   warpd,
 	    .editorconfig?

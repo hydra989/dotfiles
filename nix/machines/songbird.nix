@@ -25,6 +25,13 @@ in
       libinput.enable = true;
     };
 
+    syncthing = {
+      enable = true;
+      user = "hydra";
+      dataDir = "/home/hydra/syncthing";
+      configDir = "/home/hydra/.config/syncthing";
+    };
+
     tlp.enable = true;
     upower.enable = true;
   };
@@ -48,10 +55,11 @@ in
     songbird.wineWowPackages.staging
   ];
 
-  environemt.sessionVariables = rec {
-    EMACS_SERVER       = "n"; # use emacsclient/emacsserver?
-    EMACS_EXWM         = "y"; # load exwm configuration?
-    EMACS_TRANSPARENCY = "y"; # transparency on/off?
-    EMACS_PYWAL        = "y"; # use theme-magic with pywal?
+  environment.sessionVariables = rec {
+    EMACS_SERVER             = "y"; # use emacsclient/emacsserver?
+    EMACS_EXWM               = "n"; # load exwm configuration?
+    EMACS_TRANSPARENCY       = "y"; # transparency on/off?
+    EMACS_PYWAL              = "y"; # use theme-magic with pywal?
+    CALIBRE_USE_DARK_PALETTE = "1";
   };
 }
