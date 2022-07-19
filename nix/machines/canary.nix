@@ -25,7 +25,9 @@ in
     xserver.videoDrivers = [ "nvidia" ];
 
     emacs = {
-      package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [ epkgs.vterm epkgs.multi-vterm epkgs.use-package ]));
+      package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [
+        epkgs.vterm epkgs.multi-vterm epkgs.use-package
+      ]));
       enable = true; # likely redundant
     };
 
@@ -35,14 +37,37 @@ in
       dataDir = "/opt/syncthing";
       configDir = "/home/hydra/.config/syncthing";
     };
+
+    deluge = {
+      enable = true;
+      openFirewall = true;
+      web = {
+        enable = true;
+        openFirewall = true;
+      };
+    };
+    #bazarr = {
+      #enable = true;
+      #openFirewall = true;
+    #};
+    #radarr = {
+      #enable = true;
+      #openFirewall = true;
+    #};
+    #sonarr = {
+      #enable = true;
+      #openFirewall = true;
+    #};
   };
 
   hardware.opengl.enable = true;
 
   environment.systemPackages = [
+    #pkgs.bazarr
+    #pkgs.radarr
+    #pkgs.sonarr
     pkgs.lutris
     pkgs.alacritty    # exwm on laptop uses vterm within emacs
-    pkgs.cudatoolkit  # so nix-shell doesn't redownload this continually
 
     # tunings
     ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [
@@ -63,5 +88,6 @@ in
     EMACS_TRANSPARENCY       = "y"; # transparency on/off?
     EMACS_PYWAL              = "y"; # use theme-magic with pywal?
     CALIBRE_USE_DARK_PALETTE = "1";
+    VISUAL                   = "emacsclient -c";
   };
 }

@@ -29,6 +29,7 @@
 							"defaults.init.el"
 							"packages.init.el"
 							"func.init.el"
+							"lsp.init.el"
 							"org-anno.init.el"
 							))
 
@@ -36,7 +37,7 @@
   (defun gui-init (frame)
 	(select-frame frame)
 	(load-theme 'cyberpunk t)
-	(set-frame-font "Terminus-11" t t)
+  	(set-frame-font "Terminus-11" t t)
 	(dashboard-setup-startup-hook))
 
   (if (daemonp)

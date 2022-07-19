@@ -125,11 +125,11 @@ globalkeys = gears.table.join(
         end,
         {description = "go back", group = "client"}),
 
-    -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
 	          {description = "open a terminal", group = "launcher"}),
 	awful.key({ modkey,           }, ";", function () awful.spawn(rofi) end,
-	          {description = "open rofi", group = "launcher"}),
+              {description = "open rofi", group = "launcher"}),
+
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -326,6 +326,19 @@ awful.rules.rules = {
       properties = { tag = screen[1].tags[4],
                      floating = true
       }
+    },
+
+    -- Media tag
+    { rule_any = { class = {
+                       "calibre",
+                       "vlc",
+                       "Kodi",
+                       "deluge",
+                       "mpv",
+                 } },
+      properties = { tag = screen[1].tags[5],
+                     floating = true
+      }
     }
 }
 
@@ -344,11 +357,12 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = false})
-end)
+-- client.connect_signal("mouse::enter", function(c)
+--     c:emit_signal("request::activate", "mouse_enter", {raise = false})
+-- end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
+-- Polybar
 awful.spawn.with_shell("sh /home/hydra/.config/polybar/launch.sh")

@@ -16,9 +16,6 @@ bindkey -v
 
 zstyle ':omz:update' mode disabled
 
-# thefuck
-eval "$(thefuck --alias)"
-
 # aliases
 alias clock='tty-clock -c -u -t'
 alias reboot='sudo reboot'

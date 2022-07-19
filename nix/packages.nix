@@ -12,10 +12,6 @@
     ];
   };
 
-  # virt-manager
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
-
   programs = {
     # steam
     steam = {
@@ -38,9 +34,11 @@
 
   environment.systemPackages = with pkgs; [
     # gui
-    firefox calibre deluge vlc
-    xfce.thunar xfce.thunar-archive-plugin
+    firefox xfce.thunar xfce.thunar-archive-plugin
     maim feh pywal keepassxc
+
+    # media
+    calibre mpv
 
     # dev tools
     git gh virt-manager docker
@@ -51,28 +49,41 @@
     nodePackages.npm
 
     # tui
-    tty-clock thefuck neofetch tor killall
+    tty-clock neofetch tor killall
     unzip lm_sensors cmatrix
 
     # games
     dwarf-fortress cataclysm-dda
   ];
 
-  # docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = true;
+  virtualisation = {
+    # docker
+    docker = {
+      enable = true;
+      enableOnBoot = true;
+    };
+    # virt-manager
+    libvirtd.enable = true;
+  };
+
+  # for virt-manager
+  programs.dconf.enable = true;
 
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
-      dejavu_fonts hack-font terminus_font font-awesome nerdfonts
+      dejavu_fonts
+      hack-font
+      terminus_font
+      font-awesome
+      nerdfonts
     ];
   };
 
   # enable for flatpak
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
-  # services.flatpak.enable = true;
+  #xdg.portal = {
+  #  enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  #};
+  #services.flatpak.enable = true;
 }

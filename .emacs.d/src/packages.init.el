@@ -14,10 +14,6 @@
   :after evil
   :config
   (evil-define-key 'normal 'global (kbd "SPC") 'avy-goto-char))
-(use-package dtrt-indent
-  :ensure t
-  :defer t
-  :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
 (use-package bufler
   :ensure t
   :init
@@ -68,12 +64,61 @@
    (auto-mode))
    :config
    (global-set-key (kbd "C-x C-b") 'bufler))
+(use-package dirvish
+  :init
+  (dirvish-override-dired-mode)
+  :custom
+  ;; Go back home? Just press `bh'
+  (dirvish-bookmark-entries
+   '(("h" "~/"                          "Home")
+     ("d" "~/Downloads/"                "Downloads")
+     ("m" "/mnt/"                       "Drives")
+     ("t" "~/.local/share/Trash/files/" "TrashCan")))
+  (dirvish-header-line-format '(:left (path) :right (free-space)))
+  (dirvish-mode-line-format
+   '(:left (sort file-time " " file-size symlink) :right (omit yank index)))
+  (dirvish-attributes '(all-the-icons file-size collapse subtree-state vc-state git-msg))
+  :config
+  (dirvish-peek-mode)
+  (setq dired-dwim-target t)
+  (setq delete-by-moving-to-trash t)
+  (setq dired-mouse-drag-files t)                   ; added in Emacs 29
+  (setq mouse-drag-and-drop-region-cross-program t) ; added in Emacs 29
+  (setq dired-listing-switches
+        "-l --almost-all --human-readable --time-style=long-iso --group-directories-first --no-group")
+  :bind
+  (("C-c f" . dirvish-fd)
+   :map dirvish-mode-map
+   ("h" . dired-up-directory)
+   ("j" . dired-next-line)
+   ("k" . dired-previous-line)
+   ("l" . dired-find-file)
+   ("i" . wdired-change-to-wdired-mode)
+   ("." . dired-omit-mode)
+   ("b"   . dirvish-bookmark-jump)
+   ("f"   . dirvish-file-info-menu)
+   ("y"   . dirvish-yank-menu)
+   ("N"   . dirvish-narrow)
+   ("^"   . dirvish-history-last)
+   ("h"   . dirvish-history-jump) ; remapped `describe-mode'
+   ("s"   . dirvish-quicksort)    ; remapped `dired-sort-toggle-or-edit'
+   ("TAB" . dirvish-subtree-toggle)
+   ("M-n" . dirvish-history-go-forward)
+   ("M-p" . dirvish-history-go-backward)
+   ("M-l" . dirvish-ls-switches-menu)
+   ("M-m" . dirvish-mark-menu)
+   ("M-f" . dirvish-toggle-fullscreen)
+   ("M-s" . dirvish-setup-menu)
+   ("M-e" . dirvish-emerge-menu)
+   ("M-j" . dirvish-fd-jump)))
 (use-package linum-relative
   :ensure t
   :defer t
   :hook (prog-mode . linum-relative-mode)
   :init
   (setq linum-relative-backend 'display-line-numbers-mode))
+
+;; magit
 (use-package magit
   :ensure t
   :config
@@ -96,23 +141,18 @@
   :config
   (setq magit-todos-ignored-keywords '(""))
   (magit-todos-mode))
-(use-package tree-sitter
-  :ensure t
-  :defer t
-  :hook ((lsp-mode elpy-mode) . tree-sitter-mode))
-(use-package tree-sitter-langs
-  :ensure t
-  :after tree-sitter
-  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
 
-;;; evil-mode
+;; evil-mode
 (use-package evil
   :ensure t
   :init
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-fu)
   :config
+  ;; some modes are better off without evil
   (evil-set-initial-state 'bufler-list-mode 'emacs)
+  (evil-set-initial-state 'dirvish-mode 'emacs)
+  
   (evil-set-leader 'normal (kbd ";"))
   (evil-mode))
 ;;(use-package evil-commentary
@@ -136,7 +176,7 @@
   :config
   (evil-define-key 'normal 'global "\C-r" 'evil-redo))
 
-;;; appearance
+;; appearance
 (if (string-equal *theme-magic-enabled* "y")
   (use-package theme-magic
     :ensure t
@@ -212,75 +252,6 @@
   :config
   (counsel-projectile-mode))
 
-;; lsp
-(use-package lsp-ui
-  :ensure t
-  :after lsp-mode
-  :config
-  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references) 
-  (setq lsp-ui-doc-enable t
-        lsp-ui-doc-show-with-cursor t
-        lsp-ui-doc-show-with-mouse t
-        lsp-ui-doc-delay 0.5
-        lsp-ui-peek-enable t
-		lsp-ui-sideline-show-diagnostics t
-        ))
-(use-package lsp-mode
-  :ensure t
-  :defer t
-  :hook ((c-mode) . lsp)
-  :init
-  
-  (add-hook 'prog-mode-hook	'yas-minor-mode)
-  (add-hook 'lsp-mode-hook	#'lsp-enable-which-key-integration)
-  :config
-  (yas-reload-all)
-  
-  ;; direct lsp config
-  (setq lsp-lens-enable nil)
-
-  ;; NOTE: not sure this does anything
-  (setq lsp-diagnostics-provider :flycheck)
-  (setq lsp-prefer-flymake nil)
-  
-  ;; lsp related settings
-  (setq lsp-pyls-disable-warning t
-		lsp-pyls-plugins-pycodestyle-enabled nil
-		))
-(use-package company
-  :ensure t
-  :defer t
-  :hook (prog-mode . company-mode)
-  :init
-  (setq company-minimum-prefix-length 1
-	company-idle-delay 0.0
-	company-show-numbers t
-	company-transformers nil
-	company-lsp-async t
-	company-lsp-cache-candidates nil)
-  :config
-  (setq company-backends '((company-yasnippet company-dabbrev-code company-capf company-keywords company-files))))
-(use-package company-box
-  :ensure t
-  :defer t
-  :hook (company-mode . company-box-mode))
-(use-package company-quickhelp
-  :ensure t
-  :defer t
-  :hook (company-mode . company-quickhelp-mode)
-  :config
-  (setq company-quickhelp-delay 0.4))
-(use-package flycheck
-  :ensure t
-  :defer t
-  :hook (prog-mode . flycheck-mode)
-  :config
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-(use-package yasnippet
-  :ensure t
-  :defer t)
-
 ;; treemacs
 (use-package treemacs
   :ensure t
@@ -308,37 +279,3 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
   (lsp-treemacs-sync-mode))
-
-;;; language-specific
-(use-package yaml-mode			;; yaml
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-(use-package dockerfile-mode    ;; dockerfiles
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-  (put 'dockerfile-image-name 'safe-local-variable #'stringp))
-(use-package nix-mode			;; nix
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode)))
-(use-package go-mode            ;; go
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-  (add-hook 'go-mode #'lsp-mode-deferred))
-(use-package lua-mode           ;; lua
-  :ensure t
-  :defer t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-mode)))
-(use-package elpy               ;; python
-  :ensure t
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))

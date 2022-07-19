@@ -8,7 +8,7 @@
 - *$EDITOR*: emacs, emacsclient, vim
 - *terminal*: alacritty
 - *shell*: zsh + oh-my-zsh
-- *launcher*: rofi or emacs' counsel
+- *launcher*: rofi, emacs' counsel
 - *browser*: firefox
 
 alongside:

@@ -7,12 +7,10 @@
   :defer t
   :hook (writeroom-mode . annotate-mode))
 
-
 ;;; org-mode
 (use-package org-noter			;; annotating with docview
   :ensure t
   :defer t)
-
 
 ;;; writing modes 
 (use-package fountain-mode		;; screenplays

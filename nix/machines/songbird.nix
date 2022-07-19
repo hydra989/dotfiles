@@ -61,5 +61,6 @@ in
     EMACS_TRANSPARENCY       = "y"; # transparency on/off?
     EMACS_PYWAL              = "y"; # use theme-magic with pywal?
     CALIBRE_USE_DARK_PALETTE = "1";
+    EDITOR                   = "vim";
   };
 }
