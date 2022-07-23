@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in
 {
   imports = [
@@ -29,25 +29,12 @@ in
       ".emacs.d/init.el".source = ../.emacs.d/init.el;
       ".emacs.d/src".source = ../.emacs.d/src;
     };
-
     xdg.configFile = {
-      # alacritty
-      "alacritty/alacritty.yml".source = ../.config/alacritty/alacritty.yml;
-
-      # awesomewm
-      "awesome/rc.lua".source = ../.config/awesome/rc.lua;
-
-      # nix
-      "nixpkgs/config.nix".source = ../.config/nixpkgs/config.nix;
-
-      # polybar
-      "polybar/config.ini".source = ../.config/polybar/config.ini;
-      "polybar/launch.sh".source = ../.config/polybar/launch.sh;
-
-      # rofi
-      "rofi/config.rasi".source = ../.config/rofi/config.rasi;
-      "rofi/rofi-network-manager.rasi".source = ../.config/rofi/rofi-network-manager.rasi;
-      "rofi/rofi-network-manager.conf".source = ../.config/rofi/rofi-network-manager.conf;
+      "alacritty".source = ../.config/alacritty;
+      "awesome".source = ../.config/awesome;
+      "nixpkgs".source = ../.config/nixpkgs;
+      "polybar".source = ../.config/polybar;
+      "rofi".source = ../.config/rofi;
     };
   };
 }

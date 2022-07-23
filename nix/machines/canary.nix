@@ -26,7 +26,9 @@ in
 
     emacs = {
       package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [
-        epkgs.vterm epkgs.multi-vterm epkgs.use-package
+        epkgs.use-package
+        epkgs.vterm epkgs.multi-vterm
+        epkgs.pdf-tools
       ]));
       enable = true; # likely redundant
     };
@@ -46,26 +48,11 @@ in
         openFirewall = true;
       };
     };
-    #bazarr = {
-      #enable = true;
-      #openFirewall = true;
-    #};
-    #radarr = {
-      #enable = true;
-      #openFirewall = true;
-    #};
-    #sonarr = {
-      #enable = true;
-      #openFirewall = true;
-    #};
   };
 
   hardware.opengl.enable = true;
 
   environment.systemPackages = [
-    #pkgs.bazarr
-    #pkgs.radarr
-    #pkgs.sonarr
     pkgs.lutris
     pkgs.alacritty    # exwm on laptop uses vterm within emacs
 

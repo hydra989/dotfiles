@@ -4,12 +4,14 @@
 
 (use-package dtrt-indent
   :ensure t
+  :diminish dtrt-indent-mode
   :defer t
   :hook ((prog-mode emacs-lisp-mode) . dtrt-indent-mode))
-(use-package editorconfig
-  :ensure t
-  :config
-  (editorconfig-mode 1))
+;(use-package editorconfig
+;  :ensure t
+;  :diminish editorconfig-mode
+;  :config
+;  (editorconfig-mode 1))
 
 (use-package tree-sitter
   :ensure t
@@ -36,7 +38,7 @@
 (use-package lsp-mode
   :ensure t
   :defer t
-  :hook ((c-mode) . lsp)
+  :hook ((c-mode go-mode) . lsp)
   :init
 
   (add-hook 'prog-mode-hook	'yas-minor-mode)
@@ -49,14 +51,10 @@
 
   ;; NOTE: not sure this does anything
   (setq lsp-diagnostics-provider :flycheck)
-  (setq lsp-prefer-flymake nil)
-
-  ;; lsp related settings
-  (setq lsp-pyls-disable-warning t
-		lsp-pyls-plugins-pycodestyle-enabled nil
-		))
+  (setq lsp-prefer-flymake nil))
 (use-package company
   :ensure t
+  :diminish company-mode
   :defer t
   :hook (prog-mode . company-mode)
   :init
@@ -70,6 +68,7 @@
   (setq company-backends '((company-yasnippet company-dabbrev-code company-capf company-keywords company-files))))
 (use-package company-box
   :ensure t
+  :diminsh company-box-mode
   :defer t
   :hook (company-mode . company-box-mode))
 (use-package company-quickhelp
@@ -86,6 +85,7 @@
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :defer t)
 
 ;;; language-specific

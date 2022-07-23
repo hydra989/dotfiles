@@ -23,3 +23,7 @@ alias unixporn='clear && neofetch'
 #alias rescan='nmcli device wifi rescan'
 alias nixrebuild='sudo nixos-rebuild switch -I nixos-config=/home/hydra/s/dotfiles/nix/configuration.nix'
 alias cleantrash='sudo sh /home/hydra/s/dotfiles/sh/empty_trash.sh'
+
+# npm fixes
+export PATH=~/.npm-packages/bin:$PATH
+export NODE_PATH=~/.npm-packages/lib/node_modules

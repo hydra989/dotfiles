@@ -6,6 +6,7 @@
       pulseaudio = true;
     };
     overlays = [
+      # for emacs
       (import (builtins.fetchTarball {
         url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
       }))
@@ -44,9 +45,10 @@
     git gh virt-manager docker
 
     # languages
-    python3 python3Packages.pip pylint
-    gcc gdb bear clang-tools
-    nodePackages.npm
+    python3 pylint            # python
+    gcc gdb bear clang-tools  # c/c++
+    nodePackages.npm          # javascript
+    go gopls                  # go
 
     # tui
     tty-clock neofetch tor killall
@@ -79,11 +81,4 @@
       nerdfonts
     ];
   };
-
-  # enable for flatpak
-  #xdg.portal = {
-  #  enable = true;
-  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  #};
-  #services.flatpak.enable = true;
 }

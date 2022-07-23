@@ -6,6 +6,9 @@
   :ensure t
   :defer t
   :hook (writeroom-mode . annotate-mode))
+(use-package pdf-tools
+  :ensure t
+  :defer t)
 
 ;;; org-mode
 (use-package org-noter			;; annotating with docview
@@ -15,13 +18,12 @@
 ;;; writing modes 
 (use-package fountain-mode		;; screenplays
   :ensure t
-  :defer t
   :init
   (add-to-list 'auto-mode-alist '("\\.fountain\\'" . fountain-mode))
   (defun export-to-pdf ()
-    (shell-command-to-string (format "afterwriting --config afterwriting-config.json --source %s --pdf --overwrite" buffer-file-name)))
-  :config
-  (add-hook 'after-save-hook #'export-to-pdf))
+    (shell-command-to-string (format "afterwriting --config ~/.emacs.d/src/afterwriting-config.json --source %s --pdf --overwrite" buffer-file-name)))
+  (add-hook 'after-save-hook #'export-to-pdf)
+  (add-hook 'fountain-mode #'writeroom-mode))
 (use-package writeroom-mode		;; distraction free writing
   :ensure t
   :defer t)
