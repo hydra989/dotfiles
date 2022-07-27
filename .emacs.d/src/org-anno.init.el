@@ -21,12 +21,13 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.fountain\\'" . fountain-mode))
   (defun export-to-pdf ()
-    (shell-command-to-string (format "afterwriting --config ~/.emacs.d/src/afterwriting-config.json --source %s --pdf --overwrite" buffer-file-name)))
-  (add-hook 'after-save-hook #'export-to-pdf)
+    (shell-command-to-string (format "wrap pdf " buffer-file-name)))
+  (defun add-fountain-hook ()
+    (add-hook 'after-save-hook #'export-to-pdf))
+  (add-hook 'fountain-mode #'add-fountain-hook)
   (add-hook 'fountain-mode #'writeroom-mode))
 (use-package writeroom-mode		;; distraction free writing
-  :ensure t
-  :defer t)
+  :ensure t)
 (use-package markdown-mode		;; markdown
   :ensure t
   :defer t

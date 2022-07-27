@@ -15,7 +15,6 @@
 
 (use-package tree-sitter
   :ensure t
-  :defer t
   :hook ((lsp-mode elpy-mode) . tree-sitter-mode))
 (use-package tree-sitter-langs
   :ensure t

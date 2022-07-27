@@ -43,6 +43,5 @@ based on the machine.
   that pywal generates on emacs theme switch
 
 #+BEGIN_COMMENT
-TODO:   warpd,
-	    .editorconfig?
+TODO:   warpd
 #+END_COMMENT

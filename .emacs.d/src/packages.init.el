@@ -147,8 +147,7 @@
   :ensure t
   :defer t)
 (use-package cyberpunk-theme
-  :ensure t
-  :defer t)
+  :ensure t)
 (use-package monokai-pro-theme
   :ensure t
   :defer t)

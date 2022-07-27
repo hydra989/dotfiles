@@ -3,6 +3,9 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      packageOverrides = pkgs: rec {
+        deity = pkgs.callPackage ./packages/deity/default.nix {};
+      };
       pulseaudio = true;
     };
     overlays = [
@@ -47,15 +50,17 @@
     # languages
     python3 pylint            # python
     gcc gdb bear clang-tools  # c/c++
-    nodePackages.npm          # javascript
     go gopls                  # go
 
     # tui
     tty-clock neofetch tor killall
-    unzip lm_sensors cmatrix
+    unzip lm_sensors cmatrix wrap
 
     # games
     dwarf-fortress cataclysm-dda
+
+    # custom packages
+    deity
   ];
 
   virtualisation = {
