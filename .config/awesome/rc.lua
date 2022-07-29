@@ -76,7 +76,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    awful.tag({ "0x1", "0x2", "0x3", "steam", "media" }, s, awful.layout.layouts[1])
+    awful.tag({ "0x1", "0x2", "0x3", "0x4", "steam", "media" }, s, awful.layout.layouts[1])
 end)
 
 -- mouse bindings
@@ -327,7 +327,7 @@ awful.rules.rules = {
                    "galaxyclient.exe", -- GOG Galaxy
                    "Lutris",
              } },
-      properties = { tag = screen[1].tags[4],
+      properties = { tag = screen[1].tags[5],
                      floating = true
       }
     },
@@ -340,7 +340,7 @@ awful.rules.rules = {
                        "deluge",
                        "mpv",
                  } },
-      properties = { tag = screen[1].tags[5],
+      properties = { tag = screen[1].tags[6],
                      floating = true
       }
     }

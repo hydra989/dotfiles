@@ -55,6 +55,7 @@ in
   environment.systemPackages = [
     pkgs.lutris
     pkgs.alacritty    # exwm on laptop uses vterm within emacs
+    pkgs.cmatrix      # vterm doesn't take kindly to cmatrix
 
     # tunings
     ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [

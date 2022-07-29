@@ -8,7 +8,8 @@
   :hook (writeroom-mode . annotate-mode))
 (use-package pdf-tools
   :ensure t
-  :defer t)
+  :init
+  (pdf-tools-install))
 
 ;;; org-mode
 (use-package org-noter			;; annotating with docview
@@ -20,8 +21,6 @@
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.fountain\\'" . fountain-mode))
-  (defun export-to-pdf ()
-    (shell-command-to-string (format "wrap pdf " buffer-file-name)))
   (defun add-fountain-hook ()
     (add-hook 'after-save-hook #'export-to-pdf))
   (add-hook 'fountain-mode #'add-fountain-hook)

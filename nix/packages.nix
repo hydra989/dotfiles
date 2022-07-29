@@ -54,7 +54,7 @@
 
     # tui
     tty-clock neofetch tor killall
-    unzip lm_sensors cmatrix wrap
+    unzip lm_sensors wrap
 
     # games
     dwarf-fortress cataclysm-dda
