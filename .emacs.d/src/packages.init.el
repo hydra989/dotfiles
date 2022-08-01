@@ -180,9 +180,20 @@
   :diminish ivy-mode
   :init
   (setq ivy-use-virtual-buffers t
-	enable-recursive-minbuffers t)
+		enable-recursive-minbuffers t
+		ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+		)
   :config
   (ivy-mode))
+(use-package ivy-rich
+  :ensure t
+  :init
+  (ivy-rich-mode 1)
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+  (setq ivy-rich-path-style 'abbrev))
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
 (use-package counsel
   :ensure t
   :diminish counsel-mode

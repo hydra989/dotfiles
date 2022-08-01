@@ -7,15 +7,21 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-set ruler			" modeline cursor location
-set showcmd			" show partially complete commands
-set incsearch		" incremental search
+" modeline cursor location
+set ruler
+" show partially complete commands
+set showcmd
+" incremental search
+set incsearch
 set laststatus=2
-set autowrite		" autowrite before commands
-set modelines=0		" security precaution or the like
+" autowrite before commands
+set autowrite
+" security precaution or the like
+set modelines=0
 set nomodeline
 set wildmenu
-set nojoinspaces	" one space not two after punctuation
+" one space not two after punctuation
+set nojoinspaces
 set number
 set splitbelow
 set splitright

@@ -53,7 +53,6 @@ in
   hardware.opengl.enable = true;
 
   environment.systemPackages = [
-    pkgs.lutris
     pkgs.alacritty    # exwm on laptop uses vterm within emacs
     pkgs.cmatrix      # vterm doesn't take kindly to cmatrix
 

@@ -57,7 +57,7 @@
     unzip lm_sensors wrap
 
     # games
-    dwarf-fortress cataclysm-dda
+    dwarf-fortress cataclysm-dda heroic
 
     # custom packages
     deity

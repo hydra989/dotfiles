@@ -323,9 +323,8 @@ awful.rules.rules = {
 
     -- Steam & company
     { rule_any = { class = {
-                   "Steam",
-                   "galaxyclient.exe", -- GOG Galaxy
-                   "Lutris",
+                       "Steam",
+                       "heroic",
              } },
       properties = { tag = screen[1].tags[5],
                      floating = true
