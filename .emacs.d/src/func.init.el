@@ -1,10 +1,6 @@
 ;;; func.init.el
 
 
-(defun export-to-pdf ()
-  (interactive)
-  (shell-command-to-string (format "wrap pdf %s" buffer-file-name)))
-
 ;; stolen from uncledavesemacs
 (defun split-and-follow-horizontally ()
   (interactive)

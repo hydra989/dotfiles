@@ -1,10 +1,19 @@
 { config, lib, pkgs, ... }:
+let
+  masterTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs/archive/master.tar.gz;
+in
 {
   nixpkgs = {
     config = {
       allowUnfree = true;
       packageOverrides = pkgs: rec {
         deity = pkgs.callPackage ./packages/deity/default.nix {};
+
+        masterNixpkgs = import masterTarball {
+          config = config.nixpkgs.config;
+        };
       };
       pulseaudio = true;
     };
@@ -39,7 +48,7 @@
   environment.systemPackages = with pkgs; [
     # gui
     firefox xfce.thunar xfce.thunar-archive-plugin
-    maim feh pywal keepassxc
+    maim feh pywal keepassxc zathura
 
     # media
     calibre mpv
@@ -61,6 +70,9 @@
 
     # custom packages
     deity
+
+    # master branch
+    masterNixpkgs.warpd
   ];
 
   virtualisation = {

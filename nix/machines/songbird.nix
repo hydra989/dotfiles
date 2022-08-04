@@ -48,7 +48,6 @@ in
     ((pkgs.emacsPackagesFor songbird.emacsNativeComp).emacsWithPackages (epkgs: [
       epkgs.use-package
       epkgs.vterm epkgs.multi-vterm
-      epkgs.pdf-tools
     ]))
     songbird.picom
     songbird.polybar

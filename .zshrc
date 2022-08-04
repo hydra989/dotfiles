@@ -17,13 +17,11 @@ bindkey -v
 zstyle ':omz:update' mode disabled
 
 # aliases
-alias clock='tty-clock -c -u -t'
+alias clock='tty-clock -c -t'
 alias reboot='sudo reboot'
 alias unixporn='clear && neofetch'
-#alias rescan='nmcli device wifi rescan'
+alias rescan='nmcli device wifi rescan'
 alias nixrebuild='sudo nixos-rebuild switch -I nixos-config=/home/hydra/s/dotfiles/nix/configuration.nix'
 alias cleantrash='sudo sh /home/hydra/s/dotfiles/sh/empty_trash.sh'
-
-# npm fixes
-export PATH=~/.npm-packages/bin:$PATH
-export NODE_PATH=~/.npm-packages/lib/node_modules
+alias quit='exit'
+alias fountainpdf='find . -type f \( -name "*.fountain" \) -exec wrap pdf {} \;'

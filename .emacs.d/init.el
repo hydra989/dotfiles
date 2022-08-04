@@ -26,11 +26,11 @@
 			 (concat hydra:emacs-config-dir file)))
       ))
   (hydra:load-config-file '(
-							"defaults.init.el"
 							"packages.init.el"
 							"func.init.el"
 							"lsp.init.el"
 							"org-anno.init.el"
+							"defaults.init.el"
 							))
 
   ;; general appearance

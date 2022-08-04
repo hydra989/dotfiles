@@ -28,7 +28,6 @@ in
       package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [
         epkgs.use-package
         epkgs.vterm epkgs.multi-vterm
-        epkgs.pdf-tools
       ]));
       enable = true; # likely redundant
     };
@@ -43,10 +42,10 @@ in
     deluge = {
       enable = true;
       openFirewall = true;
-      web = {
-        enable = true;
-        openFirewall = true;
-      };
+      #web = {
+      #  enable = true;
+      #  openFirewall = true;
+      #};
     };
   };
 
