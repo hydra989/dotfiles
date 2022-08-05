@@ -25,3 +25,4 @@ alias nixrebuild='sudo nixos-rebuild switch -I nixos-config=/home/hydra/s/dotfil
 alias cleantrash='sudo sh /home/hydra/s/dotfiles/sh/empty_trash.sh'
 alias quit='exit'
 alias fountainpdf='find . -type f \( -name "*.fountain" \) -exec wrap pdf {} \;'
+alias resemacs='systemctl --user restart emacs'

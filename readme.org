@@ -14,10 +14,11 @@
 alongside:
 - pywal for synchronizing themes through emacs' theme-magic
 - miscellaneous sh scripts, wallpapers
+- a lot of other stuff that's not worth mentioning here.
 
-My setups also utilize a handful of tools, such as firefox, where the configs just
-aren't included. My emacs files are split up into an init.el and a src/ directory,
-in which are a small handful of elisp files that init.el loads on startup.
+My emacs files are split up into an init.el and a src/ directory,
+in which are a small handful of elisp files (named *.init.el, to better
+distinguish them) that init.el loads on startup.
 
 Wallpapers I collect over time, so note that they aren't mine/I didn't make them. I've
 tried to collect their sources in a sources.txt over time, but it'll likely be somewhat
@@ -36,12 +37,7 @@ based on the machine.
 - https://github.com/nickclyde/rofi-bluetooth
 - https://github.com/P3rf/rofi-network-manager
 
-
 *** notes
 
 - polybar colors are hardcoded to cyberpunk theme---could redo and use xresources colors
   that pywal generates on emacs theme switch
-
-#+BEGIN_COMMENT
-TODO:   warpd
-#+END_COMMENT

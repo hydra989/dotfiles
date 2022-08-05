@@ -3,7 +3,6 @@
   imports = [
     ./packages.nix
     ./machines/canary.nix
-    ./home.nix
   ];
 
   boot = {
@@ -69,6 +68,15 @@
       enable = true;
       wheelNeedsPassword = true;
     };
+  };
+
+  users.users.hydra = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel" "networkmanager" "video" "audio" "libvirtd" "docker"
+    ];
+    initialPassword = "rorschach";
+    shell = pkgs.zsh;
   };
 
   # localization/defaults

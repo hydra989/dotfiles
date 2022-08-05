@@ -32,6 +32,8 @@
 							"org-anno.init.el"
 							"defaults.init.el"
 							))
+  (if (string-equal *exwm* "t")
+	  (hydra:load-config-file '( "exwm.init.el" )))
 
   ;; general appearance
   (defun gui-init (frame)

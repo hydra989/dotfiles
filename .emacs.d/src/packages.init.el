@@ -101,7 +101,7 @@
   ;; some modes are better off without evil
   (evil-set-initial-state 'bufler-list-mode 'emacs)
   (evil-set-initial-state 'dirvish-mode 'emacs)
-  ; (evil-set-initial-state 'pdf-view-mode 'emacs)
+  (evil-set-initial-state 'pdf-view-mode 'emacs)
 
   (evil-set-leader 'normal (kbd ";"))
   (evil-mode))

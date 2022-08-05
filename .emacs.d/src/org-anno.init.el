@@ -1,11 +1,6 @@
 ;;; org-anno.init.el
 
 
-;;; org-mode
-(use-package org-noter			;; annotating with docview
-  :ensure t
-  :defer t)
-
 ;;; writing modes 
 (use-package fountain-mode		;; screenplays
   :ensure t

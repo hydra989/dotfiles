@@ -51,7 +51,7 @@ in
     maim feh pywal keepassxc zathura
 
     # media
-    calibre mpv
+    calibre mpv kodi
 
     # dev tools
     git gh virt-manager docker
@@ -73,6 +73,9 @@ in
 
     # master branch
     masterNixpkgs.warpd
+
+    # dependencies
+    ghostscript
   ];
 
   virtualisation = {

@@ -56,6 +56,29 @@ in
     songbird.wineWowPackages.staging
   ];
 
+  home-manager.users.hydra = {
+    programs.home-manager.enable = true;
+    home.stateVersion = "22.05";
+    home.homeDirectory = "/home/hydra";
+
+    # dotfiles
+    home.file = {
+      ".vimrc".source = ../../.vimrc;
+      ".zshrc".source = ../../.zshrc;
+      ".wallpaper".source = ../../.wallpaper;
+      ".emacs.d/init.el".source = ../../.emacs.d/init.el;
+      ".emacs.d/src".source = ../../.emacs.d/src;
+
+      # polybar's configuration changes based on machine
+      ".config/polybar/launch.sh".source = ../../.config/polybar/launch.sh;
+      ".config/polybar/config.ini".source = ../../.config/polybar/songbird.config.ini;
+    };
+    xdg.configFile = {
+      "alacritty".source = ../../.config/alacritty;
+      "nixpkgs".source = ../../.config/nixpkgs;
+      "rofi".source = ../../.config/rofi;
+    };
+
   environment.sessionVariables = rec {
     EMACS_SERVER             = "y"; # use emacsclient/emacsserver?
     EMACS_EXWM               = "n"; # load exwm configuration?
