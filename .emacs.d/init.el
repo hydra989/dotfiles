@@ -57,6 +57,10 @@
   (when (file-exists-p custom-file)
 	(load custom-file)))
 
+(custom-set-variables
+ '(org-directory "~/s/org")
+ '(org-agenda-files (list "~/s/org/agenda")))
+
 ;; start the server
 (if (string-equal *server* "y")
   (server-start))

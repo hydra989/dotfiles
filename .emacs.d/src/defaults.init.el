@@ -6,6 +6,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (fringe-mode 1)
+(winner-mode 1) ; C-c {<left>, <right>} for window manipulation
 (global-auto-revert-mode 1)
 
 ;; fighting emacs tab defaults

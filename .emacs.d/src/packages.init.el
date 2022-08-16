@@ -102,6 +102,8 @@
   (evil-set-initial-state 'bufler-list-mode 'emacs)
   (evil-set-initial-state 'dirvish-mode 'emacs)
   (evil-set-initial-state 'pdf-view-mode 'emacs)
+  (evil-set-initial-state 'org-agenda-mode 'emacs)
+  (evil-set-initial-state 'dashboard-mode 'emacs)
 
   (evil-set-leader 'normal (kbd ";"))
   (evil-mode))
@@ -134,12 +136,15 @@
     :ensure t
     :config
     (theme-magic-export-theme-mode)))
-(use-package base16-theme
-  :ensure t
-  :defer t)
+;;(use-package base16-theme
+;;  :ensure t
+;;  :defer t)
 (use-package cyberpunk-theme
   :ensure t)
 (use-package monokai-pro-theme
+  :ensure t
+  :defer t)
+(use-package kaolin-themes
   :ensure t
   :defer t)
 (use-package all-the-icons
@@ -158,12 +163,17 @@
   :init
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (setq dashboard-set-init-info nil
+        dashboard-set-footer nil
         dashboard-set-heading-icons t
         dashboard-center-content t
         dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name
         dashboard-items '((projects . 10)
                           )
-        ))
+        )
+  ;; agenda specifics
+  (add-to-list 'dashboard-items '(agenda) t)
+  (setq dashboard-week-agenda t
+        dashboard-filter-agenda-entry 'dashboard-no-filter-agenda))
 
 ;; ivy
 (use-package ivy
