@@ -2,7 +2,7 @@
 {
   imports = [
     ./packages.nix
-    ./machines/canary.nix
+    ./machines/songbird.nix
   ];
 
   boot = {
@@ -59,7 +59,6 @@
       enable = true;
       layout = "us";
       displayManager.lightdm.enable = true;
-      windowManager.awesome.enable = true;
     };
   };
 

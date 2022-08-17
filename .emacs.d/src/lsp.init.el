@@ -67,9 +67,10 @@
   (setq company-backends '((company-yasnippet company-dabbrev-code company-capf company-keywords company-files))))
 (use-package company-box
   :ensure t
-  :diminsh company-box-mode
   :defer t
-  :hook (company-mode . company-box-mode))
+  :hook (company-mode . company-box-mode)
+  :config
+  (diminish 'company-box-mode))
 (use-package company-quickhelp
   :ensure t
   :defer t

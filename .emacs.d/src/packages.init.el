@@ -212,7 +212,8 @@
 
 ;; projectile
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :diminish (projectile-mode . "Proj."))
 (use-package counsel-projectile
   :ensure t
   :after projectile

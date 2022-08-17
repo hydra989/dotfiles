@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+
 let
   songbird = import <nixpkgs> {
     localSystem = {
@@ -7,11 +8,17 @@ let
       system = "x86_64-linux";
     };
   };
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in
 {
+  imports = [
+    ./hardware-configuration-songbird.nix
+    (import "${home-manager}/nixos")
+  ];
+
   networking = {
     hostName = "songbird";
-    # TODO: interfaces...useDHCP = true;
+    interfaces.wlan0.useDHCP = true;
   };
 
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -19,10 +26,30 @@ in
   nix.systemFeatures = [ "gccarch-znver1" "big-parallel" ];
 
   services = {
+    illum.enable = true;
+
     # amdgpu
     xserver = {
       videoDrivers = [ "amdgpy" ];
       libinput.enable = true;
+
+      # exwm
+      windowManager.exwm = {
+        enable = true;
+        enableDefaultConfig = false;
+        loadScript = ''
+                   (require 'exwm)
+                   (exwm-enable)
+        '';
+        extraPackages = epkgs: [
+                 epkgs.use-package
+                 epkgs.vterm epkgs.multi-vterm
+                 epkgs.exwm
+        ];
+      };
+
+      # gnome
+      desktopManager.gnome.enable = true;
     };
 
     syncthing = {
@@ -32,7 +59,6 @@ in
       configDir = "/home/hydra/.config/syncthing";
     };
 
-    tlp.enable = true;
     upower.enable = true;
   };
 
@@ -44,17 +70,28 @@ in
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    ((pkgs.emacsPackagesFor songbird.emacsNativeComp).emacsWithPackages (epkgs: [
-      epkgs.use-package
-      epkgs.vterm epkgs.multi-vterm
-    ]))
-    songbird.picom
-    songbird.polybar
-    # songbird.rofi
-    songbird.vim
-    songbird.wineWowPackages.staging
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      # tuning takes time
+      #songbird.picom
+      #songbird.polybar
+      #songbird.vim
+      #songbird.wineWowPackages.staging
+
+      picom polybar vim wineWowPackages.staging rofi feh
+    ];
+    gnome.excludePackages = (with pkgs.gnome; [
+      gedit
+      epiphany
+      geary
+      evince
+      totem
+      tali
+      iagno
+      hitori
+      atomix
+    ]);
+  };
 
   home-manager.users.hydra = {
     programs.home-manager.enable = true;
@@ -78,10 +115,11 @@ in
       "nixpkgs".source = ../../.config/nixpkgs;
       "rofi".source = ../../.config/rofi;
     };
+  };
 
   environment.sessionVariables = rec {
     EMACS_SERVER             = "y"; # use emacsclient/emacsserver?
-    EMACS_EXWM               = "n"; # load exwm configuration?
+    EMACS_EXWM               = "y"; # load exwm configuration?
     EMACS_TRANSPARENCY       = "y"; # transparency on/off?
     EMACS_PYWAL              = "y"; # use theme-magic with pywal?
     CALIBRE_USE_DARK_PALETTE = "1";

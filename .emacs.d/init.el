@@ -32,19 +32,20 @@
 							"org-anno.init.el"
 							"defaults.init.el"
 							))
-  (if (string-equal *exwm* "t")
+  (if (string-equal *exwm* "y")
 	  (hydra:load-config-file '( "exwm.init.el" )))
 
   ;; general appearance
-  (defun gui-init (frame)
+  (defun gui-init-server (frame)
 	(select-frame frame)
+	(gui-init))
+  (defun gui-init ()
 	(set-frame-font "Terminus-11" t t)
-	(mini-modeline-mode t)
 	(load-theme 'cyberpunk t)
 	(dashboard-setup-startup-hook))
 
   (if (daemonp)
-	  (add-hook 'after-make-frame-functions #'gui-init)
+	  (add-hook 'after-make-frame-functions #'gui-init-server)
 	(gui-init))
 
   ;; transparancy

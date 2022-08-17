@@ -24,7 +24,10 @@ in
   };
 
   services = {
-    xserver.videoDrivers = [ "nvidia" ];
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+      windowManager.awesome.enable = true;
+    };
 
     emacs = {
       package = ((pkgs.emacsPackagesFor canary.emacsNativeComp).emacsWithPackages (epkgs: [

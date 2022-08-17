@@ -48,7 +48,7 @@ in
   environment.systemPackages = with pkgs; [
     # gui
     firefox xfce.thunar xfce.thunar-archive-plugin
-    maim feh pywal keepassxc zathura
+    scrot feh pywal keepassxc zathura
 
     # media
     calibre mpv kodi

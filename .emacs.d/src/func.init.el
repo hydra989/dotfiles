@@ -52,6 +52,4 @@
 (global-set-key (kbd "C-' c") 'config-visit)
 (global-set-key (kbd "C-' b") 'create-scratch-buffer)
 (global-set-key (kbd "C-' s") 'full-auto-save)
-; this is rebound in exwm
-(if (string-equal *exwm* "n")
-	(global-set-key (kbd "C-' t") 'multi-vterm))
+(global-set-key (kbd "C-' t") 'multi-vterm)
