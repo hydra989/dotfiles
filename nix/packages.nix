@@ -60,6 +60,7 @@ in
     python3 pylint            # python
     gcc gdb bear clang-tools  # c/c++
     go gopls                  # go
+    jdk11                     # java
 
     # tui
     tty-clock neofetch tor killall

@@ -60,7 +60,7 @@
 
 (custom-set-variables
  '(org-directory "~/s/org")
- '(org-agenda-files (list "~/s/org/agenda")))
+ '(org-agenda-files (list "~/s/org/agenda" "~/s/org/agenda/2022")))
 
 ;; start the server
 (if (string-equal *server* "y")

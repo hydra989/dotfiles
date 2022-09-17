@@ -1,8 +1,11 @@
 { config, lib, pkgs, ... }:
 {
+  # this file is imported by any machine-specific nix configs.
+  # it's a place for more general settings that should be shared between
+  # systems.
+
   imports = [
     ./packages.nix
-    ./machines/songbird.nix
   ];
 
   boot = {

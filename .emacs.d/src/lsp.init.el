@@ -15,11 +15,13 @@
 
 (use-package tree-sitter
   :ensure t
-  :hook ((lsp-mode elpy-mode) . tree-sitter-mode))
+  :config
+  (global-tree-sitter-mode))
 (use-package tree-sitter-langs
   :ensure t
   :after tree-sitter
-  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
+  :config
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (use-package lsp-ui
   :ensure t
@@ -121,3 +123,7 @@
   :defer t
   :init
   (advice-add 'python-mode :before 'elpy-enable))
+(use-package lsp-java
+  :ensure t
+  :config
+  (add-hook 'java-mode-hook 'lsp))

@@ -12,6 +12,7 @@ in
 {
   imports = [
     ./hardware-configuration-canary.nix
+    ../configuration.nix
     (import "${home-manager}/nixos")
   ];
 
