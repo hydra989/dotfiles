@@ -42,7 +42,8 @@
   (defun gui-init ()
 	(set-frame-font "Terminus-11" t t)
 	(load-theme 'cyberpunk t)
-	(dashboard-setup-startup-hook))
+	(dashboard-setup-startup-hook)
+    (mini-modeline-mode))
 
   (if (daemonp)
 	  (add-hook 'after-make-frame-functions #'gui-init-server)

@@ -44,15 +44,6 @@ in
       dataDir = "/opt/syncthing";
       configDir = "/home/hydra/.config/syncthing";
     };
-
-    deluge = {
-      enable = true;
-      openFirewall = true;
-      #web = {
-      #  enable = true;
-      #  openFirewall = true;
-      #};
-    };
   };
 
   hardware.opengl.enable = true;

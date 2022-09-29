@@ -332,13 +332,18 @@ awful.rules.rules = {
     },
 
     -- Media tag
-    { rule_any = { class = {
-                       "calibre",
-                       "vlc",
-                       "Kodi",
-                       "deluge",
-                       "mpv",
-                 } },
+    { rule_any = {
+          class = {
+              "calibre",
+              "vlc",
+              "Kodi",
+              "mpv",
+              "Popcorn-Time",
+          },
+          name = {
+              "Torrential",
+          },
+      },
       properties = { tag = screen[1].tags[6],
                      floating = true
       }

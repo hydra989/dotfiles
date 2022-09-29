@@ -51,7 +51,7 @@ in
     scrot feh pywal keepassxc zathura
 
     # media
-    calibre mpv kodi
+    calibre mpv kodi torrential
 
     # dev tools
     git gh virt-manager docker
@@ -73,7 +73,7 @@ in
     deity
 
     # master branch
-    masterNixpkgs.warpd
+    masterNixpkgs.warpd masterNixpkgs.popcorntime
 
     # dependencies
     ghostscript
