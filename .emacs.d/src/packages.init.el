@@ -172,8 +172,7 @@
         )
   ;; agenda specifics
   (add-to-list 'dashboard-items '(agenda) t)
-  (setq dashboard-week-agenda t
-        dashboard-filter-agenda-entry 'dashboard-no-filter-agenda))
+  (setq dashboard-week-agenda t))
 
 ;; ivy
 (use-package ivy

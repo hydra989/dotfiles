@@ -60,7 +60,7 @@ in
     canary.polybar
     canary.rofi
     canary.vim
-    canary.wineWowPackages.staging
+    pkgs.wineWowPackages.stagingFull
   ];
 
   virtualisation.docker.enableNvidia = true;
@@ -95,7 +95,7 @@ in
     EMACS_EXWM               = "n"; # load exwm configuration?
     EMACS_TRANSPARENCY       = "y"; # transparency on/off?
     EMACS_PYWAL              = "y"; # use theme-magic with pywal?
-    CALIBRE_USE_DARK_PALETTE = "1";
+    CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
     VISUAL                   = "emacsclient -c";
   };
 }

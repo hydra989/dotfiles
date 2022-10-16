@@ -51,7 +51,7 @@ in
     scrot feh pywal keepassxc zathura
 
     # media
-    calibre mpv kodi torrential
+    calibre mpv kodi transmission
 
     # dev tools
     git gh virt-manager docker
@@ -67,7 +67,8 @@ in
     unzip lm_sensors wrap
 
     # games
-    dwarf-fortress cataclysm-dda heroic
+    dwarf-fortress cataclysm-dda heroic minecraft
+    lutris
 
     # custom packages
     deity

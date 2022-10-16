@@ -7,3 +7,7 @@ configuration {
 	}
 }
 @import "~/.cache/wal/colors-rofi-dark"
+#window {
+    border: 2;
+    border-color: #FFFFFF;
+}

@@ -27,6 +27,7 @@ in
   nix.systemFeatures = [ "gccarch-znver1" "big-parallel" ];
 
   services = {
+    # for display brightness keys
     illum.enable = true;
 
     # amdgpu
@@ -81,6 +82,7 @@ in
 
       picom polybar vim wineWowPackages.staging rofi feh
     ];
+    # gnome, but skip some packages
     gnome.excludePackages = (with pkgs.gnome; [
       gedit
       epiphany
@@ -119,11 +121,11 @@ in
   };
 
   environment.sessionVariables = rec {
-    EMACS_SERVER             = "n"; # use emacsclient/emacsserver?
-    EMACS_EXWM               = "y"; # load exwm configuration?
-    EMACS_TRANSPARENCY       = "y"; # transparency on/off?
-    EMACS_PYWAL              = "y"; # use theme-magic with pywal?
-    CALIBRE_USE_DARK_PALETTE = "1";
+    EMACS_SERVER             = "n";   # use emacsclient/emacsserver?
+    EMACS_EXWM               = "y";   # load exwm configuration?
+    EMACS_TRANSPARENCY       = "y";   # transparency on/off?
+    EMACS_PYWAL              = "y";   # use theme-magic with pywal?
+    CALIBRE_USE_DARK_PALETTE = "1";   # 1 = dark theme calibre
     EDITOR                   = "vim";
   };
 }

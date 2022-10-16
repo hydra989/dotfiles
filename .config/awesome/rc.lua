@@ -325,6 +325,8 @@ awful.rules.rules = {
     { rule_any = { class = {
                        "Steam",
                        "heroic",
+                       "Lutris",
+                       "steam_app_489830", -- Skyrim mod organizer
              } },
       properties = { tag = screen[1].tags[5],
                      floating = true
