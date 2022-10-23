@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    ./hardware-configuration-canary.nix
+    ../hardware/hardware-configuration-canary.nix
     ../configuration.nix
     (import "${home-manager}/nixos")
   ];
@@ -60,7 +60,7 @@ in
     canary.polybar
     canary.rofi
     canary.vim
-    pkgs.wineWowPackages.stagingFull
+    pkgs.wineWowPackages.stagingFull # wine takes forever to build
   ];
 
   virtualisation.docker.enableNvidia = true;

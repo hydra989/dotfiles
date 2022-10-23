@@ -51,10 +51,10 @@ in
     scrot feh pywal keepassxc zathura
 
     # media
-    calibre mpv kodi transmission
+    calibre mpv kodi torrential
 
     # dev tools
-    git gh virt-manager docker
+    git gh virt-manager docker nixpkgs-review
 
     # languages
     python3 pylint            # python
@@ -75,6 +75,7 @@ in
 
     # master branch
     masterNixpkgs.warpd masterNixpkgs.popcorntime
+    masterNixpkgs.tidal-hifi
 
     # dependencies
     ghostscript

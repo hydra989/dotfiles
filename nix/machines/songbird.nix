@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    ./hardware-configuration-songbird.nix
+    ../hardware/hardware-configuration-songbird.nix
     ../configuration.nix
     (import "${home-manager}/nixos")
   ];

@@ -315,9 +315,9 @@ awful.rules.rules = {
           "Event Tester",  -- xev.
         },
         role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+          "AlarmWindow",
+          "ConfigManager",
+          "pop-up",
         }
 	}, properties = { floating = true }},
 
@@ -341,6 +341,7 @@ awful.rules.rules = {
               "Kodi",
               "mpv",
               "Popcorn-Time",
+              "tidal-hifi",
           },
           name = {
               "Torrential",

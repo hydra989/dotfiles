@@ -159,20 +159,24 @@
   (global-hl-todo-mode))
 (use-package dashboard
   :ensure t
-  :after counsel-projectile
-  :init
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  (setq dashboard-set-init-info nil
-        dashboard-set-footer nil
-        dashboard-set-heading-icons t
-        dashboard-center-content t
-        dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name
-        dashboard-items '((projects . 10)
-                          )
-        )
-  ;; agenda specifics
+  :config
+  (dashboard-setup-startup-hook)
   (add-to-list 'dashboard-items '(agenda) t)
-  (setq dashboard-week-agenda t))
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  :custom (
+           (inhibit-start-screen t)
+           ;(inital-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+           (dashboard-set-init-info nil)
+           (dashboard-set-footer nil)
+           (dashboard-set-heading-icons t)
+           (dashboard-center-content t)
+           (dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+           (dashboard-items '(
+                              (recents . 5)
+                              (projects . 10)
+                              ))
+           (dashboard-week-agenda t)
+           ))
 
 ;; ivy
 (use-package ivy

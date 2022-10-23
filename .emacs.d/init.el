@@ -11,53 +11,57 @@
 (defvar *exwm*                (getenv "EMACS_EXWM"))
 (defvar *hostname*            (getenv "HOSTNAME"))
 
-;; reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
-(let ((file-name-handler-alist nil))
-  ;; init melpa so packages.init.el doesn't throw a fit
-  (package-initialize)
-  (setq package-check-signature nil)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; init melpa so packages.init.el doesn't throw a fit
+(package-initialize)
+(setq package-check-signature nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-  ;; https://www.emacswiki.org/emacs/DotEmacsModular
-  (defconst hydra:emacs-config-dir "/home/hydra/.emacs.d/src/" "")
-  (defun hydra:load-config-file (filelist)
-	(dolist (file filelist)
-      (load (expand-file-name
-			 (concat hydra:emacs-config-dir file)))
-      ))
-  (hydra:load-config-file '(
+;; https://www.emacswiki.org/emacs/DotEmacsModular
+(defconst hydra:emacs-config-dir "/home/hydra/.emacs.d/src/" "")
+(defun hydra:load-config-file (filelist)
+  (dolist (file filelist)
+    (load (expand-file-name
+		 (concat hydra:emacs-config-dir file)))
+    ))
+(hydra:load-config-file '(
 							"packages.init.el"
 							"func.init.el"
 							"lsp.init.el"
 							"org-anno.init.el"
 							"defaults.init.el"
 							))
-  (if (string-equal *exwm* "y")
-	  (hydra:load-config-file '( "exwm.init.el" )))
+(if (string-equal *exwm* "y")
+  (hydra:load-config-file '( "exwm.init.el" )))
 
-  ;; general appearance
-  (defun gui-init-server (frame)
-	(select-frame frame)
-	(gui-init))
-  (defun gui-init ()
-	(set-frame-font "Terminus-11" t t)
-	(load-theme 'cyberpunk t)
-	(dashboard-setup-startup-hook)
-    (mini-modeline-mode))
+(defun daemon-gui-setup (frame)
+  (select-frame frame)
+  (load-theme 'cyberpunk t)
+  (mini-modeline-mode t)
+  (set-frame-font "Terminus-11" t t)
+  )
+(defun standard-setup ()
+  (load-theme 'cyberpunk t)
+  (mini-modeline-mode t)
+  (set-frame-font "Terminus-11" t t)
+  )
 
-  (if (daemonp)
-	  (add-hook 'after-make-frame-functions #'gui-init-server)
-	(gui-init))
+(if (daemonp)
+    (add-hook 'after-make-frame-functions #'daemon-gui-setup)
+  (standard-setup))
 
-  ;; transparancy
-  (if (string-equal *transparency* "y")
-	  (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
-	  (add-to-list 'default-frame-alist '(alpha . (80 . 75))))
+;(if (daemonp)
+;	(add-hook 'after-make-frame-functions #'gui-init-server)
+;  (gui-init))
 
-  ;; seperate custom file
-  (setq custom-file "/home/hydra/.emacs.d/custom.el")
-  (when (file-exists-p custom-file)
-	(load custom-file)))
+;; transparancy
+(if (string-equal *transparency* "y")
+  (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
+  (add-to-list 'default-frame-alist '(alpha . (80 . 75))))
+
+;; seperate custom file
+(setq custom-file "/home/hydra/.emacs.d/custom.el")
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (custom-set-variables
  '(org-directory "~/s/org")
