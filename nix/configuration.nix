@@ -1,27 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
+
 {
-  # this file is imported by any machine-specific nix configs.
-  # it's a place for more general settings that should be shared between
-  # systems.
-
-  imports = [
-    ./packages.nix
-  ];
-
-  boot = {
-    cleanTmpDir = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.systemd-boot.enable = true;
-    supportedFilesystems = [ "ntfs" ];
-  };
-
-  nix = {
-    optimise.automatic = true;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   networking = {
     useDHCP = false;
     networkmanager = {
@@ -45,6 +24,90 @@
     };
   };
 
+  hardware.opengl.enable = true;
+
+  nix = {
+    optimise.automatic = true;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  programs = {
+    # steam
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    # zsh
+    zsh = {
+      enable = true;
+      syntaxHighlighting.enable = true;
+      autosuggestions.enable = true;
+      ohMyZsh = {
+        enable = true;
+        plugins = [ "git" ];
+        theme = "ys";
+      };
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    # gui
+    firefox xfce.thunar xfce.thunar-archive-plugin
+    scrot feh pywal keepassxc zathura
+
+    # media
+    calibre mpv kodi torrential
+
+    # dev tools
+    git gh virt-manager docker nixpkgs-review
+
+    # languages
+    python3 pylint            # python
+    gcc gdb bear clang-tools  # c/c++
+    go gopls                  # go
+    jdk11                     # java
+
+    # tui
+    tty-clock neofetch tor killall
+    unzip lm_sensors wrap
+
+    # games
+    dwarf-fortress cataclysm-dda heroic minecraft
+    lutris
+
+    # dependencies
+    ghostscript
+
+    # fonts
+  ];
+
+  virtualisation = {
+    # docker
+    docker = {
+      enable = true;
+      enableOnBoot = true;
+    };
+    # virt-manager
+    libvirtd.enable = true;
+  };
+
+  # for virt-manager
+  # programs.dconf.enable = true;
+
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      dejavu_fonts
+      hack-font
+      terminus_font
+      font-awesome
+      nerdfonts
+    ];
+  };
+
   services = {
     blueman.enable = true;
 
@@ -63,6 +126,47 @@
       layout = "us";
       displayManager.lightdm.enable = true;
     };
+
+    emacs = {
+      package = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: with epkgs; [
+        # packages.init.el
+	use-package
+	diminish
+	avy bufler linum-relative
+	magit magit-todos
+	evil evil-collection evil-snipe undo-fu
+	cyberpunk-theme monokai-pro-theme
+	all-the-icons mini-modeline
+	hl-todo dashboard ivy
+	flx ivy-rich all-the-icons-ivy-rich
+	counsel swiper projectile
+	treemacs treemacs-evil lsp-treemacs
+
+	# exwm.init.el
+	desktop-environment exwm        
+
+	# org-anno.init.el
+	fountain-mode writeroom-mode markdown-mode
+
+	# lsp-mode.init.el
+	dtrt-indent tree-sitter tree-sitter-langs
+	lsp-ui lsp-mode company company-box company-quickhelp
+	flycheck yasnippet yaml-mode dockerfile-mode nix-mode
+	go-mode lua-mode elpy lsp-java	
+
+	# not included
+	vterm        
+        multi-vterm
+      ]));
+      enable = true;
+    };
+
+    syncthing = {
+      enable = true;
+      user = "hydra";
+      dataDir = "/opt/syncthing";
+      configDir = "/home/hydra/.config/syncthing";
+    };
   };
 
   security = {
@@ -71,7 +175,7 @@
       wheelNeedsPassword = true;
     };
   };
-
+  
   users.users.hydra = {
     isNormalUser = true;
     extraGroups = [
@@ -83,11 +187,6 @@
 
   # localization/defaults
   time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }

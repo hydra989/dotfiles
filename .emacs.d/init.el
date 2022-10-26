@@ -56,7 +56,7 @@
 ;; transparancy
 (if (string-equal *transparency* "y")
   (set-frame-parameter (selected-frame) 'alpha '(95 . 90))
-  (add-to-list 'default-frame-alist '(alpha . (80 . 75))))
+  (add-to-list 'default-frame-alist '(alpha . (95 . 90))))
 
 ;; seperate custom file
 (setq custom-file "/home/hydra/.emacs.d/custom.el")

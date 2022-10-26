@@ -8,6 +8,13 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  boot = {
+    cleanTmpDir = true;
+    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot.enable = true;
+    supportedFilesystems = [ "ext4" "ntfs" ];
+  };
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
@@ -33,13 +40,22 @@
     [ { device = "/dev/disk/by-uuid/cf042a35-161f-4ae8-b871-f5e4044dc997"; }
     ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
-
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  nixpkgs.hostPlatform = "x86_64-linux";
+
+  virtualisation.docker.enableNvidia = true;
+
+  networking = {
+    hostName = "nightingale";
+    interfaces.wlan0.useDHCP = true;
+    interfaces.enp42s0.useDHCP = true;
+  };
+
+  services = {
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+      windowManager.awesome.enable = true;
+    };
+  };
 }

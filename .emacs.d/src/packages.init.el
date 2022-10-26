@@ -2,12 +2,7 @@
 
 
 ;;; use-package
-(unless package-archive-contents
-  (package-refresh-contents))
-(setq package-native-compile t)
-(require 'package)
 (use-package diminish
-  :ensure t
   ;; diminish whatever isn't a package
   :config
   (diminish 'eldoc-mode))
@@ -15,12 +10,10 @@
 
 ;;; general
 (use-package avy
-  :ensure t
   :after evil
   :config
   (evil-define-key 'normal 'global (kbd "SPC") 'avy-goto-char))
 (use-package bufler
-  :ensure t
   :init
   ;; default bufler config with exwm group
   (bufler-defgroups
@@ -70,7 +63,6 @@
    :config
    (global-set-key (kbd "C-x C-b") 'bufler))
 (use-package linum-relative
-  :ensure t
   :diminish linum-relative-mode
   :defer t
   :hook (prog-mode . linum-relative-mode)
@@ -79,13 +71,11 @@
 
 ;; magit
 (use-package magit
-  :ensure t
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (with-eval-after-load 'magit-mode
 	(add-hook 'after-save-hook 'magit-after-save-refresh-status t)))
 (use-package magit-todos
-  :ensure t
   :after magit
   :config
   (setq magit-todos-ignored-keywords '(""))
@@ -93,7 +83,6 @@
 
 ;; evil-mode
 (use-package evil
-  :ensure t
   :init
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-fu)
@@ -108,24 +97,20 @@
   (evil-set-leader 'normal (kbd ";"))
   (evil-mode))
 ;;(use-package evil-commentary
-;;  :ensure t
 ;;  :after evil
 ;;  :config
 ;;  (add-hook 'prog-mode-hook 'evil-commentary-mode))
 (use-package evil-collection
-  :ensure t
   :diminish evil-collection-unimpaired-mode
   :after evil
   :config
   (evil-collection-init))
 (use-package evil-snipe
-  :ensure t
   :diminish evil-snipe-local-mode
   :after evil
   :config
   (evil-snipe-mode +1))
 (use-package undo-fu
-  :ensure t
   :after evil
   :config
   (evil-define-key 'normal 'global "\C-r" 'evil-redo))
@@ -133,32 +118,23 @@
 ;; appearance
 (if (string-equal *theme-magic-enabled* "y")
   (use-package theme-magic
-    :ensure t
     :config
     (theme-magic-export-theme-mode)))
 ;;(use-package base16-theme
-;;  :ensure t
 ;;  :defer t)
-(use-package cyberpunk-theme
-  :ensure t)
+(use-package cyberpunk-theme)
 (use-package monokai-pro-theme
-  :ensure t
   :defer t)
 (use-package kaolin-themes
-  :ensure t
   :defer t)
 (use-package all-the-icons
-  :ensure t
   :if (display-graphic-p))
 (use-package mini-modeline
-  :ensure t
   :diminish mini-modeline-mode)
 (use-package hl-todo
-  :ensure t
   :config
   (global-hl-todo-mode))
 (use-package dashboard
-  :ensure t
   :config
   (dashboard-setup-startup-hook)
   (add-to-list 'dashboard-items '(agenda) t)
@@ -180,7 +156,6 @@
 
 ;; ivy
 (use-package ivy
-  :ensure t
   :diminish ivy-mode
   :init
   (setq ivy-use-virtual-buffers t
@@ -189,25 +164,20 @@
 		)
   :config
   (ivy-mode))
-(use-package flx
-  :ensure t)
+(use-package flx)
 (use-package ivy-rich
-  :ensure t
   :init
   (ivy-rich-mode 1)
   (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   (setq ivy-rich-path-style 'abbrev))
 (use-package all-the-icons-ivy-rich
-  :ensure t
   :init (all-the-icons-ivy-rich-mode 1))
 (use-package counsel
-  :ensure t
   :diminish counsel-mode
   :after ivy
   :config
   (counsel-mode))
 (use-package swiper
-  :ensure t
   :defer t
   :after ivy
   :config
@@ -215,17 +185,14 @@
 
 ;; projectile
 (use-package projectile
-  :ensure t
   :diminish (projectile-mode . "Proj."))
 (use-package counsel-projectile
-  :ensure t
   :after projectile
   :config
   (counsel-projectile-mode))
 
 ;; treemacs
 (use-package treemacs
-  :ensure t
   :defer t
   :init
   (global-set-key (kbd "C-c t") 'treemacs)
@@ -234,18 +201,14 @@
 				treemacs-use-filewatch-mode t
 				treemacs-use-git-mode 'deferred))
 (use-package treemacs-all-the-icons
-  :ensure t
   :after treemacs
   :config
   (treemacs-load-theme "all-the-icons"))
 (use-package treemacs-evil
-  :after (treemacs evil)
-  :ensure t)
+  :after (treemacs evil))
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 (use-package lsp-treemacs
-  :ensure t
   :after (treemacs lsp-mode)
   :config
   (setq lsp-headerline-breadcrumb-enable nil)

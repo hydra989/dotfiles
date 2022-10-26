@@ -25,12 +25,10 @@
   (start-process-shell-command "xbindkeys" nil "xbindkeys"))
 
 (use-package desktop-environment
-  :ensure t
   :after exwm
   :config
   (desktop-environment-mode))
 (use-package exwm
-  :ensure t
   :config
   (require 'exwm-config)
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
