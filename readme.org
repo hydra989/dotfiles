@@ -1,37 +1,27 @@
 * dotfiles
 
 - *distro*: nixos
-- *wm*: awesomewm, exwm
+- *wm*: awesomewm, exwm, lxqt
 - *dm*: lightdm
 - *compositor*: picom
 - *bar*: polybar
 - *$EDITOR*: emacs/emacsclient, vim
 - *terminal*: alacritty
 - *shell*: zsh + oh-my-zsh
-- *launcher*: rofi, emacs' counsel
+- *launcher*: rofi
 - *browser*: firefox
 
 alongside:
 - pywal for synchronizing themes through emacs' theme-magic
 - miscellaneous sh scripts, wallpapers
-- a lot of other stuff that's not worth mentioning here.
 
-My emacs files are split up into an init.el and a src/ directory,
+My elisp files are split up into an init.el and a src/ directory,
 in which are a small handful of elisp files (named *.init.el, to better
 distinguish them) that init.el loads on startup.
 
 Wallpapers I collect over time, so note that they aren't mine/I didn't make them. I've
 tried to collect their sources in a sources.txt over time, but it'll likely be somewhat
 of a mess at any given time.
-
-*** nix
-
-- canary: my desktop---awesomewm, znver3 tunings
-- songbird: my laptop---exwm + extra power management stuff, znver1 tunings
-
-+configuration.nix should be manually changed to import either canary.nix or songbird.nix
-based on the machine.+ The `nixrebuild` alias will build the correct configuration based
-on your machine's hostname.
 
 *** non-packaged dependencies
 
