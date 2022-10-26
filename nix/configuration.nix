@@ -57,12 +57,14 @@
     # gui
     firefox xfce.thunar xfce.thunar-archive-plugin
     scrot feh pywal keepassxc zathura
+    picom rofi feh polybar
 
     # media
     calibre mpv kodi torrential
 
     # dev tools
     git gh virt-manager docker nixpkgs-review
+    vim
 
     # languages
     python3 pylint            # python
@@ -76,12 +78,18 @@
 
     # games
     dwarf-fortress cataclysm-dda heroic minecraft
-    lutris
+    lutris wineWowPackages.stagingFull
 
     # dependencies
     ghostscript
 
-    # fonts
+    # master branch packages
+    master.tidal-hifi
+    master.warpd
+    master.popcorntime
+
+    # custom packages
+    deity
   ];
 
   virtualisation = {
@@ -130,43 +138,37 @@
     emacs = {
       package = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: with epkgs; [
         # packages.init.el
-	use-package
-	diminish
-	avy bufler linum-relative
-	magit magit-todos
-	evil evil-collection evil-snipe undo-fu
-	cyberpunk-theme monokai-pro-theme
-	all-the-icons mini-modeline
-	hl-todo dashboard ivy
-	flx ivy-rich all-the-icons-ivy-rich
-	counsel swiper projectile
-	treemacs treemacs-evil lsp-treemacs
+	      use-package
+	      diminish
+	      avy bufler linum-relative
+	      magit magit-todos
+	      evil evil-collection evil-snipe undo-fu
+	      cyberpunk-theme monokai-pro-theme
+	      all-the-icons mini-modeline
+	      hl-todo dashboard ivy
+	      flx ivy-rich all-the-icons-ivy-rich
+	      counsel swiper projectile
+	      treemacs treemacs-evil lsp-treemacs
 
-	# exwm.init.el
-	desktop-environment exwm        
+	      # exwm.init.el
+	      desktop-environment exwm        
+        
+	      # org-anno.init.el
+	      fountain-mode writeroom-mode markdown-mode
+        
+	      # lsp-mode.init.el
+	      dtrt-indent tree-sitter tree-sitter-langs
+	      lsp-ui lsp-mode company company-box company-quickhelp
+	      flycheck yasnippet yaml-mode dockerfile-mode nix-mode
+	      go-mode lua-mode elpy lsp-java	
 
-	# org-anno.init.el
-	fountain-mode writeroom-mode markdown-mode
-
-	# lsp-mode.init.el
-	dtrt-indent tree-sitter tree-sitter-langs
-	lsp-ui lsp-mode company company-box company-quickhelp
-	flycheck yasnippet yaml-mode dockerfile-mode nix-mode
-	go-mode lua-mode elpy lsp-java	
-
-	# not included
-	vterm        
+	      # not included
+	      vterm        
         multi-vterm
       ]));
       enable = true;
     };
 
-    syncthing = {
-      enable = true;
-      user = "hydra";
-      dataDir = "/opt/syncthing";
-      configDir = "/home/hydra/.config/syncthing";
-    };
   };
 
   security = {
@@ -188,5 +190,5 @@
   # localization/defaults
   time.timeZone = "America/New_York";
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "22.05";
 }

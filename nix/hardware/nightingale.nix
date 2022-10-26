@@ -43,19 +43,4 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  virtualisation.docker.enableNvidia = true;
-
-  networking = {
-    hostName = "nightingale";
-    interfaces.wlan0.useDHCP = true;
-    interfaces.enp42s0.useDHCP = true;
-  };
-
-  services = {
-    xserver = {
-      videoDrivers = [ "nvidia" ];
-      windowManager.awesome.enable = true;
-    };
-  };
 }
