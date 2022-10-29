@@ -74,7 +74,7 @@
 
     # tui
     tty-clock neofetch tor killall
-    unzip lm_sensors wrap
+    unzip lm_sensors wrap tmux cmatrix
 
     # games
     dwarf-fortress cataclysm-dda heroic minecraft
@@ -147,7 +147,7 @@
 	      all-the-icons mini-modeline
 	      hl-todo dashboard ivy
 	      flx ivy-rich all-the-icons-ivy-rich
-	      counsel swiper projectile
+	      counsel swiper projectile counsel-projectile
 	      treemacs treemacs-evil lsp-treemacs
 
 	      # exwm.init.el

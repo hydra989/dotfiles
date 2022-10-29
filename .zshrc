@@ -13,8 +13,17 @@ SAVEHIST=1000
 unsetopt beep
 bindkey -v
 
-
 zstyle ':omz:update' mode disabled
+
+function start_tmux() {
+    if type tmux &> /dev/null; then
+        # if not inside a tmux sessiom, and if no session is started, start a new session
+        if [[ -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+            (tmux -2 attach || tmux -2 new-session)
+        fi
+    fi
+}
+start_tmux
 
 # aliases
 alias clock='tty-clock -c -t'

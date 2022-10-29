@@ -2,7 +2,7 @@
 # home-manager configuration for hydra@songbird
 #
 
-{ inputs, lib, config, pkgs, ...}:
+{ inputs, lib, config, pkgs, pkgs_master, home-manager, ...}:
 {
   programs.home-manager.enable = true;
 
@@ -11,6 +11,8 @@
     homeDirectory = "/home/hydra";
 
     file = {
+      ".tmux.conf".source = ../../.tmux.conf;
+      ".tmux-powerlinerc".source = ../../.tmux-powerlinerc;
       ".vimrc".source = ../../.vimrc;
       ".zshrc".source = ../../.zshrc;
       ".wallpaper".source = ../../.wallpaper;

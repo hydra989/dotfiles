@@ -6,7 +6,7 @@
 - *compositor*: picom
 - *bar*: polybar
 - *$EDITOR*: emacs/emacsclient, vim
-- *terminal*: alacritty
+- *terminal*: alacritty + tmux
 - *shell*: zsh + oh-my-zsh
 - *launcher*: rofi
 - *browser*: firefox
@@ -27,6 +27,7 @@ of a mess at any given time.
 
 - https://github.com/nickclyde/rofi-bluetooth
 - https://github.com/P3rf/rofi-network-manager
+- https://github.com/erikw/tmux-powerline 
 
 *** notes
 

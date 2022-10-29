@@ -12,10 +12,11 @@
 
     packages = with pkgs; [
       alacritty
-      cmatrix
     ];
 
     file = {
+      ".tmux.conf".source = ../../.tmux.conf;
+      ".tmux-powerlinerc".source = ../../.tmux-powerlinerc;
       ".vimrc".source = ../../.vimrc;
       ".zshrc".source = ../../.zshrc;
       ".wallpaper".source = ../../.wallpaper;
