@@ -148,7 +148,7 @@
 	      hl-todo dashboard ivy
 	      flx ivy-rich all-the-icons-ivy-rich
 	      counsel swiper projectile counsel-projectile
-	      treemacs treemacs-evil lsp-treemacs
+	      treemacs treemacs-evil lsp-treemacs treemacs-all-the-icons treemacs-magit
 
 	      # exwm.init.el
 	      desktop-environment exwm        

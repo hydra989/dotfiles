@@ -31,6 +31,11 @@
 
     # home-manager configurations
     homeConfigurations = {
+      # there's a lot of overlap between the two of these
+      # but they are kept seperate on principle in order
+      # to accomodate future changes and the current
+      # smaller ones
+
       "hydra@nightingale" = home-manager.lib.homeManagerConfiguration {
         pkgs = legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
@@ -64,7 +69,7 @@
         modules = [
           ./nix/hardware/songbird.nix
           ./nix/configuration.nix
-          ./nix/machines/nightingale.nix
+          ./nix/machines/songbird.nix
         ];
       };
     };

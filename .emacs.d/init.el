@@ -11,11 +11,6 @@
 (defvar *exwm*                (getenv "EMACS_EXWM"))
 (defvar *hostname*            (getenv "HOSTNAME"))
 
-;; init melpa so packages.init.el doesn't throw a fit
-(package-initialize)
-(setq package-check-signature nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
 ;; https://www.emacswiki.org/emacs/DotEmacsModular
 (defconst hydra:emacs-config-dir "/home/hydra/.emacs.d/src/" "")
 (defun hydra:load-config-file (filelist)
@@ -40,8 +35,8 @@
   (set-frame-font "Terminus-11" t t)
   )
 (defun standard-setup ()
-  (load-theme 'cyberpunk t)
   (mini-modeline-mode t)
+  (load-theme 'cyberpunk t)
   (set-frame-font "Terminus-11" t t)
   )
 

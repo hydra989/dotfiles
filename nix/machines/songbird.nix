@@ -7,15 +7,13 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  nix.systemFeatures = [ "gccarch-znver1" "big-parallel" ];
-
   services = {
     # for display brightness keys
     illum.enable = true;
 
     # amdgpu
     xserver = {
-      videoDrivers = [ "amdgpy" ];
+      videoDrivers = [ "amdgpu" ];
       libinput.enable = true;
 
       # exwm
@@ -26,16 +24,43 @@
                    (require 'exwm)
                    (exwm-enable)
         '';
-        extraPackages = epkgs: [
-                 epkgs.use-package
-                 epkgs.vterm epkgs.multi-vterm
-                 epkgs.exwm
+        extraPackages = epkgs: with epkgs; [
+          # packages.init.el
+	        use-package
+	        diminish
+	        avy bufler linum-relative
+	        magit magit-todos
+	        evil evil-collection evil-snipe undo-fu
+	        cyberpunk-theme monokai-pro-theme
+	        all-the-icons mini-modeline
+	        hl-todo dashboard ivy
+	        flx ivy-rich all-the-icons-ivy-rich
+	        counsel swiper projectile counsel-projectile
+	        treemacs treemacs-evil lsp-treemacs treemacs-all-the-icons treemacs-magit
+
+	        # exwm.init.el
+	        desktop-environment exwm 
+
+	        # org-anno.init.el
+	        fountain-mode writeroom-mode markdown-mode
+        
+	        # lsp-mode.init.el
+	        dtrt-indent tree-sitter tree-sitter-langs
+	        lsp-ui lsp-mode company company-box company-quickhelp
+	        flycheck yasnippet yaml-mode dockerfile-mode nix-mode
+	        go-mode lua-mode elpy lsp-java	
+
+	        # not included
+	        vterm        
+          multi-vterm
         ];
       };
 
       # lxqt
       lxqt.enable = true;
 
+      # awesome
+      displayManager.awesome.enable = true;
     };
 
     syncthing = {

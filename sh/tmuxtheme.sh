@@ -1,4 +1,7 @@
-# Default Theme
+# tmuxtheme.sh
+#
+# a copy of the default.sh that tmux-powerline
+# ships with, modified to my liking
 
 if patched_font_in_use; then
 	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD=""

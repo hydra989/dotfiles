@@ -33,6 +33,7 @@
 
   xdg.configFile = {
     "alacritty".source = ../../.config/alacritty;
+    "awesome".source = ../../.config/awesome;
     "nixpkgs".source = ../../.config/nixpkgs;
     "polybar".source = ../../.config/polybar;
     "rofi".source = ../../.config/rofi;

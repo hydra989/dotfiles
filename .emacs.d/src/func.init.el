@@ -53,3 +53,4 @@
 (global-set-key (kbd "C-' b") 'create-scratch-buffer)
 (global-set-key (kbd "C-' s") 'full-auto-save)
 (global-set-key (kbd "C-' t") 'multi-vterm)
+(global-set-key (kbd "C-' a") 'org-agenda)
