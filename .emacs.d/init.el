@@ -8,7 +8,6 @@
 (defvar *theme-magic-enabled* (getenv "EMACS_PYWAL"))
 (defvar *transparency*        (getenv "EMACS_TRANSPARENCY"))
 (defvar *server*              (getenv "EMACS_SERVER"))
-(defvar *exwm*                (getenv "EMACS_EXWM"))
 (defvar *hostname*            (getenv "HOSTNAME"))
 
 ;; https://www.emacswiki.org/emacs/DotEmacsModular
@@ -25,17 +24,13 @@
 							"org-anno.init.el"
 							"defaults.init.el"
 							))
-(if (string-equal *exwm* "y")
-  (hydra:load-config-file '( "exwm.init.el" )))
 
 (defun daemon-gui-setup (frame)
   (select-frame frame)
   (load-theme 'cyberpunk t)
-  (mini-modeline-mode t)
   (set-frame-font "Terminus-11" t t)
   )
 (defun standard-setup ()
-  (mini-modeline-mode t)
   (load-theme 'cyberpunk t)
   (set-frame-font "Terminus-11" t t)
   )
@@ -43,10 +38,6 @@
 (if (daemonp)
     (add-hook 'after-make-frame-functions #'daemon-gui-setup)
   (standard-setup))
-
-;(if (daemonp)
-;	(add-hook 'after-make-frame-functions #'gui-init-server)
-;  (gui-init))
 
 ;; transparancy
 (if (string-equal *transparency* "y")
@@ -58,7 +49,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-<<<<<<< HEAD
 (if (string-equal *hostname* "songbird")
     (custom-set-variables
      '(org-directory "~/org")
@@ -69,11 +59,6 @@
      '(org-agenda-files (list "~/s/org/agenda"))))
 
 (theme-magic-export-theme-mode)
-=======
-(custom-set-variables
- '(org-directory "~/s/org")
- '(org-agenda-files (list "~/s/org/agenda")))
->>>>>>> parent of f12479e (10-31-22 v2)
 
 ;; start the server
 (if (string-equal *server* "y")

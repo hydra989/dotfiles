@@ -1,7 +1,7 @@
 * dotfiles
 
 - *distro*: nixos
-- *wm*: awesomewm, exwm, lxqt
+- *wm*: awesomewm, lxqt
 - *dm*: lightdm
 - *compositor*: picom
 - *bar*: polybar

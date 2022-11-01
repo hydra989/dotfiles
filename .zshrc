@@ -25,6 +25,8 @@ function start_tmux() {
 }
 start_tmux
 
+cat ~/.cache/wal/sequences
+
 # aliases
 alias clock='tty-clock -c -t'
 alias reboot='sudo reboot'

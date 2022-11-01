@@ -130,7 +130,9 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 (use-package mini-modeline
-  :diminish mini-modeline-mode)
+  :diminish mini-modeline-mode
+  :config
+  (mini-modeline-mode t))
 (use-package hl-todo
   :config
   (global-hl-todo-mode))

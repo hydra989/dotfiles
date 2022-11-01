@@ -18,6 +18,7 @@
       ".wallpaper".source = ../../.wallpaper;
       ".emacs.d/init.el".source = ../../.emacs.d/init.el;
       ".emacs.d/src".source = ../../.emacs.d/src;
+      ".config/alacritty/alacritty.yml".source = ../../.config/alacritty/alacritty-little-font.yml;
     };
 
     sessionVariables = rec {
@@ -32,7 +33,6 @@
   };
 
   xdg.configFile = {
-    "alacritty".source = ../../.config/alacritty;
     "awesome".source = ../../.config/awesome;
     "nixpkgs".source = ../../.config/nixpkgs;
     "polybar".source = ../../.config/polybar;
