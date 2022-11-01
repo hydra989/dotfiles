@@ -58,9 +58,22 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+<<<<<<< HEAD
+(if (string-equal *hostname* "songbird")
+    (custom-set-variables
+     '(org-directory "~/org")
+     '(org-agenda-files (list "~/org/agenda"))))
+(if (string-equal *hostname* "nightingale")
+    (custom-set-variables
+     '(org-directory "~/s/org")
+     '(org-agenda-files (list "~/s/org/agenda"))))
+
+(theme-magic-export-theme-mode)
+=======
 (custom-set-variables
  '(org-directory "~/s/org")
  '(org-agenda-files (list "~/s/org/agenda")))
+>>>>>>> parent of f12479e (10-31-22 v2)
 
 ;; start the server
 (if (string-equal *server* "y")
