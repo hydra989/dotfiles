@@ -57,7 +57,7 @@
     # gui
     firefox xfce.thunar xfce.thunar-archive-plugin
     scrot feh pywal keepassxc zathura
-    picom rofi feh polybar
+    picom rofi feh polybar alacritty
 
     # media
     calibre mpv kodi torrential
@@ -81,7 +81,7 @@
     lutris wineWowPackages.stagingFull
 
     # dependencies
-    ghostscript
+    ghostscript bc
 
     # master branch packages
     master.tidal-hifi

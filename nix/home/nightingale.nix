@@ -10,10 +10,6 @@
     username = "hydra";
     homeDirectory = "/home/hydra";
 
-    packages = with pkgs; [
-      alacritty
-    ];
-
     file = {
       ".tmux.conf".source = ../../.tmux.conf;
       ".tmux-powerlinerc".source = ../../.tmux-powerlinerc;
