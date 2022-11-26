@@ -3,7 +3,7 @@
 
   inputs = {
     # nixpgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # default channel
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # home-manager
@@ -15,7 +15,6 @@
     # general setup
     system = "x86_64-linux";
     config.allowUnfree = true;
-    # allow for packages from the master branch of nixpkgs
 
     overlays = {
       default = import ./nix/overlay.nix { inherit inputs; };

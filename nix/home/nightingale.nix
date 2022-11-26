@@ -22,7 +22,6 @@
 
     sessionVariables = rec {
       EMACS_SERVER             = "y"; # use emacsclient/emacsserver?
-      EMACS_EXWM               = "n"; # load exwm configuration?
       EMACS_TRANSPARENCY       = "y"; # transparency on/off?
       EMACS_PYWAL              = "y"; # use theme-magic with pywal?
       CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre

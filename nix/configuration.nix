@@ -149,10 +149,8 @@
 	      flx ivy-rich all-the-icons-ivy-rich
 	      counsel swiper projectile counsel-projectile
 	      treemacs treemacs-evil lsp-treemacs treemacs-all-the-icons treemacs-magit
+	      vterm
 
-	      # exwm.init.el
-	      desktop-environment exwm        
-        
 	      # org-anno.init.el
 	      fountain-mode writeroom-mode markdown-mode
         
@@ -161,10 +159,6 @@
 	      lsp-ui lsp-mode company company-box company-quickhelp
 	      flycheck yasnippet yaml-mode dockerfile-mode nix-mode
 	      go-mode lua-mode elpy lsp-java	
-
-	      # not included
-	      vterm        
-        multi-vterm
       ]));
       enable = true;
     };

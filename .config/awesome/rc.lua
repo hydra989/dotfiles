@@ -298,59 +298,58 @@ awful.rules.rules = {
     },
 
     -- Floating clients.
-    { rule_any = {
-        instance = {
-          "copyq",  -- Includes session name in class.
-          "pinentry",
-        },
-        class = {
-          "Arandr",
-          "Blueman-manager",
-          ".blueman-manager-wrapped",
-          --"Gpick",
-          "Thunar",
-          "Tor Browser",
-        },
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",
-          "ConfigManager",
-          "pop-up",
-        }
-	}, properties = { floating = true }},
+   { rule_any = {
+         instance = {
+             "copyq",  -- Includes session name in class.
+             "pinentry",
+         },
+         class = {
+             "Arandr",
+             "Bluetooth",
+             --"Gpick",
+             "Thunar",
+             "Tor Browser",
+         },
+         name = {
+             "Event Tester",  -- xev.
+         },
+         role = {
+             "AlarmWindow",
+             "ConfigManager",
+             "pop-up",
+         }
+   }, properties = { floating = true }},
 
-    -- Steam & company
-    { rule_any = { class = {
-                       "Steam",
-                       "heroic",
-                       "Lutris",
-                       "steam_app_489830", -- Skyrim mod organizer
-             } },
-      properties = { tag = screen[1].tags[5],
-                     floating = true
-      }
-    },
+   -- Steam & company
+   { rule_any = { class = {
+                      "Steam",
+                      "heroic",
+                      "Lutris",
+                      "steam_app_489830", -- Skyrim mod organizer
+                } },
+     properties = { tag = screen[1].tags[5],
+                    floating = true
+     }
+   },
 
-    -- Media tag
-    { rule_any = {
-          class = {
-              "calibre",
-              "vlc",
-              "Kodi",
-              "mpv",
-              "Popcorn-Time",
-              "tidal-hifi",
-          },
-          name = {
-              "Torrential",
-          },
-      },
-      properties = { tag = screen[1].tags[6],
-                     floating = true
-      }
-    }
+   -- Media tag
+   { rule_any = {
+         class = {
+             "calibre",
+             "vlc",
+             "Kodi",
+             "mpv",
+             "Popcorn-Time",
+             "tidal-hifi",
+         },
+         name = {
+             "Torrential",
+         },
+   },
+     properties = { tag = screen[1].tags[6],
+                    floating = true
+     }
+   }
 }
 
 -- Signal function to execute when a new client appears.

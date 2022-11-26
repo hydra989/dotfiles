@@ -31,7 +31,8 @@
         lsp-ui-doc-delay 0.5
         lsp-ui-peek-enable t
 		lsp-ui-sideline-show-diagnostics t
-        ))
+        )
+  (lsp-ui-doc-mode))
 (use-package lsp-mode
   :defer t
   :hook ((c-mode go-mode) . lsp)

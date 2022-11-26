@@ -7,6 +7,11 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
+  sound.mediaKeys = {
+    enable = true;
+    volumeStep = "5%";
+  };
+
   services = {
     # for display brightness keys
     illum.enable = true;
