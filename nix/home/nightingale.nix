@@ -27,7 +27,7 @@
       CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
     };
 
-    stateVersion = "22.05";
+    stateVersion = "22.11";
   };
 
   
