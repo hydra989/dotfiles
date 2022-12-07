@@ -40,6 +40,7 @@ beautiful.border_normal = "#061115"
 beautiful.border_focus = "#000a0e"
 beautiful.border_marked = "#000a0e"
 beautiful.useless_gap = 4
+beautiful.hotkeys_bg = "#000000"
 
 -- set defaults
 terminal   = "alacritty"
@@ -319,6 +320,12 @@ awful.rules.rules = {
              "pop-up",
          }
    }, properties = { floating = true }},
+
+   -- make firefox not float
+   { rule = { class = "firefox" },
+     properties = { opacity = 1,
+                    maximized = false,
+                    floating = false } },
 
    -- Steam & company
    { rule_any = { class = {

@@ -29,6 +29,7 @@
   (select-frame frame)
   (load-theme 'cyberpunk t)
   (set-frame-font "Terminus-11" t t)
+  (mini-modeline-mode t)
   )
 (defun standard-setup ()
   (load-theme 'cyberpunk t)

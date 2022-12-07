@@ -1,6 +1,5 @@
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename '/home/hydra/.zshrc'
-
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
 	compinit;
@@ -12,18 +11,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
 bindkey -v
-
 zstyle ':omz:update' mode disabled
-
-function start_tmux() {
-    if type tmux &> /dev/null; then
-        # if not inside a tmux sessiom, and if no session is started, start a new session
-        if [[ -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
-            (tmux -2 attach || tmux -2 new-session)
-        fi
-    fi
-}
-start_tmux
 
 cat ~/.cache/wal/sequences
 
@@ -36,3 +24,4 @@ alias cleantrash='sudo sh /home/hydra/s/dotfiles/sh/empty_trash.sh'
 alias quit='exit'
 alias fountainpdf='find . -type f \( -name "*.fountain" \) -exec wrap pdf {} \;'
 alias resemacs='systemctl --user restart emacs'
+alias dots='cd ~/s/dotfiles' # temporary, switch to env variable eventually

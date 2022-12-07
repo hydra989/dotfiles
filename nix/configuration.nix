@@ -1,5 +1,4 @@
 { inputs, config, lib, pkgs, ... }:
-
 {
   networking = {
     useDHCP = false;
@@ -75,6 +74,7 @@
     # tui
     tty-clock neofetch tor killall
     unzip lm_sensors wrap tmux cmatrix
+    comma powertop
 
     # games
     dwarf-fortress cataclysm-dda heroic minecraft
@@ -162,7 +162,6 @@
       ]));
       enable = true;
     };
-
   };
 
   security = {

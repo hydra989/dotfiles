@@ -25,3 +25,10 @@ font:
     style: Bold Italic
 
   size: 12
+
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
