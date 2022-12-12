@@ -74,7 +74,7 @@
     # tui
     tty-clock neofetch tor killall
     unzip lm_sensors wrap tmux cmatrix
-    comma powertop
+    comma
 
     # games
     dwarf-fortress cataclysm-dda heroic minecraft

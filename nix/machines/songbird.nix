@@ -12,6 +12,10 @@
     volumeStep = "5%";
   };
 
+  environment.systemPackages = with pkgs; [
+    powertop
+  ];
+
   services = {
     # for display brightness keys
     illum.enable = true;
