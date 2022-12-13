@@ -15,7 +15,6 @@
       ".tmux-powerlinerc".source = ./.tmux-powerlinerc;
       ".vimrc".source = ./.vimrc;
       ".xprofile".source = ./.xprofile;
-      ".zshrc".source = ./.zshrc;
       ".wallpaper".source = ./.wallpaper;
       ".emacs.d/init.el".source = ./.emacs.d/init.el;
       ".emacs.d/src".source = ./.emacs.d/src;
