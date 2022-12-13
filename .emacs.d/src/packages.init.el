@@ -116,10 +116,9 @@
   (evil-define-key 'normal 'global "\C-r" 'evil-redo))
 
 ;; appearance
-(if (string-equal *theme-magic-enabled* "y")
-  (use-package theme-magic
-    :config
-    (theme-magic-export-theme-mode)))
+(use-package theme-magic
+  :config
+  (theme-magic-export-theme-mode))
 ;;(use-package base16-theme
 ;;  :defer t)
 (use-package cyberpunk-theme)

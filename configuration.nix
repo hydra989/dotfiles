@@ -32,31 +32,17 @@
     '';
   };
 
-  programs = {
-    # steam
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-    # zsh
-    zsh = {
-      enable = true;
-      syntaxHighlighting.enable = true;
-      autosuggestions.enable = true;
-      ohMyZsh = {
-        enable = true;
-        plugins = [ "git" ];
-        theme = "ys";
-      };
-    };
+  # steam doesn't have a home-manager module
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   environment.systemPackages = with pkgs; [
     # gui
     firefox xfce.thunar xfce.thunar-archive-plugin
-    scrot feh pywal keepassxc zathura
-    picom rofi feh polybar alacritty
+    scrot feh keepassxc zathura picom polybar pywal
 
     # media
     calibre mpv kodi torrential
@@ -66,10 +52,10 @@
     vim
 
     # languages
-    python3 pylint            # python
-    gcc gdb bear clang-tools  # c/c++
-    go gopls                  # go
-    jdk11                     # java
+    python3 pylint               # python
+    gcc gdb clang-tools valgrind # c/c++
+    go gopls                     # go
+    jdk11                        # java
 
     # tui
     tty-clock neofetch tor killall

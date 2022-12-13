@@ -17,7 +17,7 @@
     config.allowUnfree = true;
 
     overlays = {
-      default = import ./nix/overlay.nix { inherit inputs; };
+      default = import ./overlay.nix { inherit inputs; };
     };
       
     legacyPackages = nixpkgs.lib.genAttrs [ "x86_64-linux" ] (system:
@@ -30,21 +30,12 @@
 
     # home-manager configurations
     homeConfigurations = {
-      # there's a lot of overlap between the two of these
-      # but they are kept seperate on principle in order
-      # to accomodate future changes and the current
-      # smaller ones
-
-      "hydra@nightingale" = home-manager.lib.homeManagerConfiguration {
+      "hydra" = home-manager.lib.homeManagerConfiguration {
         pkgs = legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
-        modules = [ ./nix/home/nightingale.nix ];
-      };
-    
-      "hydra@songbird" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ ./nix/home/songbird.nix ];
+        modules = [
+          ./home.nix
+        ];
       };
     };
 
@@ -55,9 +46,9 @@
         pkgs = legacyPackages.x86_64-linux;
         specialArgs = { inherit inputs; };
         modules = [
-          ./nix/hardware/nightingale.nix
-          ./nix/configuration.nix
-          ./nix/machines/nightingale.nix
+          ./hardware/nightingale.nix
+          ./configuration.nix
+          ./machines/nightingale.nix
         ];
       };
 
@@ -66,9 +57,9 @@
         pkgs = legacyPackages.x86_64-linux;
         specialArgs = { inherit inputs; };
         modules = [
-          ./nix/hardware/songbird.nix
-          ./nix/configuration.nix
-          ./nix/machines/songbird.nix
+          ./hardware/songbird.nix
+          ./configuration.nix
+          ./machines/songbird.nix
         ];
       };
     };
