@@ -8,7 +8,7 @@
           bold.family = "terminus";
           italic.family = "terminus";
           bold_italic.family = "terminus";
-          size = 10.0;
+          size = 11.0;
         };
         window = {
           decorations = "none";

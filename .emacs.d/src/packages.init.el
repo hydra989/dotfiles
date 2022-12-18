@@ -23,10 +23,6 @@
     (group-or "*Help/Info*"
               (mode-match "*Help*" (rx bos "help-"))
               (mode-match "*Info*" (rx bos "info-"))))
-   ;; TODO: test this ---
-   (group
-    (mode-match "*EXWM*" (rx bos "exwm-")))
-   ;; -------------------
    (group
     (group-and "*Special*"
                (lambda (buffer)
@@ -42,20 +38,19 @@
     (group
      (mode-match "*Magit* (non-status)" (rx bos (or "magit" "forge") "-"))
      (auto-directory))
-    (mode-match "*Helm*" (rx bos "helm-"))
     (auto-mode))
    (dir user-emacs-directory)
-   ;(group
-   ; ; Subgroup collecting buffers in `org-directory' (or "~/org" if
-   ; ; `org-directory' is not yet defined).
-   ; (dir (if (bound-and-true-p org-directory)
-   ;          org-directory
-   ;        "~/org"))
-   ; (group
-   ;   (auto-indirect)
-   ;   (auto-file))
-   ; (group-not "*special*" (auto-file))
-   ; (auto-mode))
+   (group
+    ; Subgroup collecting buffers in `org-directory' (or "~/org" if
+    ; `org-directory' is not yet defined).
+    (dir (if (bound-and-true-p org-directory)
+             org-directory
+           "~/org"))
+    (group
+      (auto-indirect)
+      (auto-file))
+    (group-not "*special*" (auto-file))
+    (auto-mode))
    (group
     (auto-project))
    (auto-directory)
@@ -212,3 +207,6 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
   (lsp-treemacs-sync-mode))
+
+(use-package multiple-cursors
+  :ensure t)

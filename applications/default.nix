@@ -2,7 +2,9 @@
 {
   imports = [
     ./alacritty
+    ./bspwm
     ./rofi
+    ./sxhkd
     ./zsh
   ];
 }

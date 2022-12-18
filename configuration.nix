@@ -39,6 +39,8 @@
     dedicatedServer.openFirewall = true;
   };
 
+  # as per zsh home-manager module
+  environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
     # gui
     firefox xfce.thunar xfce.thunar-archive-plugin
@@ -119,6 +121,8 @@
       enable = true;
       layout = "us";
       displayManager.lightdm.enable = true;
+
+      windowManager.bspwm.enable = true;
     };
 
     emacs = {
@@ -129,13 +133,14 @@
 	      avy bufler linum-relative
 	      magit magit-todos
 	      evil evil-collection evil-snipe undo-fu
-	      cyberpunk-theme monokai-pro-theme
+	      cyberpunk-theme monokai-pro-theme theme-magic
 	      all-the-icons mini-modeline
 	      hl-todo dashboard ivy
 	      flx ivy-rich all-the-icons-ivy-rich
 	      counsel swiper projectile counsel-projectile
 	      treemacs treemacs-evil lsp-treemacs treemacs-all-the-icons treemacs-magit
 	      vterm
+        multiple-cursors
 
 	      # org-anno.init.el
 	      fountain-mode writeroom-mode markdown-mode

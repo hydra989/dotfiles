@@ -3,7 +3,7 @@
   programs.rofi = {
     enable = true;
 
-    font = "terminus 12";
+    font = "Terminus 12";
     theme = "${config.xdg.cacheHome}/wal/colors-rofi-light.rasi";
     extraConfig = {
       modi = "drun";
