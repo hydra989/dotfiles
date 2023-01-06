@@ -40,45 +40,47 @@
   };
 
   # as per zsh home-manager module
-  environment.pathsToLink = [ "/share/zsh" ];
-  environment.systemPackages = with pkgs; [
-    # gui
-    firefox xfce.thunar xfce.thunar-archive-plugin
-    scrot feh keepassxc zathura picom polybar pywal
+  environment = {
+    pathsToLink = [ "/share/zsh" ];
+    systemPackages = with pkgs; [
+      # gui
+      firefox xfce.thunar xfce.thunar-archive-plugin
+      scrot feh keepassxc zathura picom polybar pywal
 
-    # media
-    calibre mpv kodi torrential
+      # media
+      calibre mpv kodi torrential
 
-    # dev tools
-    git gh virt-manager docker nixpkgs-review
-    vim
+      # dev tools
+      git gh virt-manager docker nixpkgs-review
+      vim
 
-    # languages
-    python3 pylint               # python
-    gcc gdb clang-tools valgrind # c/c++
-    go gopls                     # go
-    jdk11                        # java
+      # languages
+      python3 pylint               # python
+      gcc gdb clang-tools valgrind # c/c++
+      go gopls                     # go
+      jdk11                        # java
 
-    # tui
-    tty-clock neofetch tor killall
-    unzip lm_sensors wrap tmux cmatrix
-    comma
+      # tui
+      tty-clock neofetch tor killall
+      unzip lm_sensors wrap tmux cmatrix
+      comma
 
-    # games
-    dwarf-fortress cataclysm-dda heroic minecraft
-    lutris wineWowPackages.stagingFull
+      # games
+      dwarf-fortress cataclysm-dda heroic minecraft
+      lutris wineWowPackages.stagingFull
 
-    # dependencies
-    ghostscript bc
+      # dependencies
+      ghostscript bc
 
-    # master branch packages
-    master.tidal-hifi
-    master.warpd
-    master.popcorntime
+      # master branch packages
+      master.tidal-hifi
+      master.warpd
+      master.popcorntime
 
-    # custom packages
-    deity
-  ];
+      # custom packages
+      deity
+    ];
+  };
 
   virtualisation = {
     # docker

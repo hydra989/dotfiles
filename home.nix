@@ -17,7 +17,7 @@
       ".xprofile".source = ./.xprofile;
       ".wallpaper".source = ./.wallpaper;
       ".emacs.d/init.el".source = ./.emacs.d/init.el;
-      ".emacs.d/src".source = ./.emacs.d/src;
+      ".emacs.d/config.org".source = ./.emacs.d/config.org;
     };
 
     sessionVariables = rec {
@@ -28,7 +28,6 @@
   };
 
   xdg.configFile = {
-    "awesome".source = ./.config/awesome;
     "nixpkgs".source = ./.config/nixpkgs;
     "polybar".source = ./.config/polybar;
   };
