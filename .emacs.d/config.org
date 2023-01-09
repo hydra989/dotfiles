@@ -645,7 +645,7 @@ TODO: eglot comes bundled with Emacs 29.
 *** dockerfile-mode
 
 #+begin_src emacs-lisp
-  (use-package dockerfile-mode    ;; dockerfiles
+  (use-package dockerfile-mode
     :defer t
     :init
     (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
