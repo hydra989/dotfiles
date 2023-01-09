@@ -84,18 +84,10 @@ This seems janky but it's worked well enough for me thus far.
 
 *** custom-set-variables
 
-As of 1-6-22, I organize my org directories on a per machine basis.
-This sets the right path based on hostname:
-
 #+begin_src emacs-lisp
-  (if (string-equal *hostname* "songbird")
-	  (custom-set-variables
-	   '(org-directory "~/org")
-	   '(org-agenda-files (list "~/org/agenda"))))
-  (if (string-equal *hostname* "nightingale")
-	  (custom-set-variables
-	   '(org-directory "~/s/org")
-	   '(org-agenda-files (list "~/s/org/agenda"))))
+  (custom-set-variables
+   '(org-directory "~/s/org")
+   '(org-agenda-files (list "~/s/org/agenda")))
 #+end_src
 
 
@@ -736,6 +728,15 @@ TODO: eglot comes bundled with Emacs 29.
     :defer t
     :init
     (add-hook 'org-mode-hook 'toc-org-mode))
+#+end_src
+
+*** org-superstar-mode
+
+#+begin_src emacs-lisp
+  (use-package org-superstar
+    :defer t
+    :init
+    (add-hook 'org-mode-hook 'org-superstar-mode))
 #+end_src
 
 *** fountain-mode

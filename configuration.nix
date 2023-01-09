@@ -153,11 +153,13 @@
         dashboard
         ivy flx ivy-rich all-the-icons-ivy-rich
         counsel swiper projectile counsel-projectile
-        treemacs treemacs-evil lsp-treemacs treemacs-all-the-icons treemacs-magit
+        treemacs treemacs-evil
+        lsp-treemacs treemacs-all-the-icons treemacs-magit
         vterm
         multiple-cursors
         toc-org
         which-key
+        org-superstar
 
         # lsp
         dtrt-indent
