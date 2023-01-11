@@ -721,6 +721,20 @@ TODO: eglot comes bundled with Emacs 29.
   )
 #+end_src
 
+*** evil-org
+
+Included here as opposed to the other evil packages because it is
+specific to org-mode.
+
+#+begin_src emacs-lisp
+  (use-package evil-org
+    :after org
+    :hook (org-mode . (lambda () evil-org-mode))
+    :config
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
+#+end_src
+
 *** toc-org
 
 #+begin_src emacs-lisp

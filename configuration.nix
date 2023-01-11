@@ -144,7 +144,7 @@
         diminish
         avy bufler linum-relative
         magit magit-todos
-        evil evil-collection evil-snipe undo-fu evil-mc
+        evil evil-collection evil-snipe undo-fu evil-mc evil-org
         cyberpunk-theme monokai-pro-theme ef-themes
         theme-magic
         all-the-icons
