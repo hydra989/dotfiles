@@ -58,10 +58,11 @@
       libguestfs p7zip dmg2img
 
       # languages
-      python3 python3Packages.pip pylint   # python
-      gcc gdb clang-tools valgrind # c/c++
-      go gopls                     # go
-      jdk11                        # java
+      python3 python3Packages.pip pylint # python
+      gcc gdb clang-tools valgrind       # c/c++
+      go gopls                           # go
+      jdk11                              # java
+      nixfmt                             # nix
 
       # tui
       tty-clock neofetch tor killall

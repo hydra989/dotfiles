@@ -11,7 +11,6 @@
   services = {
     xserver = {
       videoDrivers = [ "nvidia" ];
-      windowManager.awesome.enable = true;
     };
 
     syncthing = {

@@ -27,9 +27,6 @@
 
       # lxqt
       desktopManager.lxqt.enable = true;
-
-      # awesome
-      windowManager.awesome.enable = true;
     };
 
     syncthing = {
