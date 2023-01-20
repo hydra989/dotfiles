@@ -1,5 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
-{
+{ inputs, config, lib, pkgs, ... }: {
   networking = {
     useDHCP = false;
     networkmanager = {
@@ -44,18 +43,37 @@
     pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       # gui
-      firefox xfce.thunar xfce.thunar-archive-plugin
-      scrot feh keepassxc zathura picom polybar pywal
+      firefox
+      xfce.thunar
+      xfce.thunar-archive-plugin
+      scrot
+      feh
+      keepassxc
+      zathura
+      picom
+      polybar
+      pywal
 
       # media
-      calibre mpv kodi torrential
+      calibre
+      mpv
+      kodi
+      torrential
 
       # dev tools
-      git gh virt-manager docker nixpkgs-review
-      vim qemu qemu-utils
+      git
+      gh
+      virt-manager
+      docker
+      nixpkgs-review
+      vim
+      qemu
+      qemu-utils
 
       # kvm-osx
-      libguestfs p7zip dmg2img
+      libguestfs
+      p7zip
+      dmg2img
 
       # languages
       python3 python3Packages.pip pylint # python
@@ -63,18 +81,44 @@
       go gopls                           # go
       jdk11                              # java
       nixfmt                             # nix
+			# python
+			python3
+      python3Packages.pip
+      pylint
+			# c/c++
+      gcc
+      gdb
+      clang-tools
+      valgrind
+			# go
+      go
+      gopls
+			# java
+      jdk11
 
       # tui
-      tty-clock neofetch tor killall
-      unzip lm_sensors wrap tmux cmatrix
+      tty-clock
+      neofetch
+      tor
+      killall
+      unzip
+      lm_sensors
+      wrap
+      tmux
+      cmatrix
       comma
 
       # games
-      dwarf-fortress cataclysm-dda heroic minecraft
-      lutris wineWowPackages.stagingFull
+      dwarf-fortress
+      cataclysm-dda
+      heroic
+      minecraft
+      lutris
+      wineWowPackages.stagingFull
 
       # dependencies
-      ghostscript bc
+      ghostscript
+      bc
 
       # master branch packages
       master.tidal-hifi
@@ -118,6 +162,8 @@
   };
 
   services = {
+    autorandr.enable = true;
+
     blueman.enable = true;
 
     devmon.enable = true;
@@ -139,50 +185,73 @@
     };
 
     emacs = {
-      package = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: with epkgs; [
-        # packages.init.el
-        use-package
-        diminish
-        avy bufler linum-relative
-        magit magit-todos
-        evil evil-collection evil-snipe undo-fu evil-mc evil-org
-        cyberpunk-theme monokai-pro-theme ef-themes
-        theme-magic
-        all-the-icons
-        mini-modeline
-        hl-todo
-        dashboard
-        ivy flx ivy-rich all-the-icons-ivy-rich
-        counsel swiper projectile counsel-projectile
-        treemacs treemacs-evil
-        lsp-treemacs treemacs-all-the-icons treemacs-magit
-        vterm
-        multiple-cursors
-        toc-org
-        which-key
-        org-superstar
+      package = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs:
+        with epkgs; [
+          # packages.init.el
+          use-package
+          diminish
+          avy
+          bufler
+          linum-relative
+          magit
+          magit-todos
+          evil
+          evil-collection
+          evil-snipe
+          undo-fu
+          evil-mc
+          evil-org
+          cyberpunk-theme
+          monokai-pro-theme
+          ef-themes
+          theme-magic
+          all-the-icons
+          mini-modeline
+          hl-todo
+          dashboard
+          ivy
+          flx
+          ivy-rich
+          all-the-icons-ivy-rich
+          counsel
+          swiper
+          projectile
+          counsel-projectile
+          treemacs
+          treemacs-evil
+          lsp-treemacs
+          treemacs-all-the-icons
+          treemacs-magit
+          vterm
+          multiple-cursors
+          toc-org
+          which-key
+          org-superstar
 
-        # lsp
-        dtrt-indent
-        tree-sitter tree-sitter-langs
-        lsp-ui
-        lsp-mode
-        company company-box company-quickhelp
-        flycheck
-        yasnippet
-        
-        # language specific packages
-        fountain-mode
-        writeroom-mode
-        markdown-mode
-        yaml-mode
-        dockerfile-mode
-        nix-mode
-        go-mode
-        lua-mode
-        elpy
-        lsp-java
-      ]));
+          # lsp
+          dtrt-indent
+          tree-sitter
+          tree-sitter-langs
+          lsp-ui
+          lsp-mode
+          company
+          company-box
+          company-quickhelp
+          flycheck
+          yasnippet
+
+          # language specific packages
+          fountain-mode
+          writeroom-mode
+          markdown-mode
+          yaml-mode
+          dockerfile-mode
+          nix-mode
+          go-mode
+          lua-mode
+          elpy
+          lsp-java
+        ]));
       enable = true;
     };
   };
@@ -193,12 +262,11 @@
       wheelNeedsPassword = true;
     };
   };
-  
+
   users.users.hydra = {
     isNormalUser = true;
-    extraGroups = [
-      "wheel" "networkmanager" "video" "audio" "libvirtd" "docker"
-    ];
+    extraGroups =
+      [ "wheel" "networkmanager" "video" "audio" "libvirtd" "docker" ];
     initialPassword = "rorschach";
     shell = pkgs.zsh;
   };
