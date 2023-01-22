@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# taken from:
-# github.com/MetaStag/awesome-dots
-
 # kill running polybar instances
 killall -q polybar
 

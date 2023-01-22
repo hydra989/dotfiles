@@ -53,6 +53,7 @@
       picom
       polybar
       pywal
+      arandr
 
       # media
       calibre
@@ -103,7 +104,7 @@
       killall
       unzip
       lm_sensors
-      wrap
+      #wrap
       tmux
       cmatrix
       comma
@@ -162,8 +163,6 @@
   };
 
   services = {
-    autorandr.enable = true;
-
     blueman.enable = true;
 
     devmon.enable = true;
