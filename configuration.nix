@@ -77,24 +77,23 @@
       dmg2img
 
       # languages
-      python3 python3Packages.pip pylint # python
-      gcc gdb clang-tools valgrind       # c/c++
-      go gopls                           # go
-      jdk11                              # java
-      nixfmt                             # nix
-			# python
-			python3
+
+      # nix
+      nil
+      nixfmt
+      # python
+      python3
       python3Packages.pip
       pylint
-			# c/c++
+      # c/c++
       gcc
       gdb
       clang-tools
       valgrind
-			# go
+      # go
       go
       gopls
-			# java
+      # java
       jdk11
 
       # tui

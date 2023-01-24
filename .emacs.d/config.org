@@ -183,6 +183,18 @@ Stolen from somewhere, but I have no idea where.
 		   nil)))
 #+end_src
 
+*** hook: after-load-theme-hook
+
+[[https://www.reddit.com/r/emacs/comments/4v7tcj/comment/d5wyu1r/?utm_source=share&utm_medium=web2x&context=3][stolen from this reddit comment]]
+
+#+begin_src emacs-lisp
+  (defvar after-load-theme-hook nil
+    "Hook run after a color theme is loaded using `load-theme'.")
+  (defadvice load-theme (after run-after-load-theme-hook activate)
+    "Run `after-load-theme-hook'."
+    (run-hooks 'after-load-theme-hook))
+#+end_src
+
 
 ** Package-Independent Keybindings
 
@@ -394,18 +406,24 @@ of the configuration.
   (use-package mini-modeline
     :defer t
     ;:diminish mini-modeline-mode
-    )
+  )
 
   (require 'awesome-tray)
   ;; module setup
   (setq awesome-tray-active-modules '(
-    "evil" "location" "file-path" "mode-name" "git"
-  ))
+                                      "evil" "location" "file-path" "mode-name" "git"
+                                      ))
+
+  ;; appearance
+  (setq awesome-tray-mode-line-active-color #ffffff)
 
   (setq awesome-tray-git-show-status t  ; "show current file status on the git module"
         awesome-tray-evil-show-mode t   ; "show current evil mode in the evil module"
         awesome-tray-evil-show-macro t  ; "show recording macro in the evil module"
   )
+
+  ;; reload on theme change
+  (add-hook 'after-load-theme-hook (lambda () (awesome-tray-enable)))
 #+end_src
 
 *** hl-todo
@@ -596,9 +614,6 @@ TODO: tree-sitter comes bundled with Emacs 29.
     (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 #+end_src
 
-
-Language-specific 
-
 *** lsp-mode
 
 TODO: eglot comes bundled with Emacs 29.
@@ -691,8 +706,15 @@ TODO: eglot comes bundled with Emacs 29.
 *** nix-mode
 
 #+begin_src emacs-lisp
+  (use-package lsp-nix
+    :ensure lsp-mode
+    :after (lsp-mode)
+    :demand t
+    :custom
+    (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
+
   (use-package nix-mode
-    :defer t
+    :hook (nix-mode . lsp-deferred)
     :init
     (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode)))
 #+end_src

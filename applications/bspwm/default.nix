@@ -4,11 +4,11 @@
       #!/bin/sh
 
       if [[ $(hostname) = "nightingale" ]]; then
-      	 bspc monitor DP-4 -d "0x1" "0x2" "0x3" "0x4" "steam" "media"
-       	 bspc monitor HDMI-0 -d "0x5" "0x6" "0x7" "0x8"
+         bspc monitor DP-4 -d "0x1" "0x2" "0x3" "0x4" "steam" "media"
+         bspc monitor HDMI-0 -d "0x5" "0x6" "0x7" "0x8"
       fi
       if [[ $(hostname) = "songbird" ]]; then
-       	 bspc monitor eDP -d "0x1" "0x2" "0x3" "0x4" "steam" "media"
+         bspc monitor eDP -d "0x1" "0x2" "0x3" "0x4" "steam" "media"
       fi
 
       bspc config border_width    2
@@ -17,7 +17,7 @@
       bspc config split_ratio								0.52
       bspc config borderless_monocle				true
       bspc config gapless_monocle						false
-			bspc config remove_disabled_monitors 	true
+      bspc config remove_disabled_monitors 	true
 
       ## mouse settings
       bspc config focus_follows_pointer true
