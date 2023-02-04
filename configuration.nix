@@ -60,6 +60,8 @@
       mpv
       kodi
       torrential
+      popcorntime
+      tidal-hifi
 
       # dev tools
       git
@@ -103,10 +105,10 @@
       killall
       unzip
       lm_sensors
-      #wrap
       tmux
       cmatrix
       comma
+      warpd
 
       # games
       dwarf-fortress
@@ -119,11 +121,6 @@
       # dependencies
       ghostscript
       bc
-
-      # master branch packages
-      master.tidal-hifi
-      master.warpd
-      master.popcorntime
 
       # custom packages
       deity
