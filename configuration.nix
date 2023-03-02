@@ -1,4 +1,6 @@
 { inputs, config, lib, pkgs, ... }: {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking = {
     useDHCP = false;
     networkmanager = {
@@ -116,6 +118,7 @@
       heroic
       lutris
       wineWowPackages.stagingFull
+      protonup-ng
 
       # dependencies
       ghostscript
@@ -124,6 +127,19 @@
       # custom packages
       deity
     ];
+
+    # settings for Proton-GE
+    sessionVariables = rec {
+      XDG_CACHE_HOME = "\${HOME}/.cache";
+      XDG_CONFIG_HOME = "\${HOME}/.config";
+      XDG_BIN_HOME = "\${HOME}/.local/bin";
+      XDG_DATA_HOME = "\${HOME}/.local/share";
+      # Steam needs this to find Proton-GE
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+        "\${HOME}/.steam/root/compatibilitytools.d";
+      # note: this doesn't replace PATH, it just adds this to it
+      PATH = [ "\${XDG_BIN_HOME}" ];
+    };
   };
 
   virtualisation = {
@@ -192,6 +208,7 @@
           magit
           magit-todos
           evil
+          evil-commentary
           evil-collection
           evil-snipe
           undo-fu
@@ -225,7 +242,6 @@
           org-superstar
 
           # lsp
-          dtrt-indent
           tree-sitter
           tree-sitter-langs
           lsp-ui

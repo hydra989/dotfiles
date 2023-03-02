@@ -118,7 +118,7 @@ after emacsclient has started:
 #+begin_src emacs-lisp
   (defun config-visit ()
     (interactive)
-    (find-file "/home/hydra/s/dotfiles/.emacs.d/init.el"))
+    (find-file "/home/hydra/s/dotfiles/.emacs.d/config.org"))
 #+end_src
 
 *** create-scratch-buffer
@@ -414,9 +414,6 @@ of the configuration.
                                       "evil" "location" "file-path" "mode-name" "git"
                                       ))
 
-  ;; appearance
-  (setq awesome-tray-mode-line-active-color #ffffff)
-
   (setq awesome-tray-git-show-status t  ; "show current file status on the git module"
         awesome-tray-evil-show-mode t   ; "show current evil mode in the evil module"
         awesome-tray-evil-show-macro t  ; "show recording macro in the evil module"
@@ -543,14 +540,6 @@ of the configuration.
 ** Programming & LSP
 
 Configuration for packages specific to programming and LSP environments.
-
-*** dtrt-indent
-
-#+begin_src emacs-lisp
-  (use-package dtrt-indent
-    ;:diminish "DI"
-    :hook prog-mode)
-#+end_src
 
 *** tree-sitter
 
