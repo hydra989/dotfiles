@@ -114,7 +114,6 @@
       dwarf-fortress
       cataclysm-dda
       heroic
-      minecraft
       lutris
       wineWowPackages.stagingFull
 
@@ -155,6 +154,8 @@
       terminus_font
       font-awesome
       nerdfonts
+      material-design-icons
+      unifont
     ];
   };
 
@@ -269,5 +270,5 @@
   # localization/defaults
   time.timeZone = "America/New_York";
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }

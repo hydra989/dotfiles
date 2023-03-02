@@ -19,8 +19,11 @@
     enableSyntaxHighlighting = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [ "git" "tmux" ];
       theme = "ys";
+      extraConfig = ''
+        ZSH_TMUX_AUTOSTART=true
+      '';
     };
 
     shellAliases = {

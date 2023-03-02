@@ -28,7 +28,6 @@
   };
 
   xdg.configFile = {
-    "nixpkgs".source = ./.config/nixpkgs;
     "polybar".source = ./.config/polybar;
   };
 }

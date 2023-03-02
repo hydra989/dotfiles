@@ -18,8 +18,6 @@
           program = "zsh";
           args = [
             "--login"
-            "-c"
-            "tmux"
           ];
         };
       };

@@ -12,6 +12,8 @@
     volumeStep = "5%";
   };
 
+  powerManagement.enable = true;
+
   environment.systemPackages = with pkgs; [
     powertop
   ];
@@ -40,11 +42,7 @@
       enable = true;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC="performance";
-        CPU_SCALING_GOVERNOR_ON_BAT="powersave";
-
-        # limit performance on battery
-        CPU_MAX_PERF_ON_AC=100;
-        CPU_MAX_PERF_ON_BAT=70;
+        CPU_SCALING_GOVERNOR_ON_BAT="schedutil";
       };
     };
     upower.enable = true;

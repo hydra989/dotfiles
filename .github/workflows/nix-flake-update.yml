@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: "0 0 * * 0" # weekly at 00:00
+    - cron: "0 0 1 * *" # first of the month @ 00:00
 
 jobs:
   nix-update:
