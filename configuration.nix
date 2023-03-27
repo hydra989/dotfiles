@@ -263,6 +263,7 @@
           lua-mode
           elpy
           lsp-java
+          lsp-nix
         ]));
       enable = true;
     };

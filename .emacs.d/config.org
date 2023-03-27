@@ -36,7 +36,6 @@ Indentation with tabs has been hit-or-miss throughout my time with Emacs.
 This seems janky but it's worked well enough for me thus far.
 
 #+begin_src emacs-lisp
-  (setq-default tab-width 4)
   (add-hook 'prog-mode-hook 'indent-tabs-mode)
 #+end_src
 
@@ -672,7 +671,7 @@ TODO: eglot comes bundled with Emacs 29.
     :defer t
     :init
     (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-    (add-hook 'go-mode #'lsp-mode-deferred))
+    (add-hook 'go-mode-hook #'lsp))
 #+end_src
 
 *** lsp-java
@@ -703,7 +702,7 @@ TODO: eglot comes bundled with Emacs 29.
     (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
   (use-package nix-mode
-    :hook (nix-mode . lsp-deferred)
+    :hook (nix-mode . lsp)
     :init
     (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode)))
 #+end_src
