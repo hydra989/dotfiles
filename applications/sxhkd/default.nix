@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{ inputs, ... }: {
   home.file."/.config/sxhkd/sxhkdrc" = {
     text = ''
       #

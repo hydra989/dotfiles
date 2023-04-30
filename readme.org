@@ -4,7 +4,7 @@
 - *wm*: bspwm
 - *dm*: lightdm
 - *compositor*: picom
-- *bar*: polybar
+- *bar*: eww
 - *$EDITOR*: emacs{client}, vim
 - *terminal*: alacritty + tmux
 - *shell*: zsh + oh-my-zsh
@@ -19,7 +19,6 @@ be somewhat of a mess at any given time.
 
 *** non-packaged dependencies
 
-- https://github.com/msaitz/polybar-bluetooth
 - https://github.com/P3rf/rofi-network-manager
 - https://github.com/erikw/tmux-powerline 
 - https://github.com/manateelazycat/awesome-tray

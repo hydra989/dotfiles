@@ -35,6 +35,7 @@
       resemacs = "systemctl --user restart emacs";
       dots = "cd ~/s/dotfiles";
       fountainpdf = "find . -type f \( -name \"*.fountain\" \) -exec wrap pdf {} \;";
+			rebuild = "sudo nixos-rebuild switch";
     };
   };
 }

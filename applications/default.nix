@@ -3,6 +3,7 @@
   imports = [
     ./alacritty
     ./bspwm
+		./picom
     ./rofi
     ./sxhkd
     ./zsh

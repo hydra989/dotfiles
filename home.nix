@@ -1,10 +1,7 @@
-{ inputs, lib, config, pkgs, pkgs_master, home-manager, ... }:
-{
+{ ... }: {
   programs.home-manager.enable = true;
 
-  imports = [
-    ./applications
-  ];
+  imports = [ ./applications ];
 
   home = {
     username = "hydra";
@@ -14,20 +11,24 @@
       ".tmux.conf".source = ./.tmux.conf;
       ".tmux-powerlinerc".source = ./.tmux-powerlinerc;
       ".vimrc".source = ./.vimrc;
-      ".xprofile".source = ./.xprofile;
       ".wallpaper".source = ./.wallpaper;
       ".emacs.d/init.el".source = ./.emacs.d/init.el;
       ".emacs.d/config.org".source = ./.emacs.d/config.org;
     };
 
-    sessionVariables = rec {
+    sessionVariables = {
       CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
     };
 
     stateVersion = "22.11";
   };
 
-  xdg.configFile = {
-    "polybar".source = ./.config/polybar;
+  programs = {
+    eww = {
+      enable = true;
+      configDir = ./.config/eww;
+    };
+    # redundant? also defined in configuration.nix
+    zsh.enable = true;
   };
 }

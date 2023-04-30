@@ -10,9 +10,16 @@
     wireless.iwd.enable = true;
   };
 
-  sound.enable = true;
+	sound = {
+		enable = true;
+		mediaKeys = {
+			enable = true;
+			volumeStep = "5%";
+		};
+	};
 
   hardware = {
+		opengl.enable = true;
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
 
@@ -23,8 +30,6 @@
       support32Bit = true;
     };
   };
-
-  hardware.opengl.enable = true;
 
   nix = {
     optimise.automatic = true;
@@ -40,9 +45,12 @@
     dedicatedServer.openFirewall = true;
   };
 
-  # as per zsh home-manager module
+  programs.zsh.enable = true;
+
   environment = {
+    # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
+
     systemPackages = with pkgs; [
       # gui
       firefox
@@ -56,6 +64,9 @@
       polybar
       pywal
       arandr
+      brightnessctl
+			discord betterdiscordctl
+			
 
       # media
       calibre
@@ -64,6 +75,7 @@
       torrential
       popcorntime
       tidal-hifi
+
 
       # dev tools
       git
@@ -100,6 +112,7 @@
       # java
       jdk11
 
+
       # tui
       tty-clock
       neofetch
@@ -111,6 +124,8 @@
       cmatrix
       comma
       warpd
+      calcurse
+
 
       # games
       dwarf-fortress
@@ -120,16 +135,18 @@
       wineWowPackages.stagingFull
       protonup-ng
 
+
       # dependencies
       ghostscript
       bc
+
 
       # custom packages
       deity
     ];
 
     # settings for Proton-GE
-    sessionVariables = rec {
+    sessionVariables = {
       XDG_CACHE_HOME = "\${HOME}/.cache";
       XDG_CONFIG_HOME = "\${HOME}/.config";
       XDG_BIN_HOME = "\${HOME}/.local/bin";
@@ -170,8 +187,10 @@
       terminus_font
       font-awesome
       nerdfonts
+      material-icons
       material-design-icons
       unifont
+      comic-mono
     ];
   };
 
@@ -179,12 +198,6 @@
     blueman.enable = true;
 
     devmon.enable = true;
-
-    picom = {
-      enable = true;
-      backend = "glx";
-      vSync = true;
-    };
 
     printing.enable = true;
 
@@ -263,7 +276,6 @@
           lua-mode
           elpy
           lsp-java
-          lsp-nix
         ]));
       enable = true;
     };

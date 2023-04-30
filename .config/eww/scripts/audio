@@ -1,0 +1,8 @@
+#!/bin/sh
+
+get() {
+percent=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%')
+echo "$percent"
+}
+
+if [[ $1 == "get" ]]; then get && exit; fi

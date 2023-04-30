@@ -32,11 +32,8 @@
 
 *** Indentation with Tabs
 
-Indentation with tabs has been hit-or-miss throughout my time with Emacs.
-This seems janky but it's worked well enough for me thus far.
-
 #+begin_src emacs-lisp
-  (add-hook 'prog-mode-hook 'indent-tabs-mode)
+  ;;(add-hook 'prog-mode-hook 'indent-tabs-mode)
 #+end_src
 
 *** General Settings (setqs)
@@ -384,6 +381,7 @@ of the configuration.
   (use-package theme-magic
     :config
     (theme-magic-export-theme-mode))
+
   ;;(use-package base16-theme
   ;;  :defer t)
   (use-package cyberpunk-theme)
@@ -534,7 +532,6 @@ of the configuration.
           )
   )
 #+end_src
-
 
 ** Programming & LSP
 

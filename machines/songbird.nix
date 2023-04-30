@@ -7,11 +7,6 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  sound.mediaKeys = {
-    enable = true;
-    volumeStep = "5%";
-  };
-
   powerManagement.enable = true;
 
   environment.systemPackages = with pkgs; [
