@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }: {
+{ pkgs, ... }: {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking = {
@@ -58,10 +58,9 @@
       xfce.thunar-archive-plugin
       scrot
       feh
-      keepassxc
+      keepassxc # for old passwords
+      bitwarden # migrated to this
       zathura
-      picom
-      polybar
       pywal
       arandr
       brightnessctl
@@ -83,9 +82,9 @@
       virt-manager
       docker
       nixpkgs-review
-      vim
       qemu
       qemu-utils
+      vscodium-fhs
 
       # kvm-osx
       libguestfs

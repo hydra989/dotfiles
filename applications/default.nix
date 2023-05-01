@@ -1,11 +1,14 @@
-{ config, lib, home-manager, ... }:
-{
-  imports = [
-    ./alacritty
-    ./bspwm
-		./picom
-    ./rofi
-    ./sxhkd
-    ./zsh
-  ];
+{ ... }: {
+  imports =
+    [
+      ./alacritty
+      ./bspwm
+      ./eww
+      ./neovim
+      ./picom
+      ./qutebrowser
+      ./rofi
+      ./sxhkd
+      ./zsh
+    ];
 }

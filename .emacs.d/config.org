@@ -36,14 +36,18 @@
   ;;(add-hook 'prog-mode-hook 'indent-tabs-mode)
 #+end_src
 
+
+
+
+
+
 *** General Settings (setqs)
 
 #+begin_src emacs-lisp
   (setq
-   backward-delete-char-untabify-method 'hungry  ;; hungry delete
    ring-bell-function 'ignore                    ;; don't make noise
    vc-follow-symlinks t                          ;; set with intention of
-  ;;                                                playing nice with hardlinks
+;;                                                  playing nice with hardlinks
    load-prefer-newer t                           ;; prefer newer .elc...
    delete-old-versions t                         ;; ...and delete the old editions
    use-short-answers t                           ;; y/n instead of yes/no
@@ -87,6 +91,22 @@
 #+end_src
 
 
+
+*** Make minibuffer & mouse play nicely
+
+Source: [[http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html][this blog]]
+
+#+begin_src emacs-lisp
+(defun stop-using-minibuffer ()
+  "kill the minibuffer"
+  (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
+    (abort-recursive-edit)))
+
+(add-hook 'mouse-leave-buffer-hook 'stop-using-minibuffer)
+#+end_src
+
+
+
 ** Function Definitions
 
 Previously stored in func.init.el.
@@ -101,8 +121,8 @@ after emacsclient has started:
     (select-frame frame)
     (load-theme 'cyberpunk t)
     (set-frame-font "Terminus-11" t t)
-    ;;(mini-modeline-mode t)
-    (awesome-tray-mode 1)
+    (mini-modeline-mode t)
+    ;;(awesome-tray-mode 1)
     )
 
   ;; 1-6-22: not sure how this works when emacs itself is opened (not emacsclient)
@@ -353,12 +373,12 @@ of the configuration.
     :config
     (add-hook 'prog-mode-hook 'evil-commentary-mode))
   (use-package evil-collection
-    ;:diminish evil-collection-unimpaired-mode
+    :diminish evil-collection-unimpaired-mode
     :after evil
     :config
     (evil-collection-init))
   (use-package evil-snipe
-    ;:diminish evil-snipe-local-mode
+    :diminish evil-snipe-local-mode
     :after evil
     :config
     (evil-snipe-mode +1))
@@ -401,8 +421,7 @@ of the configuration.
 
 #+begin_src emacs-lisp
   (use-package mini-modeline
-    :defer t
-    ;:diminish mini-modeline-mode
+    :diminish mini-modeline-mode
   )
 
   (require 'awesome-tray)
@@ -417,7 +436,7 @@ of the configuration.
   )
 
   ;; reload on theme change
-  (add-hook 'after-load-theme-hook (lambda () (awesome-tray-enable)))
+  ;(add-hook 'after-load-theme-hook (lambda () (awesome-tray-enable)))
 #+end_src
 
 *** hl-todo
@@ -456,7 +475,7 @@ of the configuration.
 
 #+begin_src emacs-lisp
   (use-package ivy
-    ;:diminish ivy-mode
+    :diminish ivy-mode
     :init
     (setq ivy-use-virtual-buffers t
           enable-recursive-minbuffers t
@@ -473,7 +492,7 @@ of the configuration.
   (use-package all-the-icons-ivy-rich
     :init (all-the-icons-ivy-rich-mode 1))
   (use-package counsel
-    ;:diminish counsel-mode
+    :diminish counsel-mode
     :after ivy
     :config
     (counsel-mode))
@@ -500,17 +519,17 @@ of the configuration.
 
 #+begin_src emacs-lisp
   (use-package treemacs
-    :defer t
-    :init
-    (global-set-key (kbd "C-c t") 'treemacs)
+    :diminish treemacs-mode
     :config
+    (global-set-key (kbd "C-c t") 'treemacs)
     (setq-default treemacs-use-follow-mode nil
                   treemacs-use-filewatch-mode t
                   treemacs-use-git-mode 'deferred))
-  (use-package treemacs-all-the-icons
-    :after treemacs
-    :config
-    (treemacs-load-theme "all-the-icons"))
+  ;; (use-package treemacs-all-the-icons
+  ;;   :after treemacs
+  ;;   :config
+  ;;   (treemacs-load-theme "all-the-icons"))
+  (treemacs-load-all-the-icons-with-workaround-font "Hack")
   (use-package treemacs-evil
     :after (treemacs evil))
   (use-package treemacs-magit
@@ -532,6 +551,7 @@ of the configuration.
           )
   )
 #+end_src
+
 
 ** Programming & LSP
 

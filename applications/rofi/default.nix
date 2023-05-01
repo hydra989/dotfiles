@@ -4,7 +4,7 @@
     enable = true;
 
     font = "Terminus 12";
-    theme = "${config.xdg.cacheHome}/wal/colors-rofi-dark.rasi";
+    theme = "${config.xdg.cacheHome}/wal/colors-rofi-light.rasi";
     extraConfig = {
       modi = "drun";
     };
