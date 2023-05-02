@@ -36,11 +36,6 @@
   ;;(add-hook 'prog-mode-hook 'indent-tabs-mode)
 #+end_src
 
-
-
-
-
-
 *** General Settings (setqs)
 
 #+begin_src emacs-lisp
@@ -91,7 +86,6 @@
 #+end_src
 
 
-
 *** Make minibuffer & mouse play nicely
 
 Source: [[http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html][this blog]]
@@ -120,7 +114,7 @@ after emacsclient has started:
   (defun daemon-gui-setup (frame)
     (select-frame frame)
     (load-theme 'cyberpunk t)
-    (set-frame-font "Terminus-11" t t)
+    (set-frame-font "Hack-11" t t)
     (mini-modeline-mode t)
     ;;(awesome-tray-mode 1)
     )

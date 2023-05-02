@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
   virtualisation.docker.enableNvidia = true;
 
@@ -15,13 +15,6 @@
         { output = "DP-4"; primary = true; }
         "HDMI-0"
       ];
-    };
-
-    syncthing = {
-      enable = true;
-      user = "hydra";
-      dataDir = "/opt/syncthing";
-      configDir = "/home/hydra/.config/syncthing";
     };
   };
 }

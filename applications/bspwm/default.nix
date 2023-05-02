@@ -4,9 +4,13 @@
       #!/bin/sh
 
       # hhydraa: credits to rxyhn, which is where I found this
-      # Credits to 6gk/polka
+      # rxyhn: Credits to 6gk/polka
       rule() { bspc rule -a "$@" & }
       config() { bspc config "$@" & }
+
+
+      # =====================================================
+      # config
 
       if [[ $(hostname) = "nightingale" ]]; then
          bspc monitor DP-4 -d 1 2 3 4 5 6
@@ -36,35 +40,44 @@
       config focused_border_color "#B3B3B3"
       config normal_border_color  "#061115"
 
-      ## rules
+
+      # =====================================================
+      # rules
 
       # floating
-      rule -a Arandr				 state=floating
-      rule -a Bluetooth			 state=floating
-      rule -a Thunar				 state=floating
-      rule -a 'Tor Browser'	 state=floating
+      rule Arandr           state=floating
+      rule Bluetooth			  state=floating
+      rule Thunar				    state=floating
+      rule 'Tor Browser'	  state=floating
 
       # steam tag
-      rule -a Steam	desktop=4 state=floating
-      rule -a heroic desktop=4 state=floating
-      rule -a Lutris desktop=4 state=floating
+      rule Steam   desktop=4  state=floating
+      rule heroic  desktop=4  state=floating
+      rule Lutris  desktop=4  state=floating
       # skyrim mod organizer
-      rule -a steam_app_489830 desktop=4 state=floating
+      rule steam_app_489830 desktop=4 state=floating
 
       # media tag
-      rule -a calibre	desktop=5 state=floating
-      rule -a vlc desktop=5 state=floating
-      rule -a Kodi desktop=5 state=fullscreen
-      rule -a mpv desktop=5 state=floating
-      #rule -a Popcorn-Time desktop=5 state=floating
-      #rule -a tidal-hifi desktop=5 state=floating
+      rule calibre            desktop=5 state=floating
+      rule vlc                desktop=5 state=floating
+      rule Kodi               desktop=5 state=fullscreen
+      rule mpv                desktop=5 state=floating
+      rule Popcorn-Time       desktop=5 state=floating
+      rule tidal-hifi         desktop=5 state=floating
       # TODO: torrential rule
+
+      # socials tag
+      # rule discord    desktop=6
+
 
       # =====================================================
       # autostart apps
 
+      # clear cache
+      rm ${config.xdg.configHome}/.cache/eww-calendar.lock
+
       wal -R &
-      eww -c ${config.xdg.configHome}/eww --restart open bar &
+      eww daemon && eww open bar &
     '';
     executable = true;
   };

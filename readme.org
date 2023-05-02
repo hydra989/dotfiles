@@ -5,11 +5,11 @@
 - *dm*: lightdm
 - *compositor*: picom
 - *bar*: eww
-- *$EDITOR*: emacs{client}, vim
+- *$EDITOR*: emacs{client}, neovim
 - *terminal*: alacritty + tmux
 - *shell*: zsh + oh-my-zsh
 - *launcher*: rofi
-- *browser*: firefox
+- *browser*: firefox, qutebrowser
 
 My emacs configuration is literate; find its .org file [[https://github.com/hhydraa/dotfiles/blob/master/.emacs.d/config.org][here]].
 
@@ -23,8 +23,3 @@ be somewhat of a mess at any given time.
 - https://github.com/erikw/tmux-powerline 
 - https://github.com/manateelazycat/awesome-tray
   - put awesome-tray.el in ~/elisp
-
-*** notes
-
-- polybar colors are hardcoded to cyberpunk theme---could redo and use xresources colors
-  that pywal generates on emacs theme switch

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   networking = {
     hostName = "songbird";
@@ -23,14 +23,7 @@
       libinput.enable = true;
 
       # lxqt
-      desktopManager.lxqt.enable = true;
-    };
-
-    syncthing = {
-      enable = true;
-      user = "hydra";
-      dataDir = "/home/hydra/syncthing";
-      configDir = "/home/hydra/.config/syncthing";
+      desktopManager.gnome.enable = true;
     };
 
     tlp = {

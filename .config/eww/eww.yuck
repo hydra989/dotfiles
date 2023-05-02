@@ -34,9 +34,9 @@
 
 (defwidget bluetooth []
 	(box		:orientation "v"  
-				:tooltip bluetooth-name
+			:tooltip bluetooth-name
 	(button		:onclick "scripts/popup bluetooth" 
-				:class "bluetooth-icon" bluetooth-icon)))
+			:class "bluetooth-icon" bluetooth-icon)))
 (defpoll bluetooth-icon :interval "1s" "scripts/bluetooth icon")
 (defpoll bluetooth-name :interval "1s" "scripts/bluetooth name")
 (defvar bright false)
@@ -76,12 +76,12 @@
 ;; Clock Widgets ;;
 (defwidget time []
 	(box	:orientation "v" 
-			:class "time" 
-			:valign "end"
+		:class "time" 
+		:valign "end"
 	(button	:onclick "scripts/popup calendar"	
-			:class "time-hour" hour)
+		:class "time-hour" hour)
 	(button	:onclick "scripts/popup calendar"	
-			:class "time-min"  min)))
+		:class "time-min"  min)))
 (defpoll hour	:interval "1s"	"date '+%H'")
 (defpoll min	:interval "1s"	"date '+%M'")
 
@@ -104,64 +104,64 @@
 ;; Powermenu Widgets ;;
 (defwidget power []
 	(eventbox	:onhover "${eww} update power=true"	
-				:onhoverlost "${eww} update power=false" 
-	(box		:orientation "v"					
-				:space-evenly "false" 	 
-				:vexpand "false" 	
-				:class "powermenu"
-	(revealer	:transition "slideup"				
-				:reveal power			 
-				:duration "550ms"
-	(box		:orientation "v"					
-				:space-evenly "false"
+			:onhoverlost "${eww} update power=false" 
+	(box		:orientation "v"
+			:space-evenly "false" 
+			:vexpand "false" 	
+			:class "powermenu"
+	(revealer	:transition "slideup"	
+			:reveal power	
+			:duration "550ms"
+	(box		:orientation "v"
+			:space-evenly "false"
 
 	(button   	:class "button-bspres"  			
-				:tooltip "BSPWM Restart" 
-				:onclick "bspc wm -r" "" )
+			:tooltip "BSPWM Restart" 
+			:onclick "bspc wm -r" "" )
 
-  	(button		:class "button-reb"					
-	  			:tooltip "Reboot"		 
-				:onclick "reboot"	"ﰇ")
+  	(button		:class "button-reb"	
+	  		:tooltip "Reboot"		 
+			:onclick "reboot"	"ﰇ")
 
 	(button		:class "button-quit" 				
-				:tooltip "Logout" 		 
-				:onclick "killall bspwm" "")
+			:tooltip "Logout"
+			:onclick "killall bspwm" "")
 
-	(button		:class "button-off"					
-				:tooltip "Shutdown"		 
-				:onclick "shutdown now"	""))))))
+	(button		:class "button-off"
+			:tooltip "Shutdown"
+			:onclick "shutdown now"	""))))))
 (defvar power false)
 
 ;; Top Widgets ;;
 (defwidget top []
 	(box	:orientation "v" 
-			:space-evenly "false" 
-			:valign "start" 
+		:space-evenly "false" 
+		:valign "start" 
 (launcher)
 (workspaces)))
 
 ;; Bottom Widgets ;;
 (defwidget bottom []
 	(box	:orientation "v" 
-			:space-evenly false 
+		:space-evenly false 
 (time)
 (power)))
 
 ;; End Widgets ;;
 (defwidget end []
 	(box :orientation "v" 
-		 :space-evenly "false" 
-		 :valign "end" 
-		 :spacing 5
+	     :space-evenly "false" 
+	     :valign "end" 
+	     :spacing 5
 (control)
 (bottom)))
 
 ;; Bar Widgets ;;
 (defwidget bar []
 	(box :class "eww_bar" 
-		 :orientation "v" 
-		 :vexpand "false" 
-		 :hexpand "false"
+	     :orientation "v" 
+	     :vexpand "false" 
+	     :hexpand "false"
 (top)
 (end)))
 
@@ -172,12 +172,12 @@
 (defwindow bar
 	:windowtype "dock"
 	:geometry (geometry :x "10"
-						:y "38"
-						:height "95%"
-						:width "47px")
+			    :y "38"
+			    :height "95%"
+			    :width "47px")
 	:monitor 0
 	:reserve (struts :distance "35px" 
-					 :side "left")
+			 :side "left")
 	:wm-ignore false
 	:hexpand "false"
 	:vexpand "false"
@@ -186,7 +186,7 @@
 ;; Calendar Windows ;;
 (defwindow calendar
 	:geometry (geometry :x "70px" 
-						:y "65%" 
-						:width "270px" 
-						:height "60px")
+			    :y "65%" 
+			    :width "270px" 
+			    :height "60px")
 (cal))

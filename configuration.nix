@@ -48,101 +48,11 @@
   programs.zsh.enable = true;
 
   environment = {
+    # bootstrap
+    systemPackages = with pkgs; [ home-manager git];
+
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
-
-    systemPackages = with pkgs; [
-      # gui
-      firefox
-      xfce.thunar
-      xfce.thunar-archive-plugin
-      scrot
-      feh
-      keepassxc # for old passwords
-      bitwarden # migrated to this
-      zathura
-      pywal
-      arandr
-      brightnessctl
-			discord betterdiscordctl
-			
-
-      # media
-      calibre
-      mpv
-      kodi
-      torrential
-      popcorntime
-      tidal-hifi
-
-
-      # dev tools
-      git
-      gh
-      virt-manager
-      docker
-      nixpkgs-review
-      qemu
-      qemu-utils
-      vscodium-fhs
-
-      # kvm-osx
-      libguestfs
-      p7zip
-      dmg2img
-
-      # languages
-
-      # nix
-      nil
-      nixfmt
-      # python
-      python3
-      python3Packages.pip
-      pylint
-      # c/c++
-      gcc
-      gdb
-      clang-tools
-      valgrind
-      # go
-      go
-      gopls
-      # java
-      jdk11
-
-
-      # tui
-      tty-clock
-      neofetch
-      tor
-      killall
-      unzip
-      lm_sensors
-      tmux
-      cmatrix
-      comma
-      warpd
-      calcurse
-
-
-      # games
-      dwarf-fortress
-      cataclysm-dda
-      heroic
-      lutris
-      wineWowPackages.stagingFull
-      protonup-ng
-
-
-      # dependencies
-      ghostscript
-      bc
-
-
-      # custom packages
-      deity
-    ];
 
     # settings for Proton-GE
     sessionVariables = {
