@@ -15,6 +15,7 @@
       if [[ $(hostname) = "nightingale" ]]; then
          bspc monitor DP-4 -d 1 2 3 4 5 6
          bspc monitor HDMI-0 -d 7 8 9
+         config -m DP-4 left_padding 69
       fi
       if [[ $(hostname) = "songbird" ]]; then
          bspc monitor eDP -d 1 2 3 4 5 6
