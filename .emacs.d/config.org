@@ -114,9 +114,10 @@ after emacsclient has started:
   (defun daemon-gui-setup (frame)
     (select-frame frame)
     (load-theme 'cyberpunk t)
-    (set-frame-font "Hack-11" t t)
+    (set-frame-font "Hack 10" nil t)
     (mini-modeline-mode t)
     ;;(awesome-tray-mode 1)
+    (remove-hook 'after-make-frame-functions #'daemon-gui-setup)
     )
 
   ;; 1-6-22: not sure how this works when emacs itself is opened (not emacsclient)
@@ -420,14 +421,14 @@ of the configuration.
 
   (require 'awesome-tray)
   ;; module setup
-  (setq awesome-tray-active-modules '(
-                                      "evil" "location" "file-path" "mode-name" "git"
-                                      ))
+  ;;(setq awesome-tray-active-modules '(
+  ;;                                    "evil" "location" "file-path" "mode-name" "git"
+  ;;                                    ))
 
-  (setq awesome-tray-git-show-status t  ; "show current file status on the git module"
-        awesome-tray-evil-show-mode t   ; "show current evil mode in the evil module"
-        awesome-tray-evil-show-macro t  ; "show recording macro in the evil module"
-  )
+  ;;(setq awesome-tray-git-show-status t  ; "show current file status on the git module"
+  ;;      awesome-tray-evil-show-mode t   ; "show current evil mode in the evil module"
+  ;;      awesome-tray-evil-show-macro t  ; "show recording macro in the evil module"
+  ;;)
 
   ;; reload on theme change
   ;(add-hook 'after-load-theme-hook (lambda () (awesome-tray-enable)))
