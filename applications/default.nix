@@ -54,6 +54,7 @@
       # python
       python3
       python3Packages.pip
+      python3Packages.python-lsp-server
       pylint
       # c/c++ ===
       gcc
