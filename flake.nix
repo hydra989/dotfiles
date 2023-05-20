@@ -2,7 +2,7 @@
   description = "hhydraa's nixos configuration";
 
   inputs = {
-    # nixpgs
+    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # default channel
 
     # home-manager

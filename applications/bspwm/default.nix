@@ -16,9 +16,11 @@
          bspc monitor DP-4 -d 1 2 3 4 5 6
          bspc monitor HDMI-0 -d 7 8 9
          config -m DP-4 left_padding 69
+         eww daemon && eww open bar &
       fi
       if [[ $(hostname) = "songbird" ]]; then
          bspc monitor eDP -d 1 2 3 4 5 6
+         eww daemon && eww open laptopbar &
       fi
 
       config border_width    2
@@ -78,7 +80,6 @@
       rm ${config.xdg.configHome}/.cache/eww-calendar.lock
 
       wal -R &
-      eww daemon && eww open bar &
     '';
     executable = true;
   };

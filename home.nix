@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [ ./applications ];
 
   home = {
@@ -19,6 +19,14 @@
     };
 
     stateVersion = "22.11";
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Equilux";
+      package = pkgs.equilux-theme;
+    };
   };
 
   programs = {

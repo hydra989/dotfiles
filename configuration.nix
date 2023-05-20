@@ -3,7 +3,7 @@
 
   networking = {
     useDHCP = false;
-    networkmanager = {
+    connman = {
       enable = true;
       wifi.backend = "iwd";
     };
@@ -49,7 +49,7 @@
 
   environment = {
     # bootstrap
-    systemPackages = with pkgs; [ home-manager git];
+    systemPackages = with pkgs; [ home-manager git gh github-desktop ];
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];

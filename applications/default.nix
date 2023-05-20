@@ -1,103 +1,97 @@
 { pkgs, ... }: {
-  imports =
-    [
-      ./alacritty
-      ./bspwm
-      ./eww
-      ./neovim
-      ./picom
-      ./qutebrowser
-      ./rofi
-      ./sxhkd
-      ./zsh
-    ];
+  imports = [
+    ./alacritty
+    ./bspwm
+    ./eww
+    ./neovim
+    ./picom
+    ./qutebrowser
+    ./rofi
+    ./sxhkd
+    ./zsh
+  ];
 
   home.packages = with pkgs; [
-      # === gui ===
-      firefox
-      xfce.thunar
-      xfce.thunar-archive-plugin
-      scrot
-      feh
-      keepassxc # for old passwords
-      bitwarden # migrated to this
-      zathura
-      pywal
-      arandr
-      brightnessctl
-			discord betterdiscordctl
-      github-desktop
-			
+    # === gui ===
+    firefox
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    scrot
+    feh
+    keepassxc # for old passwords
+    bitwarden # migrated to this
+    zathura
+    pywal
+    arandr
+    brightnessctl
+    discord
+    betterdiscordctl
+    connman-gtk
 
-      # === media ===
-      calibre
-      mpv
-      kodi
-      torrential
-      popcorntime
-      tidal-hifi
+    # === media ===
+    calibre
+    mpv
+    kodi
+    torrential
+    popcorntime
+    tidal-hifi
 
+    # === dev tools ===
+    virt-manager
+    docker
+    nixpkgs-review
+    vscodium-fhs
+    # kvm-osx ===
+    libguestfs
+    p7zip
+    dmg2img
+    # nix ===
+    nil
+    nixfmt
+    # python
+    python3
+    python3Packages.pip
+    python3Packages.python-lsp-server
+    pylint
+    # c/c++ ===
+    gcc
+    gdb
+    clang-tools
+    valgrind
+    # go ===
+    go
+    gopls
+    # java ===
+    jdk11
 
-      # === dev tools ===
-      gh
-      virt-manager
-      docker
-      nixpkgs-review
-      vscodium-fhs
-      # kvm-osx ===
-      libguestfs
-      p7zip
-      dmg2img
-      # nix ===
-      nil
-      nixfmt
-      # python
-      python3
-      python3Packages.pip
-      python3Packages.python-lsp-server
-      pylint
-      # c/c++ ===
-      gcc
-      gdb
-      clang-tools
-      valgrind
-      # go ===
-      go
-      gopls
-      # java ===
-      jdk11
+    # === tui ===
+    tty-clock
+    neofetch
+    tor
+    killall
+    unzip
+    lm_sensors
+    tmux
+    cmatrix
+    comma
+    warpd
+    calcurse
+    cbonsai
 
+    # === games ===
+    dwarf-fortress
+    cataclysm-dda
+    heroic
+    lutris
+    wineWowPackages.stagingFull
+    protonup-ng
+    protontricks
 
-      # === tui ===
-      tty-clock
-      neofetch
-      tor
-      killall
-      unzip
-      lm_sensors
-      tmux
-      cmatrix
-      comma
-      warpd
-      calcurse
+    # === dependencies ===
+    ghostscript
+    bc
 
-
-      # === games ===
-      dwarf-fortress
-      cataclysm-dda
-      heroic
-      lutris
-      wineWowPackages.stagingFull
-      protonup-ng
-      protontricks
-
-
-      # === dependencies ===
-      ghostscript
-      bc
-
-
-      # === custom packages ===
-      deity
+    # === custom packages ===
+    deity
   ];
 }
