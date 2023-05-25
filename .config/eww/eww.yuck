@@ -24,15 +24,15 @@
 (deflisten workspace "scripts/workspace")
 
 ;; Battery Widgets ;;
-(defwidget bat []
+(defwidget battery []
 	(box	:orientation "v"	
 			:space-evenly "false"
 	(label	:class "bat"		
 			:halign "end"		
-			:text battery	
-			:tooltip "Battery: ${battery-cappacity}%")))
-(defpoll battery		:interval "10s"	"scripts/battery icon")
-(defpoll battery-cappacity	:interval "10s"	"scripts/battery percent")
+			:text battery-icon	
+			:tooltip "Battery: ${battery-capacity}%")))
+(defpoll battery-icon		:interval "10s"	"scripts/battery icon")
+(defpoll battery-capacity	:interval "10s"	"scripts/battery percent")
 
 ;; Connectivity Widgets ;;
 (defwidget wifi []
@@ -216,28 +216,30 @@
 	:reserve (struts :distance "35px" 
 			 :side "left")
 	:wm-ignore false
-	:hexpand "false"
-	:vexpand "false"
+	:hexpand false
+	:vexpand false
 	(bar))
 
 (defwindow laptopbar
     :windowtype "dock"
     :geometry (geometry :x "10"
-			:y "38"
-			:height "95%"
-			:width "47px")
+						:y "38"
+						:height "95%"
+						:width "47px")
     :monitor 0
     :reserve (struts :distance "35px"
-		     :side "right")
-    :wm-ignore "false"
-    :hexpand "false"
-    :vexpand "false"
+					 :side "right")
+    :wm-ignore false
+    :hexpand false
+    :vexpand false
+	:stacking "bg"
+	:exclusive true
     (laptopbar))
 
 ;; Calendar Windows ;;
 (defwindow calendar
 	:geometry (geometry :x "70px" 
-			    :y "65%" 
-			    :width "270px" 
-			    :height "60px")
+						:y "65%" 
+						:width "270px" 
+						:height "60px")
 (cal))

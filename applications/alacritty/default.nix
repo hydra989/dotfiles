@@ -3,11 +3,11 @@
     enable = true;
     settings = {
       font = {
-        normal.family = "terminus";
-        bold.family = "terminus";
-        italic.family = "terminus";
-        bold_italic.family = "terminus";
-        size = 11.0;
+        normal.family = "Hack";
+        bold.family = "Hack";
+        italic.family = "Hack";
+        bold_italic.family = "Hack";
+        size = 8.0;
       };
       window = {
         decorations = "none";

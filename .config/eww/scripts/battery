@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bat=/sys/class/power_supply/BAT0/
+bat=/sys/class/power_supply/BAT1
 per="$(cat "$bat/capacity")"
 
 icon() {
@@ -39,6 +39,6 @@ percent() {
 echo $per
 }
 
-[ "$1" = "icon" ] && [ "$hostname" = "songbird" ] && icon && exit
-[ "$1" = "percent" ] && [ "$hostname" = "songbird" ] && percent && exit
+[ "$1" = "icon" ] && [ $(hostname) = "songbird" ] && icon && exit
+[ "$1" = "percent" ] && [ $(hostname) = "songbird" ] && percent && exit
 exit

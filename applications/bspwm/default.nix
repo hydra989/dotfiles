@@ -20,6 +20,7 @@
       fi
       if [[ $(hostname) = "songbird" ]]; then
          bspc monitor eDP -d 1 2 3 4 5 6
+         config left_padding 61
          eww daemon && eww open laptopbar &
       fi
 
