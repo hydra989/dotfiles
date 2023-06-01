@@ -19,6 +19,6 @@
 ;;   (org-babel-load-file org-file)))
 
 ;; the nuclear option
-(org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
+(org-babel-load-file "/home/hydra/s/dotfiles/.emacs.d/config.org")
 
 (server-start)

@@ -6,6 +6,7 @@
     dotDir = ".config/zsh";
 
     initExtra = ''
+      SOURCEDIR=$HOME/s
       (cat ${config.xdg.cacheHome}/wal/sequences &)
     '';
 

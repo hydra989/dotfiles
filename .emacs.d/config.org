@@ -193,19 +193,6 @@ Stolen from somewhere, but I have no idea where.
 		   nil)))
 #+end_src
 
-*** hook: tangle-config
-
-#+begin_src emacs-lisp
-  (defun tangle-config ()
-    "If the current file is in '~/($sourcedir)/dotfiles/.emacs.d', the code blocks are tangled"
-    (when (equal (file-name-directory (directory-file-name buffer-file-name))
-                 (concat (getenv "HOME") (getenv "SOURCEDIR") "/dotfiles/.emacs.d"))
-      (org-babel-tangle)
-      (message "%s tangled" buffer-file-name)))
-
-  (add-hook 'after-save-hook #'tangle-config)
-#+end_src
-
 *** hook: define after-load-theme-hook
 
 [[https://www.reddit.com/r/emacs/comments/4v7tcj/comment/d5wyu1r/?utm_source=share&utm_medium=web2x&context=3][stolen from this reddit comment]]
