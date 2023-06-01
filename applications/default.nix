@@ -5,7 +5,6 @@
     ./eww
     ./neovim
     ./picom
-    ./qutebrowser
     ./rofi
     ./sxhkd
     ./zsh

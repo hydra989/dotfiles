@@ -16,7 +16,7 @@
 		 :space-evenly "false" 
 		 :spacing -10
   	(button :class "launcher_icon" 
-		   	:onclick "scripts/popup launcher"  "")))
+		   	:onclick "scripts/popup launcher"  "")))
 
 ;; Workspaces Widgets ;;
 (defwidget workspaces []
@@ -52,6 +52,12 @@
 (defpoll bluetooth-name :interval "1s" "scripts/bluetooth name")
 (defvar bright false)
 
+(defwidget ethernet []
+  (box :orientation "v"
+       (button :onclick "scripts/popup wifi"
+	       :class "eth-icon" eth-icon)))
+(defpoll eth-icon :interval "5s" "scripts/ethernet icon")
+
 ;; Volume Widgets ;;
 (defwidget volum []
 	(eventbox :onhover "${eww} update volum=true" 		
@@ -82,7 +88,9 @@
 
 (volum)
 (bluetooth)
-(wifi)))
+(wifi)
+(ethernet)
+))
 
 (defwidget controllaptop []
   (box :orientation "v"
@@ -123,34 +131,30 @@
     "date '+%Y'")
 
 ;; Powermenu Widgets ;;
-(defwidget power []
-	(eventbox	:onhover "${eww} update power=true"	
-			:onhoverlost "${eww} update power=false" 
-	(box		:orientation "v"
-			:space-evenly "false" 
+(defwidget power-button []
+	(eventbox	:onhover "eww -c ~/.config/eww update power=true"	
+			:onhoverlost "eww -c ~/.config/eww update power=false" 
+	(box		:orientation "v"					
+			:space-evenly "false" 	 
 			:vexpand "false" 	
 			:class "powermenu"
-	(revealer	:transition "slideup"	
-			:reveal power	
+	(revealer	:transition "slideup"				
+			:reveal power			 
 			:duration "550ms"
-	(box		:orientation "v"
+	(box		:orientation "v"					
 			:space-evenly "false"
 
-	(button   	:class "button-bspres"  			
-			:tooltip "BSPWM Restart" 
-			:onclick "bspc wm -r" "" )
-
-  	(button		:class "button-reb"	
+  	(button		:class "button-reb"					
 	  		:tooltip "Reboot"		 
-			:onclick "reboot"	"ﰇ")
+			:onclick "./scripts/power reboot"	"ﰇ")
 
 	(button		:class "button-quit" 				
-			:tooltip "Logout"
-			:onclick "killall bspwm" "")
+			:tooltip "Logout" 		 
+			:onclick "killall bspwm" "")))
 
-	(button		:class "button-off"
-			:tooltip "Shutdown"
-			:onclick "shutdown now"	""))))))
+	(button		:class "button-off"					
+			:tooltip "Shutdown"		 
+			:onclick "./scripts/power off"	""))))
 (defvar power false)
 
 ;; Top Widgets ;;
@@ -166,7 +170,7 @@
 	(box	:orientation "v" 
 		:space-evenly false 
 (time)
-(power)))
+(power-button)))
 
 ;; End Widgets ;;
 (defwidget end []

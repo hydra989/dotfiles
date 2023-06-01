@@ -9,7 +9,7 @@
 - *terminal*: alacritty + tmux
 - *shell*: zsh + oh-my-zsh
 - *launcher*: rofi
-- *browser*: firefox, qutebrowser
+- *browser*: firefox
 
 My emacs configuration is literate; find its .org file [[https://github.com/hhydraa/dotfiles/blob/master/.emacs.d/config.org][here]].
 
@@ -19,7 +19,5 @@ be somewhat of a mess at any given time.
 
 *** non-packaged dependencies
 
-- https://github.com/P3rf/rofi-network-manager
+- firefox userchome: [[https://github.com/andreasgrafen/cascade][cascade]]
 - https://github.com/erikw/tmux-powerline 
-- https://github.com/manateelazycat/awesome-tray
-  - put awesome-tray.el in ~/elisp

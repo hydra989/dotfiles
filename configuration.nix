@@ -3,10 +3,6 @@
 
   networking = {
     useDHCP = false;
-    connman = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
     wireless.iwd.enable = true;
   };
 
@@ -78,7 +74,7 @@
     libvirtd.enable = true;
   };
 
-  # for virt-manager
+  # also for virt-manager
   programs.dconf.enable = true;
 
   # for osx-kvm
@@ -105,6 +101,11 @@
 
   services = {
     blueman.enable = true;
+
+    connman = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
 
     devmon.enable = true;
 

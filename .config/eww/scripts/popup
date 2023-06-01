@@ -25,9 +25,9 @@ fi
 }
 
 if [ "$1" = "launcher" ]; then
-sh $HOME/.config/eww/scripts/launcher
+    sh $HOME/.config/eww/scripts/launcher
 elif [ "$1" = "wifi" ]; then
-kitty -e nmtui
+connman-gtk
 elif [ "$1" = "audio" ]; then
 pavucontrol
 elif [ "$1" = "calendar" ]; then

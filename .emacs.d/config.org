@@ -4,7 +4,7 @@
 
 * Contents                                                         :TOC_2_gh:
   - [[#general-settings][General Settings]]
-  - [[#function-definitions][Function Definitions]]
+  - [[#function--hook-definitions][Function & Hook Definitions]]
   - [[#package-independent-keybindings][Package-Independent Keybindings]]
   - [[#general-purpose-packages][General Purpose Packages]]
   - [[#programming--lsp][Programming & LSP]]
@@ -85,7 +85,6 @@
    '(org-agenda-files (list "~/s/org/agenda")))
 #+end_src
 
-
 *** Make minibuffer & mouse play nicely
 
 Source: [[http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer-when.html][this blog]]
@@ -101,7 +100,7 @@ Source: [[http://trey-jackson.blogspot.com/2010/04/emacs-tip-36-abort-minibuffer
 
 
 
-** Function Definitions
+** Function & Hook Definitions
 
 Previously stored in func.init.el.
 
@@ -194,7 +193,20 @@ Stolen from somewhere, but I have no idea where.
 		   nil)))
 #+end_src
 
-*** hook: after-load-theme-hook
+*** hook: tangle-config
+
+#+begin_src emacs-lisp
+  (defun tangle-config ()
+    "If the current file is in '~/($sourcedir)/dotfiles/.emacs.d', the code blocks are tangled"
+    (when (equal (file-name-directory (directory-file-name buffer-file-name))
+                 (concat (getenv "HOME") (getenv "SOURCEDIR") "/dotfiles/.emacs.d"))
+      (org-babel-tangle)
+      (message "%s tangled" buffer-file-name)))
+
+  (add-hook 'after-save-hook #'tangle-config)
+#+end_src
+
+*** hook: define after-load-theme-hook
 
 [[https://www.reddit.com/r/emacs/comments/4v7tcj/comment/d5wyu1r/?utm_source=share&utm_medium=web2x&context=3][stolen from this reddit comment]]
 
@@ -239,12 +251,13 @@ Diminish comes first because it's used throughout the rest
 of the configuration.
 
 1-8-22: Disabled diminish. awesome-tray hides minor modes by default.
+6-1-23: Going to reenable diminish, as I quit using awesome-tray.
 
 #+begin_src emacs-lisp
   (use-package diminish
     ;; diminish whatever isn't a package
-    ;;:config
-    ;;(diminish 'eldoc-mode)
+    :config
+    (diminish 'eldoc-mode)
   )
 #+end_src
 
@@ -310,7 +323,7 @@ of the configuration.
 
 #+begin_src emacs-lisp
   (use-package linum-relative
-    ;:diminish linum-relative-mode
+    :diminish linum-relative-mode
     :defer t
     :hook (prog-mode . linum-relative-mode)
     :init
@@ -418,20 +431,6 @@ of the configuration.
   (use-package mini-modeline
     :diminish mini-modeline-mode
   )
-
-  (require 'awesome-tray)
-  ;; module setup
-  ;;(setq awesome-tray-active-modules '(
-  ;;                                    "evil" "location" "file-path" "mode-name" "git"
-  ;;                                    ))
-
-  ;;(setq awesome-tray-git-show-status t  ; "show current file status on the git module"
-  ;;      awesome-tray-evil-show-mode t   ; "show current evil mode in the evil module"
-  ;;      awesome-tray-evil-show-macro t  ; "show recording macro in the evil module"
-  ;;)
-
-  ;; reload on theme change
-  ;(add-hook 'after-load-theme-hook (lambda () (awesome-tray-enable)))
 #+end_src
 
 *** hl-todo
