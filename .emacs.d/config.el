@@ -78,6 +78,18 @@
   (lisp-interaction-mode))
   ;;(insert initial-scratch-message))
 
+(defun create-scratch-buffer-org nil
+  "create a scratch org mode buffer"
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*scratch-org-buffer*"))
+  (org-mode))
+
+(defun create-scratch-buffer-tex nil
+  "create a scratch tex mode buffer"
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*scratch-tex-buffer*"))
+  (tex-mode))
+
 (defun full-auto-save ()
   (interactive)
   (save-excursion
@@ -285,17 +297,48 @@
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   :custom (
            (inhibit-start-screen t)
-           ;(inital-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+           ;; TODO: dashboard-banner-logo-title, set some cool quote/s up
+           ;; TODO: dashboard-startup-banner, maybe set up a custom picture
+           (dashboard-startup-banner 4)
            (dashboard-set-init-info nil)
-           (dashboard-set-footer nil)
-           (dashboard-set-heading-icons t)
            (dashboard-center-content t)
+           (dashboard-set-footer nil)
            (dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+           ;; TODO: edit the names for these (dashboard-item-names)
            (dashboard-items '(
                               (recents . 5)
                               (projects . 10)
                               ))
+           ;; icons
+           (dashboard-icon-type 'all-the-icons)
+           (dashboard-set-heading-icons t)
+           (dashboard-set-file-icons t)
+
+           ;; agenda
+           (dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
            (dashboard-week-agenda t)
+
+           ;; navigator buttons
+           (dashboard-set-navigator t)
+           (dashboard-navigator-buttons
+                 `(
+
+                   ((""
+                     "org buffer"
+                     "open a scratch org buffer"
+                     (lambda (&rest _) (create-scratch-buffer-org)))
+
+                    (""
+                     "tex buffer"
+                     "open a scratch tex buffer"
+                     (lambda (&rest _) (create-scratch-buffer-tex)))
+
+                    (""
+                     "config.org"
+                     "open config.org"
+                     (lambda (&rest _) (config-visit)))
+
+                    )))
            ))
 
 (use-package ivy
@@ -327,7 +370,7 @@
   (global-set-key "\C-s" 'swiper))
 
 (use-package projectile
-  ;:diminish (projectile-mode . "Proj.")
+  :diminish (projectile-mode . "Proj.")
 )
 (use-package counsel-projectile
   :after projectile
@@ -359,9 +402,20 @@
 (use-package which-key
   :config
   (setq which-key-show-early-on-C-h t
-        which-key-popup-type 'frame
+        which-key-idle-delay 3000
+        which-key-idle-secondary-delay 0.05
         )
+  (which-key-mode)
+  (which-key-setup-side-window-right-bottom)
 )
+
+(use-package pdf-tools
+  :ensure t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-created-annotations t))
 
 (use-package tree-sitter
   :config
@@ -371,10 +425,11 @@
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (use-package yasnippet
-  ;:diminish yas-minor-mode
+  :diminish yas-minor-mode
   )
 
 (use-package company
+  :diminish company-mode
   :hook (prog-mode . company-mode)
   :init
   (setq company-minimum-prefix-length 1
@@ -393,6 +448,7 @@
         ))
 
 (use-package company-box
+  :diminish company-box-mode
   :hook (company-mode . company-box-mode))
 
 (use-package company-quickhelp
@@ -521,6 +577,28 @@
   :commands (markdown-mode gfm-mode)
   :init
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
+
+(use-package tex
+  :ensure auctex 
+  :config
+  ;; emacswiki recommendations
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (setq reftex-plug-into-AUCTeX t)
+
+  ;; https://emacs.stackexchange.com/a/19475
+
+  ;; Use pdf-tools to open PDF files
+  (setq-default TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-source-correlate-start-server t)
+
+  ;; Update PDF buffers after successful LaTeX runs
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer)
+  )
 
 (setq custom-file "/home/hydra/.emacs.d/custom.el")
 (when (file-exists-p custom-file)

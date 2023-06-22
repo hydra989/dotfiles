@@ -17,7 +17,7 @@
     xfce.thunar-archive-plugin
     scrot
     feh
-    keepassxc # for old passwords
+    keepassxc # for old passwords, i've since
     bitwarden # migrated to this
     zathura
     pywal
@@ -26,6 +26,7 @@
     discord
     betterdiscordctl
     connman-gtk
+    obsidian
 
     # === media ===
     calibre
@@ -62,6 +63,9 @@
     gopls
     # java ===
     jdk11
+    # latex ===
+    texlive.combined.scheme-full
+    auctex
 
     # === tui ===
     tty-clock
@@ -74,21 +78,17 @@
     cmatrix
     comma
     warpd
-    calcurse
     cbonsai
 
     # === games ===
     dwarf-fortress
     cataclysm-dda
-    heroic
     lutris
+    heroic
     wineWowPackages.stagingFull
+    winetricks
     protonup-ng
     protontricks
-
-    # === dependencies ===
-    ghostscript
-    bc
 
     # === custom packages ===
     deity

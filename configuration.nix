@@ -1,9 +1,12 @@
 { pkgs, ... }: {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1u"
+  ];
+
   networking = {
     useDHCP = false;
-    wireless.iwd.enable = true;
   };
 
 	sound = {
@@ -45,7 +48,7 @@
 
   environment = {
     # bootstrap
-    systemPackages = with pkgs; [ home-manager git gh github-desktop ];
+    systemPackages = with pkgs; [ home-manager git gh ];
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
@@ -95,7 +98,6 @@
       material-icons
       material-design-icons
       unifont
-      comic-mono
     ];
   };
 
@@ -122,7 +124,6 @@
     emacs = {
       package = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs:
         with epkgs; [
-          # packages.init.el
           use-package
           diminish
           avy
@@ -130,17 +131,6 @@
           linum-relative
           magit
           magit-todos
-          evil
-          evil-commentary
-          evil-collection
-          evil-snipe
-          undo-fu
-          evil-mc
-          evil-org
-          cyberpunk-theme
-          monokai-pro-theme
-          ef-themes
-          theme-magic
           all-the-icons
           mini-modeline
           hl-todo
@@ -154,15 +144,36 @@
           projectile
           counsel-projectile
           treemacs
-          treemacs-evil
           lsp-treemacs
           treemacs-all-the-icons
           treemacs-magit
           vterm
           multiple-cursors
-          toc-org
           which-key
+          pdf-tools
+
+          # themes
+          cyberpunk-theme
+          monokai-pro-theme
+          ef-themes
+          theme-magic
+
+          # org
           org-superstar
+          toc-org
+
+          # latex
+          latex-preview-pane
+
+          # evil
+          evil
+          evil-commentary
+          evil-collection
+          evil-snipe
+          undo-fu
+          evil-mc
+          evil-org
+          treemacs-evil
 
           # lsp
           tree-sitter
@@ -201,7 +212,7 @@
   users.users.hydra = {
     isNormalUser = true;
     extraGroups =
-      [ "wheel" "networkmanager" "video" "audio" "libvirtd" "docker" ];
+      [ "wheel" "video" "audio" "libvirtd" "docker" ];
     initialPassword = "rorschach";
     shell = pkgs.zsh;
   };

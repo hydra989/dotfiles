@@ -11,9 +11,8 @@
     loader = {
       grub = {
         enable = true;
-        version = 2;
         device = "nodev";
-        useOSProber = true;
+        #useOSProber = true;
         theme = pkgs.nixos-grub2-theme;
       };
       efi.canTouchEfiVariables = true;

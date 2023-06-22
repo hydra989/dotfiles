@@ -55,7 +55,7 @@
       rule 'Tor Browser'	  state=floating
 
       # steam tag
-      rule Steam   desktop=4  state=floating
+      rule steam   desktop=4  state=floating
       rule heroic  desktop=4  state=floating
       rule Lutris  desktop=4  state=floating
       # skyrim mod organizer

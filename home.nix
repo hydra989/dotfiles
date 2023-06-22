@@ -11,7 +11,6 @@
       ".vimrc".source = ./.vimrc;
       ".wallpaper".source = ./.wallpaper;
       ".emacs.d/init.el".source = ./.emacs.d/init.el;
-      ".emacs.d/config.org".source = ./.emacs.d/config.org;
     };
 
     sessionVariables = {
