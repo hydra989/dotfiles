@@ -13,6 +13,7 @@
   home.packages = with pkgs; [
     # === gui ===
     firefox
+    chromium
     xfce.thunar
     xfce.thunar-archive-plugin
     scrot
@@ -37,10 +38,11 @@
     tidal-hifi
 
     # === dev tools ===
+    git
+    gh
     virt-manager
     docker
     nixpkgs-review
-    vscodium-fhs
     # kvm-osx ===
     libguestfs
     p7zip
@@ -66,6 +68,10 @@
     # latex ===
     texlive.combined.scheme-full
     auctex
+    # js/typescript ===
+    nodejs
+    nodePackages_latest.typescript
+    nodePackages_latest.typescript-language-server
 
     # === tui ===
     tty-clock

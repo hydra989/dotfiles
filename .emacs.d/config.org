@@ -679,8 +679,10 @@ TODO: eglot comes bundled with Emacs 29.
     :init
     ;; hooks for individual languages
     (add-hook 'c-mode-hook 'lsp)
+    (add-hook 'typescript-mode-hook 'lsp)
+    (add-hook 'rust-mode-hook 'lsp)
     ;; hooks for other modes thait tie into lsp-mode
-    (add-hook 'prog-mode-hook	'yas-minor-mode)
+    (add-hook 'prog-mode-hook 'yas-minor-mode)
     :config
 
     ;; yasnippet loads prior to this
@@ -779,6 +781,20 @@ TODO: eglot comes bundled with Emacs 29.
     :defer t
     :init
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+#+end_src
+
+*** typescript.el
+
+#+begin_src emacs-lisp
+  (use-package typescript-mode
+    :ensure t)
+#+end_src
+
+*** rust-mode
+
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :ensure t)
 #+end_src
 
 

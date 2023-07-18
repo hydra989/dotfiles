@@ -413,7 +413,7 @@
   :ensure t
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :config
-  (pdf-tools-install)
+  (pdf-loader-install)
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-annot-activate-created-annotations t))
 
@@ -468,8 +468,10 @@
   :init
   ;; hooks for individual languages
   (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'typescript-mode-hook 'lsp)
+  (add-hook 'rust-mode-hook 'lsp)
   ;; hooks for other modes thait tie into lsp-mode
-  (add-hook 'prog-mode-hook	'yas-minor-mode)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
   :config
 
   ;; yasnippet loads prior to this
@@ -541,6 +543,12 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
+(use-package typescript-mode
+  :ensure t)
+
+(use-package rust-mode
+  :ensure t)
+
 (setq
   org-edit-src-content-indentation 2
   org-hide-emphasis-markers t         ;; hide * and whatnot
@@ -588,6 +596,12 @@
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX t)
+
+  (setq TeX-PDF-mode t)
+
+  ;; i want the option to open a pdf in zathura too
+  (add-to-list 'TeX-view-program-selection
+               '(output-pdf "Zathura"))
 
   ;; https://emacs.stackexchange.com/a/19475
 
