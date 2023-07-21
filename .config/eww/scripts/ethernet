@@ -1,7 +1,0 @@
-#!/bin/sh
-
-symbol() {
-    [ $(cat /sys/class/net/enp42s0/operstate) = up ] && echo 
-}
-
-[ "$1" = "icon" ] && symbol && exit

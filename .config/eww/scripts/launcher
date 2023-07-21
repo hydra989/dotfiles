@@ -1,5 +1,0 @@
-#!/bin/sh
-
-rofi -show-icons \
-     -modi "drun" \
-     -show "drun" \
