@@ -1,33 +1,25 @@
 { pkgs, ... }: {
   imports = [
     ./alacritty
-    ./bspwm
-    ./eww
     ./neovim
     ./picom
     ./rofi
-    ./sxhkd
     ./zsh
   ];
 
   home.packages = with pkgs; [
     # === gui ===
     firefox
-    chromium
     xfce.thunar
     xfce.thunar-archive-plugin
     scrot
-    feh
     keepassxc # for old passwords, i've since
     bitwarden # migrated to this
     zathura
     pywal
     arandr
-    brightnessctl
     discord
     betterdiscordctl
-    connman-gtk
-    obsidian
 
     # === media ===
     calibre
@@ -85,6 +77,7 @@
     comma
     warpd
     cbonsai
+    fzf
 
     # === games ===
     dwarf-fortress

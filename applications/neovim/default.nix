@@ -1,11 +1,8 @@
-{ ... }: {
-  programs.neovim = { enable = true; };
-
-  home.file."/.config/nvim/init.vim" = {
-    text = ''
-      set runtimepath^=~/.vim runtimepath+=~/.vim/after
-      let &packpath = &runtimepath
-      source ~/.vimrc
-    '';
+{ pkgs, ... }:
+{
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
   };
 }

@@ -7,18 +7,21 @@
 
   networking = {
     useDHCP = false;
+    networkmanager = {
+      enable = true;
+    };
   };
 
-	sound = {
-		enable = true;
-		mediaKeys = {
-			enable = true;
-			volumeStep = "5%";
-		};
-	};
+  sound = {
+    enable = true;
+      mediaKeys = {
+        enable = true;
+        volumeStep = "5%";
+      };
+  };
 
   hardware = {
-		opengl.enable = true;
+    opengl.enable = true;
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
 
@@ -48,7 +51,7 @@
 
   environment = {
     # bootstrap
-    systemPackages = with pkgs; [ home-manager git gh ];
+    systemPackages = with pkgs; [ home-manager git gh networkmanagerapplet ];
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
@@ -104,11 +107,6 @@
   services = {
     blueman.enable = true;
 
-    connman = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
-
     devmon.enable = true;
 
     printing.enable = true;
@@ -118,7 +116,15 @@
       layout = "us";
       displayManager.lightdm.enable = true;
 
-      windowManager.bspwm.enable = true;
+      desktopManager = {
+        xterm.enable = false;
+        xfce = {
+          enable = true;
+          enableXfwm = false;
+        };
+      };
+
+      windowManager.i3.enable = true;
     };
 
     emacs = {

@@ -1,11 +1,12 @@
 * dotfiles
 
 - *distro*: nixos
-- *wm*: bspwm
+- *de*: xfce
+- *wm*: i3
 - *dm*: lightdm
 - *compositor*: picom
-- *bar*: eww
-- *$EDITOR*: emacs{client}, neovim
+- *bar*: xfce4-panel
+- *$EDITOR*: neovim, emacs{client}
 - *terminal*: alacritty + tmux
 - *shell*: zsh + oh-my-zsh
 - *launcher*: rofi

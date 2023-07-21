@@ -6,9 +6,12 @@
     homeDirectory = "/home/hydra";
 
     file = {
+      # to ensure that directory doesn't become fully read-only
+      ".config/nvim/init.lua".source = ./.config/neovim/init.lua;
+      ".config/nvim/lua".source = ./.config/neovim/lua;
+
       ".tmux.conf".source = ./.tmux.conf;
       ".tmux-powerlinerc".source = ./.tmux-powerlinerc;
-      ".vimrc".source = ./.vimrc;
       ".wallpaper".source = ./.wallpaper;
       ".emacs.d/init.el".source = ./.emacs.d/init.el;
     };
@@ -20,6 +23,10 @@
     stateVersion = "22.11";
   };
 
+  xdg.configFile = {
+    "i3".source = ./.config/i3;
+  };
+
   gtk = {
     enable = true;
     theme = {
@@ -29,10 +36,6 @@
   };
 
   programs = {
-    eww = {
-      enable = true;
-      configDir = ./.config/eww;
-    };
     # redundant? also defined in configuration.nix
     zsh.enable = true;
   };
