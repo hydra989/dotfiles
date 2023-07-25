@@ -4,7 +4,10 @@ require("defaults").setup()
 require("theme").setup()
 
 -- individual plugin setups
-require("guess-indent").setup()
+require("config.alpha").setup()
 require("config.chadtree").setup()
+require("config.lualine").setup()
 require("config.lspconfig").setup()
 require("config.neogit").setup()
+require("config.telescope").setup()
+require("config.treesitter").setup()

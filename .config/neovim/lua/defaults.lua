@@ -23,6 +23,10 @@ function M.setup()
     set number relativenumber
     set mouse=a
     set expandtab
+    set shiftwidth=4 smarttab
+    set tabstop=8 softtabstop=0
+    set autoindent
+    set backspace=indent,eol,start
 
     nnoremap j gj
     nnoremap k gk

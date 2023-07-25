@@ -35,6 +35,7 @@
     virt-manager
     docker
     nixpkgs-review
+    tree-sitter
     # kvm-osx ===
     libguestfs
     p7zip
@@ -46,6 +47,7 @@
     python3
     python3Packages.pip
     python3Packages.python-lsp-server
+    virtualenv
     pylint
     # c/c++ ===
     gcc

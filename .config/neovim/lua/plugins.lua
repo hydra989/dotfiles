@@ -36,12 +36,32 @@ function M.setup()
    local function plugins(use)
       use { "wbthomason/packer.nvim" }
 
+      -- telescope
+      use { "nvim-telescope/telescope.nvim" }
+      use { "xiyaowong/telescope-emoji.nvim" }
+
       use { "ms-jpq/coq_nvim" }
       use { "ms-jpq/chadtree" }
-      use { "nmac427/guess-indent.nvim" }
+
+      -- appearance
+      use { "goolord/alpha-nvim" }
+      use { "folke/todo-comments.nvim" }
+      use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+      }
 
       -- lsp
       use { "neovim/nvim-lspconfig" }
+
+      -- languages
+      use {
+         'nvim-treesitter/nvim-treesitter',
+         run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true})
+            ts_update()
+         end,
+      }
 
       -- magit replacement
       use {
