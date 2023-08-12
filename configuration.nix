@@ -51,7 +51,7 @@
 
   environment = {
     # bootstrap
-    systemPackages = with pkgs; [ home-manager git gh networkmanagerapplet ];
+    systemPackages = with pkgs; [ home-manager git gh networkmanagerapplet i3ipc-glib xfce.xfce4-i3-workspaces-plugin ];
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];

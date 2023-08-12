@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   imports = [
     ./alacritty
-    ./neovim
     ./picom
+    ./neovim
     ./rofi
     ./zsh
   ];
@@ -10,16 +10,34 @@
   home.packages = with pkgs; [
     # === gui ===
     firefox
-    xfce.thunar
     xfce.thunar-archive-plugin
     scrot
     keepassxc # for old passwords, i've since
     bitwarden # migrated to this
     zathura
     pywal
-    arandr
     discord
     betterdiscordctl
+    obsidian
+    feh
+    notion-app-enhanced
+    tutanota-desktop
+
+    # === tui ===
+    tty-clock
+    neofetch
+    tor
+    killall
+    unzip
+    lm_sensors
+    tmux
+    cmatrix
+    comma
+    warpd
+    cbonsai
+    fzf
+    calcurse
+    neomutt
 
     # === media ===
     calibre
@@ -66,20 +84,6 @@
     nodejs
     nodePackages_latest.typescript
     nodePackages_latest.typescript-language-server
-
-    # === tui ===
-    tty-clock
-    neofetch
-    tor
-    killall
-    unzip
-    lm_sensors
-    tmux
-    cmatrix
-    comma
-    warpd
-    cbonsai
-    fzf
 
     # === games ===
     dwarf-fortress

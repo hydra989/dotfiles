@@ -12,7 +12,8 @@
 - *launcher*: rofi
 - *browser*: firefox
 
-My emacs configuration is literate; find its .org file [[https://github.com/hhydraa/dotfiles/blob/master/.emacs.d/config.org][here]].
+My emacs configuration is literate; find its .org file [[https://github.com/hhydraa/dotfiles/blob/master/.emacs.d/config.org][here]]. It's stability/usefulness isn't guaranteed,
+as I primarily use neovim anymore.
 
 Wallpapers I collect over time, so note that they aren't mine/I didn't make them.
 I've tried to collect their sources in a text file over time, but it'll likely

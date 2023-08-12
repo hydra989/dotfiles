@@ -21,7 +21,6 @@ function M.setup()
     set splitright
     set clipboard=unnamed
     set number relativenumber
-    set mouse=a
     set expandtab
     set shiftwidth=4 smarttab
     set tabstop=8 softtabstop=0
