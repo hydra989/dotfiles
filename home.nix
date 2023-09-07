@@ -20,7 +20,7 @@
       CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
     };
 
-    stateVersion = "22.11";
+    stateVersion = "23.05";
   };
 
   xdg.configFile = {

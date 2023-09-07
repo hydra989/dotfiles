@@ -38,6 +38,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    trustedUsers = [ "root" "hydra" ];
   };
 
   # steam doesn't have a home-manager module
@@ -92,7 +93,7 @@
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       dejavu_fonts
       hack-font
       terminus_font
@@ -226,5 +227,5 @@
   # localization/defaults
   time.timeZone = "America/New_York";
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

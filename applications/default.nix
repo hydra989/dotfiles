@@ -22,6 +22,7 @@
     feh
     notion-app-enhanced
     tutanota-desktop
+    netflix
 
     # === tui ===
     tty-clock
@@ -37,6 +38,7 @@
     cbonsai
     fzf
     calcurse
+    calcure
     neomutt
 
     # === media ===
@@ -84,6 +86,8 @@
     nodejs
     nodePackages_latest.typescript
     nodePackages_latest.typescript-language-server
+    # lua ===
+    lua-language-server
 
     # === games ===
     dwarf-fortress
