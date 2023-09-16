@@ -21,9 +21,6 @@
     xserver = {
       videoDrivers = [ "amdgpu" ];
       libinput.enable = true;
-
-      # lxqt
-      desktopManager.gnome.enable = true;
     };
 
     power-profiles-daemon.enable = false;

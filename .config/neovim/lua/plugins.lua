@@ -38,7 +38,7 @@ function M.setup()
 
         -- telescope
         use { "nvim-telescope/telescope.nvim" }
-        -- use { "xiyaowong/telescope-emoji.nvim" }
+        use { "xiyaowong/telescope-emoji.nvim" }
 
         use { "ms-jpq/coq_nvim" }
         use { "ms-jpq/coq.artifacts" }

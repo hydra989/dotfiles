@@ -1,23 +1,58 @@
 local M = {}
 
 function M.setup()
-    vim.cmd [[
-        let g:coq_settings = { 'auto_start': v:true }
-    ]]
+    vim.g.coq_settings = {
+        auto_start = 'shut-up',
+    }
 
     local lspconfig = require('lspconfig')
     local coq = require('coq')
 
-    local on_attach = function(client, bufnr)
-        coq.lsp_ensure_capabilities()
-    end
+    lspconfig.gopls.setup { coq.lsp_ensure_capabilities() }
+    lspconfig.jdtls.setup { coq.lsp_ensure_capabilities()  }
 
-    lspconfig.gopls.setup { on_attach = on_attach }
-    lspconfig.jdtls.setup { on_attach = on_attach }
-    lspconfig.nil_ls.setup { on_attach = on_attach }
-    lspconfig.pylsp.setup { on_attach = on_attach }
-    lspconfig.tsserver.setup { on_attach = on_attach }
-    lspconfig.lua_ls.setup { on_attach = on_attach }
+    lspconfig.nil_ls.setup {
+        settings = {
+            ['nil'] = {
+                testSetting = 42,
+                formatting = {
+                    command = { "nixpkgs-fmt" },
+                },
+            },
+        },
+        coq.lsp_ensure_capabilities()
+    }
+
+    lspconfig.pylsp.setup {
+        settings = {
+            pylsp = {
+                plugins = {
+                    pylint = {
+                        enabled = true,
+                    },
+                    flake8 = {
+                        enabled = true,
+                    },
+                    rope_completion = {
+                        enabled = true,
+                    },
+                },
+            },
+        },
+        coq.lsp_ensure_capabilities()
+    }
+    lspconfig.tsserver.setup { coq.lsp_ensure_capabilities() }
+
+    lspconfig.lua_ls.setup {
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = {'vim'},
+                },
+            },
+        },
+        coq.lsp_ensure_capabilities()
+    }
 
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)

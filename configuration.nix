@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1u"
-  ];
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
 
   networking = {
     useDHCP = false;
@@ -14,10 +15,10 @@
 
   sound = {
     enable = true;
-      mediaKeys = {
-        enable = true;
-        volumeStep = "5%";
-      };
+    mediaKeys = {
+      enable = true;
+      volumeStep = "5%";
+    };
   };
 
   hardware = {
@@ -38,21 +39,48 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    trustedUsers = [ "root" "hydra" ];
+    settings.trusted-users = [ "root" "hydra" ];
   };
 
-  # steam doesn't have a home-manager module
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+  programs = {
+    dconf.enable = true;
+    steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+    };
+    zsh.enable = true;
   };
-
-  programs.zsh.enable = true;
 
   environment = {
     # bootstrap
-    systemPackages = with pkgs; [ home-manager git gh networkmanagerapplet i3ipc-glib xfce.xfce4-i3-workspaces-plugin ];
+    systemPackages = with pkgs; [
+        home-manager
+        git
+        gh
+
+        gnome-extension-manager
+        gnomeExtensions.forge
+    ];
+
+    gnome.excludePackages = (with pkgs; [
+        gnome-photos
+        gnome-tour
+    ]) ++ (with pkgs.gnome; [
+        cheese
+        gnome-music
+        gnome-terminal
+        gedit
+        epiphany
+        geary
+        evince
+        gnome-characters
+        totem
+        tali
+        iagno
+        hitori
+        atomix
+    ]);
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
@@ -69,6 +97,8 @@
       # note: this doesn't replace PATH, it just adds this to it
       PATH = [ "\${XDG_BIN_HOME}" ];
     };
+
+    variables.EDITOR = "nvim";
   };
 
   virtualisation = {
@@ -80,9 +110,6 @@
     # virt-manager
     libvirtd.enable = true;
   };
-
-  # also for virt-manager
-  programs.dconf.enable = true;
 
   # for osx-kvm
   boot.extraModprobeConfig = ''
@@ -115,97 +142,14 @@
     xserver = {
       enable = true;
       layout = "us";
-      displayManager.lightdm.enable = true;
+      displayManager.gdm.enable = true;
 
       desktopManager = {
         xterm.enable = false;
-        xfce = {
+        gnome = {
           enable = true;
-          enableXfwm = false;
         };
       };
-
-      windowManager.i3.enable = true;
-    };
-
-    emacs = {
-      package = ((pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs:
-        with epkgs; [
-          use-package
-          diminish
-          avy
-          bufler
-          linum-relative
-          magit
-          magit-todos
-          all-the-icons
-          mini-modeline
-          hl-todo
-          dashboard
-          ivy
-          flx
-          ivy-rich
-          all-the-icons-ivy-rich
-          counsel
-          swiper
-          projectile
-          counsel-projectile
-          treemacs
-          lsp-treemacs
-          treemacs-all-the-icons
-          treemacs-magit
-          vterm
-          multiple-cursors
-          which-key
-          pdf-tools
-
-          # themes
-          cyberpunk-theme
-          monokai-pro-theme
-          ef-themes
-          theme-magic
-
-          # org
-          org-superstar
-          toc-org
-
-          # latex
-          latex-preview-pane
-
-          # evil
-          evil
-          evil-commentary
-          evil-collection
-          evil-snipe
-          undo-fu
-          evil-mc
-          evil-org
-          treemacs-evil
-
-          # lsp
-          tree-sitter
-          tree-sitter-langs
-          lsp-ui
-          lsp-mode
-          company
-          company-box
-          company-quickhelp
-          flycheck
-          yasnippet
-
-          # language specific packages
-          fountain-mode
-          writeroom-mode
-          markdown-mode
-          yaml-mode
-          dockerfile-mode
-          nix-mode
-          go-mode
-          lua-mode
-          elpy
-          lsp-java
-        ]));
-      enable = true;
     };
   };
 
@@ -227,5 +171,5 @@
   # localization/defaults
   time.timeZone = "America/New_York";
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

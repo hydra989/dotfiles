@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   imports = [
     ./alacritty
-    ./picom
     ./neovim
     ./rofi
     ./zsh
@@ -10,19 +9,16 @@
   home.packages = with pkgs; [
     # === gui ===
     firefox
-    xfce.thunar-archive-plugin
     scrot
     keepassxc # for old passwords, i've since
     bitwarden # migrated to this
     zathura
     pywal
-    discord
-    betterdiscordctl
-    obsidian
-    feh
-    notion-app-enhanced
     tutanota-desktop
     netflix
+    spotify
+    discord
+    betterdiscordctl
 
     # === tui ===
     tty-clock
@@ -37,7 +33,6 @@
     warpd
     cbonsai
     fzf
-    calcurse
     calcure
     neomutt
 
@@ -47,7 +42,6 @@
     kodi
     torrential
     popcorntime
-    tidal-hifi
 
     # === dev tools ===
     git
@@ -63,12 +57,15 @@
     # nix ===
     nil
     nixfmt
+    nixpkgs-fmt
     # python
     python3
     python3Packages.pip
     python3Packages.python-lsp-server
     virtualenv
     pylint
+    python3Packages.rope
+    python3Packages.flake8
     # c/c++ ===
     gcc
     gdb
@@ -100,6 +97,6 @@
     protontricks
 
     # === custom packages ===
-    deity
+    #deity
   ];
 }

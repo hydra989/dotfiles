@@ -7,7 +7,7 @@
         bold.family = "Hack";
         italic.family = "Hack";
         bold_italic.family = "Hack";
-        size = 8.0;
+        size = 11.0;
       };
       window = {
         decorations = "none";
