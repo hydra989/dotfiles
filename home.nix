@@ -1,20 +1,16 @@
 { pkgs, ... }: {
-  imports = [ ./applications ];
-
   home = {
     username = "hydra";
     homeDirectory = "/home/hydra";
 
     file = {
-      ".config/nvim/init.lua".source = ./.config/neovim/init.lua;
-      ".config/nvim/lua".source = ./.config/neovim/lua;
-      ".tmux.conf".source = ./.tmux.conf;
-      ".tmux-powerlinerc".source = ./.tmux-powerlinerc;
-      ".wallpaper".source = ./.wallpaper;
+        ".config/hypr".source = ./.config/hypr;
+        ".config/nvim".source = ./.config/neovim;
     };
 
     sessionVariables = {
-      CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
+        CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
+        MOZ_ENABLE_WAYLAND = 1; # hint at firefox that we're on wayland
     };
 
     stateVersion = "23.11";

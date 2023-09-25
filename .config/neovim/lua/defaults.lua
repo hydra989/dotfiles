@@ -4,6 +4,7 @@ function M.setup()
     vim.cmd [[
         set encoding=utf-8
         syntax on
+        set termguicolors
         filetype plugin indent on
         let mapleader=" "
 

@@ -1,0 +1,12 @@
+snippet flake "Flake template"
+    {
+        description = "${0}:";
+
+        inputs = {
+            ${1}
+        }
+
+        outputs = { ${2} }: {
+            ${3}
+        };
+    }

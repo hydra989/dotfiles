@@ -1,54 +1,47 @@
 { pkgs, ... }: {
   imports = [
     ./alacritty
+    ./firefox
     ./neovim
-    ./rofi
+    ./waybar
     ./zsh
   ];
 
   home.packages = with pkgs; [
     # === gui ===
-    firefox
-    scrot
-    keepassxc # for old passwords, i've since
-    bitwarden # migrated to this
+    hyprpaper
+    albert
+    bitwarden
     zathura
-    pywal
     tutanota-desktop
     netflix
     spotify
     discord
     betterdiscordctl
+    libreoffice
+    networkmanagerapplet
 
     # === tui ===
-    tty-clock
     neofetch
-    tor
     killall
     unzip
-    lm_sensors
     tmux
-    cmatrix
     comma
     warpd
-    cbonsai
     fzf
     calcure
-    neomutt
 
     # === media ===
     calibre
     mpv
-    kodi
     torrential
     popcorntime
 
     # === dev tools ===
+    virt-manager
     git
     gh
-    virt-manager
     docker
-    nixpkgs-review
     tree-sitter
     # kvm-osx ===
     libguestfs
@@ -57,6 +50,7 @@
     # nix ===
     nil
     nixfmt
+    nixpkgs-review
     nixpkgs-fmt
     # python
     python3
@@ -88,13 +82,11 @@
 
     # === games ===
     dwarf-fortress
-    cataclysm-dda
-    lutris
     heroic
     wineWowPackages.stagingFull
     winetricks
-    protonup-ng
     protontricks
+    steam    
 
     # === custom packages ===
     #deity

@@ -7,6 +7,7 @@ function M.setup()
 
     local lspconfig = require('lspconfig')
     local coq = require('coq')
+    local luasnip = require('luasnip.loaders.from_snipmate').lazy_load({ paths = { "./snippets" }})
 
     lspconfig.gopls.setup { coq.lsp_ensure_capabilities() }
     lspconfig.jdtls.setup { coq.lsp_ensure_capabilities()  }

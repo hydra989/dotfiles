@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   programs.zsh = {
     enable = true;
@@ -7,7 +7,6 @@
 
     initExtra = ''
         SOURCEDIR=$HOME/s
-        (cat ${config.xdg.cacheHome}/wal/sequences &)
     '';
 
     history = {
@@ -20,11 +19,8 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "tmux" ];
+        plugins = [ "git" ];
         theme = "ys";
-        extraConfig = ''
-            ZSH_TMUX_AUTOSTART=true
-        '';
     };
 
     shellAliases = {
@@ -33,7 +29,6 @@
         unixporn = "clear && neofetch";
         rescan = "nmcli device wifi rescan";
         quit = "exit";
-        resemacs = "systemctl --user restart emacs";
         dots = "cd ~/s/dotfiles";
         fountainpdf = "find . -type f \( -name \"*.fountain\" \) -exec wrap pdf {} \;";
         rebuild = "sudo nixos-rebuild switch";

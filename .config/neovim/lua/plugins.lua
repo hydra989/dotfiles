@@ -36,13 +36,18 @@ function M.setup()
     local function plugins(use)
         use { "wbthomason/packer.nvim" }
 
+        use { "roxma/vim-tmux-clipboard" }
+
+        use { "ms-jpq/coq_nvim" }
+        use { "ms-jpq/chadtree" }
+
+        -- snippets
+        use { "L3MON4D3/LuaSnip" }
+        -- use { "ms-jpq/coq.artifacts" }
+
         -- telescope
         use { "nvim-telescope/telescope.nvim" }
         use { "xiyaowong/telescope-emoji.nvim" }
-
-        use { "ms-jpq/coq_nvim" }
-        use { "ms-jpq/coq.artifacts" }
-        use { "ms-jpq/chadtree" }
 
         -- appearance
         use { "goolord/alpha-nvim" }
@@ -70,8 +75,12 @@ function M.setup()
         }
 
         -- themes
-        use { "sigmavim/kyotonight" }
         use { "nyoom-engineering/oxocarbon.nvim" }
+        use { "EdenEast/nightfox.nvim" }
+        use { "vimoxide/vim-cinnabar" }
+        use {'ray-x/starry.nvim', setup = function() 
+        vim.g.starry_deep_black = true
+        end}
 
         if packer_bootstrap then
             print "Restart Neovim required after installation!"

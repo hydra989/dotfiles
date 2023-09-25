@@ -2,9 +2,7 @@
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nixpkgs = {
-    config.allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   networking = {
     useDHCP = false;
@@ -22,15 +20,12 @@
   };
 
   hardware = {
-    opengl.enable = true;
-    opengl.driSupport = true;
-    opengl.driSupport32Bit = true;
-
     bluetooth.enable = true;
 
-    pulseaudio = {
-      enable = true;
-      support32Bit = true;
+    opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
     };
   };
 
@@ -44,11 +39,12 @@
 
   programs = {
     dconf.enable = true;
-    steam = {
+
+    hyprland = {
         enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
+        xwayland.enable = true;
     };
+
     zsh.enable = true;
   };
 
@@ -57,30 +53,10 @@
     systemPackages = with pkgs; [
         home-manager
         git
-        gh
-
-        gnome-extension-manager
-        gnomeExtensions.forge
+    
+        libsForQt5.qt5.qtwayland
+        qt6.qtwayland
     ];
-
-    gnome.excludePackages = (with pkgs; [
-        gnome-photos
-        gnome-tour
-    ]) ++ (with pkgs.gnome; [
-        cheese
-        gnome-music
-        gnome-terminal
-        gedit
-        epiphany
-        geary
-        evince
-        gnome-characters
-        totem
-        tali
-        iagno
-        hitori
-        atomix
-    ]);
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
@@ -123,33 +99,48 @@
     packages = with pkgs; [
       dejavu_fonts
       hack-font
-      terminus_font
       font-awesome
       nerdfonts
       material-icons
       material-design-icons
-      unifont
+      jetbrains-mono
     ];
   };
 
   services = {
     blueman.enable = true;
 
-    devmon.enable = true;
+    dbus.enable = true;
+
+    udisks2.enable = true;
+
+    pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+    };
 
     printing.enable = true;
 
     xserver = {
       enable = true;
       layout = "us";
-      displayManager.gdm.enable = true;
-
-      desktopManager = {
-        xterm.enable = false;
-        gnome = {
-          enable = true;
-        };
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
       };
+    };
+  };
+
+  xdg = {
+    autostart.enable = true;
+    portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+            xdg-desktop-portal
+            xdg-desktop-portal-gtk
+            xdg-desktop-portal-hyprland
+        ];
     };
   };
 

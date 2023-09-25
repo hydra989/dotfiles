@@ -3,19 +3,58 @@
     enable = true;
     settings = {
       font = {
-        normal.family = "Hack";
-        bold.family = "Hack";
-        italic.family = "Hack";
-        bold_italic.family = "Hack";
+        normal.family = "JetBrains Mono";
+        bold.family = "JetBrains Mono";
+        italic.family = "JetBrains Mono";
+        bold_italic.family = "JetBrains Mono";
         size = 11.0;
       };
       window = {
         decorations = "none";
-        opacity = 0.9;
+        opacity = 0.8;
       };
       shell = {
         program = "zsh";
         args = [ "--login" ];
+      };
+
+      # oxocarbon-alacritty
+
+      colors = {
+        primary = {
+            background = "#161616";
+            foreground = "#ffffff";
+        };
+        search = {
+            matches = {
+                foreground = "CellBackground";
+                background = "#ee5396";
+            };
+            footer_bar = {
+                background = "#262626";
+                foreground = "#ffffff";
+            };
+        };
+        normal = {
+            black = "#262626";
+            magenta = "#ff7eb6";
+            green = "#42be65";
+            yellow = "#ffe97b";
+            blue = "#33b1ff";
+            red = "#ee5396";
+            cyan = "#3ddbd9";
+            white = "#dde1e6";
+        };
+        bright = {
+            black = "#393939";
+            magenta = "#ff7eb6";
+            green = "#42be65";
+            yellow = "#ffe97b";
+            blue = "#33b1ff";
+            red = "#ee5396";
+            cyan = "#3ddbd9";
+            white = "#ffffff";
+        };
       };
     };
   };
