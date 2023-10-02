@@ -45,6 +45,8 @@
                 "browser.tabs.searchclipboardfor.middleclick" = false;
                 "toolkit.tabbox.switchByScrolling" = true;
 
+                "browser.urlbar.suggest.pocket" = false;
+                "extensions.pocket.showHome" = false;
                 "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
             };
 

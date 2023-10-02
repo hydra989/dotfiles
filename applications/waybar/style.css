@@ -1,10 +1,25 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: 'JetBrains Mono';
+    font-family: 'Hack';
     font-size: 14px;
     box-shadow: none;
     text-shadow: none;
     transition-duration: 0s;
     min-height: 0;
+}
+
+#battery {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#pulseaudio {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#clock {
+    padding-left: 10px;
+    padding-right: 5px;
 }

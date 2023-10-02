@@ -22,6 +22,8 @@
   hardware = {
     bluetooth.enable = true;
 
+    enableAllFirmware = true;
+
     opengl = {
         enable = true;
         driSupport = true;
@@ -53,9 +55,13 @@
     systemPackages = with pkgs; [
         home-manager
         git
-    
+        gh
+
         libsForQt5.qt5.qtwayland
         qt6.qtwayland
+
+        # === custom packages ===
+        (pkgs.callPackage ./packages/deity.nix { })
     ];
 
     # as per zsh home-manager module
@@ -81,7 +87,7 @@
     # docker
     docker = {
       enable = true;
-      enableOnBoot = true;
+      enableOnBoot = false;
     };
     # virt-manager
     libvirtd.enable = true;
@@ -159,7 +165,6 @@
     shell = pkgs.zsh;
   };
 
-  # localization/defaults
   time.timeZone = "America/New_York";
 
   system.stateVersion = "23.11";

@@ -13,23 +13,23 @@
     albert
     bitwarden
     zathura
-    tutanota-desktop
     netflix
     spotify
     discord
     betterdiscordctl
     libreoffice
     networkmanagerapplet
+    planify
+    thunderbird
+    wlogout
 
     # === tui ===
     neofetch
     killall
     unzip
-    tmux
     comma
     warpd
     fzf
-    calcure
 
     # === media ===
     calibre
@@ -87,8 +87,6 @@
     winetricks
     protontricks
     steam    
-
-    # === custom packages ===
-    #deity
+    crispy-doom
   ];
 }

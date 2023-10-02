@@ -75,7 +75,7 @@ function M.setup()
         }
 
         -- themes
-        use { "nyoom-engineering/oxocarbon.nvim" }
+        use { "hhydraa/oxocarbon-black.nvim" }
         use { "EdenEast/nightfox.nvim" }
         use { "vimoxide/vim-cinnabar" }
         use {'ray-x/starry.nvim', setup = function() 

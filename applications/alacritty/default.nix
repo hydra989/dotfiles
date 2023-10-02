@@ -11,18 +11,18 @@
       };
       window = {
         decorations = "none";
-        opacity = 0.8;
+        #opacity = 0.8;
       };
       shell = {
         program = "zsh";
         args = [ "--login" ];
       };
 
-      # oxocarbon-alacritty
+      # oxocarbon-alacritty, tweaked for darker background
 
       colors = {
         primary = {
-            background = "#161616";
+            background = "#000000";
             foreground = "#ffffff";
         };
         search = {
@@ -31,12 +31,12 @@
                 background = "#ee5396";
             };
             footer_bar = {
-                background = "#262626";
+                background = "#000000";
                 foreground = "#ffffff";
             };
         };
         normal = {
-            black = "#262626";
+            black = "#000000";
             magenta = "#ff7eb6";
             green = "#42be65";
             yellow = "#ffe97b";
