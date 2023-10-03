@@ -28,7 +28,6 @@ My NixOS & home-manager configurations, managed as a flake.
   - nightingale.nix
   - songbird.nix
  - packages/ -> custom packages
-  - doom/ -> attempts to package a doom shareware wad file with crispy-doom
   - deity.nix -> daemon that emulates emacs' god-mode
  - sh/ -> miscellaneous scripts
  - wallpapers/ -> wallpaper collection, sources listed inside

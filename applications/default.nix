@@ -30,6 +30,7 @@
     comma
     warpd
     fzf
+    ripgrep
 
     # === media ===
     calibre
