@@ -3,6 +3,7 @@
     ./alacritty
     ./firefox
     ./neovim
+    ./virt-manager
     ./waybar
     ./zsh
   ];
@@ -20,12 +21,12 @@
     libreoffice
     networkmanagerapplet
     planify
-    thunderbird
     wlogout
+    xfce.thunar
+    xfce.thunar-archive-plugin
 
     # === tui ===
     neofetch
-    killall
     unzip
     comma
     warpd
@@ -42,7 +43,6 @@
     virt-manager
     git
     gh
-    docker
     tree-sitter
     # kvm-osx ===
     libguestfs

@@ -84,11 +84,6 @@
   };
 
   virtualisation = {
-    # docker
-    docker = {
-      enable = true;
-      enableOnBoot = false;
-    };
     # virt-manager
     libvirtd.enable = true;
   };

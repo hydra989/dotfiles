@@ -19,11 +19,13 @@ My NixOS & home-manager configurations, managed as a flake.
   - alacritty/
   - firefox/
   - neovim/
+  - virt-manager/
   - waybar/
   - zsh/
  - hardware/ -> nix configs for different machines, hardware-specific changes
   - nightingale.nix -> my desktop (r5 5600x, RTX 3060)
   - songbird.nix -> my laptop (r5 3500u, vega iGPU)
+  - serv.nix -> nextcloud/plex/*arr vm, work-in-progress
  - machines/ -> nix configs for different machines, software-specific changes
   - nightingale.nix
   - songbird.nix
