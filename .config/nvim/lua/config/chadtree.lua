@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  local chadtree = require('chadtree')
+  require('chadtree')
   vim.cmd [[
     nnoremap <leader>v <cmd>CHADopen<cr>
   ]]

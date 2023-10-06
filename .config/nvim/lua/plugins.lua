@@ -36,10 +36,10 @@ function M.setup()
     local function plugins(use)
         use { "wbthomason/packer.nvim" }
 
-        use { "roxma/vim-tmux-clipboard" }
-
         use { "ms-jpq/coq_nvim" }
         use { "ms-jpq/chadtree" }
+
+        use { "ggandor/leap.nvim" }
 
         -- snippets
         use { "L3MON4D3/LuaSnip" }
@@ -78,7 +78,7 @@ function M.setup()
         use { "hhydraa/oxocarbon-black.nvim" }
         use { "EdenEast/nightfox.nvim" }
         use { "vimoxide/vim-cinnabar" }
-        use {'ray-x/starry.nvim', setup = function() 
+        use {'ray-x/starry.nvim', setup = function()
         vim.g.starry_deep_black = true
         end}
 

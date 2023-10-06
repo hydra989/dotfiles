@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
     boot = {
-        grub = {
+        loader.grub = {
             enable = true;
             # for virt-manager vm install
             device = "/dev/vda";
@@ -40,18 +40,21 @@
     environment = {
         systemPackages = with pkgs; [
             git
+            vim
+            firefox
+            calibre
         ];
 
         etc."nextcloud-admin-pass".text = "password123";
     };
 
     networking = {
-        hostName = "plex";
+        hostName = "marv";
         networkmanager.enable = true;
     };
 
     services = {
-        # port 80
+        # localhost port 80
         nextcloud = {
             enable = true;
             package = pkgs.nextcloud27;
@@ -64,12 +67,13 @@
             config.adminpassFile = "/etc/nextcloud-admin-pass";
         };
 
-        # port 32400
+        # port 32400/web
         plex = {
             enable = true;
             openFirewall = true;
         };
 
+        # port 8787
         readarr = {
             enable = true;
             openFirewall = true;

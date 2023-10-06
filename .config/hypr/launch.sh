@@ -4,6 +4,6 @@
 
 hyprpaper &
 waybar &
-albert &
+QT_QPA_PLATFORM=xcb albert &
 nm-applet --indicator &
 blueman-applet &

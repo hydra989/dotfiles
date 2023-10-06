@@ -53,12 +53,12 @@
             ];
         };
 
-        plex = nixpkgs.lib.nixosSystem {
+        marv = nixpkgs.lib.nixosSystem {
             inherit system;
             inherit pkgs;
             modules = [
-                ./hardware/serv.nix
-                ./machines/serv.nix
+                ./hardware/marv.nix
+                ./machines/marv.nix
             ];
         };
       };

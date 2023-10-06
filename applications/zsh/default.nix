@@ -27,10 +27,9 @@
         clock = "tty-clock -c -t";
         reboot = "sudo reboot";
         unixporn = "clear && neofetch";
-        rescan = "nmcli device wifi rescan";
         quit = "exit";
         dots = "cd ~/s/dotfiles";
-        fountainpdf = "find . -type f \( -name \"*.fountain\" \) -exec wrap pdf {} \;";
+        dvim = "cd ~/s/dotfiles && vim";
         rebuild = "sudo nixos-rebuild switch";
     };
   };

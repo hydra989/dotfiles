@@ -2,7 +2,7 @@
   imports = [
     ./alacritty
     ./firefox
-    ./neovim
+    ./nvim
     ./virt-manager
     ./waybar
     ./zsh
@@ -24,6 +24,7 @@
     wlogout
     xfce.thunar
     xfce.thunar-archive-plugin
+    gnome-multi-writer
 
     # === tui ===
     neofetch
@@ -34,9 +35,7 @@
     ripgrep
 
     # === media ===
-    calibre
     mpv
-    torrential
     popcorntime
 
     # === dev tools ===
@@ -45,9 +44,9 @@
     gh
     tree-sitter
     # kvm-osx ===
-    libguestfs
-    p7zip
-    dmg2img
+    #libguestfs
+    #p7zip
+    #dmg2img
     # nix ===
     nil
     nixfmt
@@ -57,15 +56,11 @@
     python3
     python3Packages.pip
     python3Packages.python-lsp-server
-    virtualenv
     pylint
     python3Packages.rope
-    python3Packages.flake8
     # c/c++ ===
     gcc
     gdb
-    clang-tools
-    valgrind
     # go ===
     go
     gopls

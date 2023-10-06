@@ -7,12 +7,13 @@
             name = "Default";
 
             extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+                decentraleyes
                 vimium
                 ublock-origin
             ];
 
             settings = {
-                # taken from: 
+                # (partially) taken from: 
                 # https://shen.hong.io/nixos-for-philosophy-installing-firefox-latex-vscodium/
                 "dom.security.https_only_mode" = true;
                 "dom.security.https_only_mode_ever_enabled" = true;
@@ -48,6 +49,11 @@
                 "browser.urlbar.suggest.pocket" = false;
                 "extensions.pocket.showHome" = false;
                 "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+
+                # get rid of "sponsored" links as best as possible
+                "browser.newtabpage.activity-stream.showSponsored" = false;
+                "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+                "browser.urlbar.suggest.quicksuggest.sponsored" = false;
             };
 
             # user chrome copied from:

@@ -7,6 +7,7 @@
  - **shell**: zsh + oh-my-zsh
  - **terminal**: alacritty
  - **browser**: firefox
+ - **launcher**: albert
 
 My NixOS & home-manager configurations, managed as a flake.
 
@@ -25,10 +26,11 @@ My NixOS & home-manager configurations, managed as a flake.
  - hardware/ -> nix configs for different machines, hardware-specific changes
   - nightingale.nix -> my desktop (r5 5600x, RTX 3060)
   - songbird.nix -> my laptop (r5 3500u, vega iGPU)
-  - serv.nix -> nextcloud/plex/*arr vm, work-in-progress
+  - marv.nix -> nextcloud/plex/*arr server, work-in-progress
  - machines/ -> nix configs for different machines, software-specific changes
   - nightingale.nix
   - songbird.nix
+  - marv.nix
  - packages/ -> custom packages
   - deity.nix -> daemon that emulates emacs' god-mode
  - sh/ -> miscellaneous scripts

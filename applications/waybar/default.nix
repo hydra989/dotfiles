@@ -20,6 +20,7 @@
                     "battery"
                     "pulseaudio"
                     "clock"
+                    "custom/wlogout"
                 ];
 
 
@@ -71,6 +72,20 @@
                     };
                 };
 
+                "hyprland/workspaces" = {
+                    format = "{icon}";
+                    format-icons = {
+                        "1" = " ₁";
+                        "2" = " ₂";
+                        "3" = " ₃";
+                        "4" = " ₄";
+                        "5" = " ₅";
+                    };
+                    persistent-workspaces = {
+                        "*" = 5;
+                    };
+                };
+
                 "pulseaudio" = {
                     format = "{icon} {volume}%";
                     format-alt = "{icon}";
@@ -82,10 +97,15 @@
                     tooltip = false;
                 };
 
-                "tray"= {
+                "tray" = {
                     icon-size = 16;
                     spacing = 4;
                     reverse-direction = true;
+                };
+
+                "custom/wlogout" = {
+                    format = "⏻";
+                    on-click = "wlogout";
                 };
             };
         };

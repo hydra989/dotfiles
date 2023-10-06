@@ -1,44 +1,49 @@
 { pkgs, ... }:
 {
-  networking = {
-    hostName = "songbird";
-    interfaces.wlan0.useDHCP = true;
-  };
-
-  boot.initrd.kernelModules = [ "amdgpu" ];
-
-  powerManagement.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    powertop
-  ];
-
-  services = {
-    # for display brightness keys
-    illum.enable = true;
-
-    # amdgpu
-    xserver = {
-      videoDrivers = [ "amdgpu" ];
-      libinput.enable = true;
+    networking = {
+        hostName = "songbird";
+        interfaces.wlan0.useDHCP = true;
     };
 
-    power-profiles-daemon.enable = false;
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC="performance";
-        CPU_SCALING_GOVERNOR_ON_BAT="schedutil";
-      };
-    };
-    upower.enable = true;
-  };
+    boot.initrd.kernelModules = [ "amdgpu" ];
 
-  hardware.opengl = {
-    extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-opencl-runtime
-      amdvlk
-    ];
-  };
+    powerManagement = {
+        enable = true;
+        powertop.enable = true;
+    };
+
+    services = {
+        # for display brightness keys
+        illum.enable = true;
+
+        # amdgpu
+        xserver = {
+            videoDrivers = [ "amdgpu" ];
+            libinput.enable = true;
+        };
+
+        upower.enable = true;
+    };
+
+    services.auto-cpufreq = {
+        enable = true;
+        settings = {
+            battery = {
+                governor = "powersave";
+                turbo = "never";
+            };
+            charger = {
+                governor = "performance";
+                turbo = "auto";
+            };
+        };
+    };
+
+    hardware.opengl = {
+        extraPackages = with pkgs; [
+            rocm-opencl-icd
+            rocm-opencl-runtime
+            amdvlk
+        ];
+    };
 }

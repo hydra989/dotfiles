@@ -5,7 +5,7 @@
 
     file = {
         ".config/hypr".source = ./.config/hypr;
-        ".config/nvim".source = ./.config/neovim;
+        ".config/nvim".source = ./.config/nvim;
     };
 
     sessionVariables = {
