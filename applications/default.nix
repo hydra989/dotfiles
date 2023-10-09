@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     # === gui ===
+    swaynotificationcenter
     hyprpaper
     albert
     bitwarden
@@ -31,7 +32,6 @@
     unzip
     comma
     warpd
-    fzf
     ripgrep
 
     # === media ===
@@ -60,7 +60,7 @@
     python3Packages.rope
     # c/c++ ===
     gcc
-    gdb
+    clang-tools
     # go ===
     go
     gopls
@@ -69,10 +69,6 @@
     # latex ===
     texlive.combined.scheme-full
     auctex
-    # js/typescript ===
-    nodejs
-    nodePackages_latest.typescript
-    nodePackages_latest.typescript-language-server
     # lua ===
     lua-language-server
 

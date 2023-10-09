@@ -7,3 +7,4 @@ waybar &
 QT_QPA_PLATFORM=xcb albert &
 nm-applet --indicator &
 blueman-applet &
+swaync &
