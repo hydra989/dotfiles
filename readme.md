@@ -20,6 +20,7 @@ My NixOS & home-manager configurations, managed as a flake.
   - alacritty/
   - firefox/
   - neovim/
+  - tmux/
   - virt-manager/
   - waybar/
   - zsh/
