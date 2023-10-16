@@ -6,6 +6,7 @@ require("theme").setup()
 -- individual plugin setups
 require("config.alpha").setup()
 require("config.chadtree").setup()
+require("config.leap").setup()
 require("config.lualine").setup()
 require("config.lspconfig").setup()
 require("config.neogit").setup()

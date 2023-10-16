@@ -3,6 +3,7 @@
     ./alacritty
     ./firefox
     ./nvim
+    ./tmux
     ./virt-manager
     ./waybar
     ./zsh
@@ -25,7 +26,7 @@
     wlogout
     xfce.thunar
     xfce.thunar-archive-plugin
-    gnome-multi-writer
+    swayimg
 
     # === tui ===
     neofetch

@@ -25,9 +25,9 @@
     enableAllFirmware = true;
 
     opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
     };
   };
 
@@ -43,8 +43,8 @@
     dconf.enable = true;
 
     hyprland = {
-        enable = true;
-        xwayland.enable = true;
+      enable = true;
+      xwayland.enable = true;
     };
 
     zsh.enable = true;
@@ -53,15 +53,17 @@
   environment = {
     # bootstrap
     systemPackages = with pkgs; [
-        home-manager
-        git
-        gh
+      home-manager
+      git
+      gh
+      gnome-multi-writer
+      greetd.tuigreet
 
-        libsForQt5.qt5.qtwayland
-        qt6.qtwayland
+      libsForQt5.qt5.qtwayland
+      qt6.qtwayland
 
-        # === custom packages ===
-        (pkgs.callPackage ./packages/deity.nix { })
+      # === custom packages ===
+      (pkgs.callPackage ./packages/deity.nix { })
     ];
 
     # as per zsh home-manager module
@@ -102,8 +104,6 @@
       hack-font
       font-awesome
       nerdfonts
-      material-icons
-      material-design-icons
       jetbrains-mono
     ];
   };
@@ -113,35 +113,51 @@
 
     dbus.enable = true;
 
+    greetd = {
+      enable = true;
+      settings = {
+        default_session.command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet \
+            --time \
+            --asterisks \
+            --user-menu \
+            --cmd Hyprland
+        '';
+      };
+    };
+
     udisks2.enable = true;
 
     pipewire = {
-        enable = true;
-        alsa.enable = true;
-        pulse.enable = true;
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
     };
 
     printing.enable = true;
+  };
 
-    xserver = {
-      enable = true;
-      layout = "us";
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
-    };
+  environment.etc."greetd/environments".text = '' hyprland '';
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   xdg = {
     autostart.enable = true;
     portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-            xdg-desktop-portal
-            xdg-desktop-portal-gtk
-            xdg-desktop-portal-hyprland
-        ];
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
     };
   };
 

@@ -7,7 +7,7 @@
     text-shadow: none;
     transition-duration: 0s;
     min-height: 0;
-    background: transparent;
+    background: #000000;
 }
 
 #battery {

@@ -4,13 +4,13 @@
     homeDirectory = "/home/hydra";
 
     file = {
-        ".config/hypr".source = ./.config/hypr;
-        ".config/nvim".source = ./.config/nvim;
+      ".config/hypr".source = ./.config/hypr;
+      ".config/nvim".source = ./.config/nvim;
     };
 
     sessionVariables = {
-        CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
-        MOZ_ENABLE_WAYLAND = 1; # hint at firefox that we're on wayland
+      CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
+      MOZ_ENABLE_WAYLAND = 1; # hint at firefox that we're on wayland
     };
 
     stateVersion = "23.11";
@@ -19,8 +19,8 @@
   gtk = {
     enable = true;
     iconTheme = {
-        name = "Papirus";
-        package = pkgs.papirus-icon-theme;
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme;
     };
     theme = {
       name = "Equilux";

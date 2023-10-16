@@ -27,6 +27,7 @@ function M.setup()
         set tabstop=8 softtabstop=0
         set autoindent
         set backspace=indent,eol,start
+        set shiftround
 
         nnoremap j gj
         nnoremap k gk
