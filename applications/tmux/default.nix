@@ -19,8 +19,9 @@ in
         disableConfirmationPrompt = true;
         keyMode = "vi";
         prefix = "C-a";
+        mouse = true;
         terminal = "alacritty";
-        shell = "\{pkgs.zsh}/bin/zsh";
+        shell = "${pkgs.zsh}/bin/zsh";
 
         plugins = [ 
             {
@@ -31,7 +32,9 @@ in
 
         extraConfig = ''
             bind | split-window -h
-            bind - split-wnindow -v
+            bind - split-window -v
+            unbind '"'
+            unbind %
 
             bind -n M-Left select-pane -L
             bind -n M-Right select-pane -R
@@ -39,6 +42,12 @@ in
             bind -n M-Down select-pane -D
 
             bind b set-option status
+
+            # statusbar
+            set -g status-position bottom
+            set -g status-style 'bg=default fg=colour137 dim'
+            set -g status-right-length 50
+            set -g status-left-length 20
         '';
     };
 }

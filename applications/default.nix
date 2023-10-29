@@ -1,53 +1,45 @@
-{ pkgs, ... }: {
+{ pkgs, lib, specialArgs, ... }: {
   imports = [
     ./alacritty
-    ./firefox
     ./nvim
     ./tmux
+    ./zsh
+  ] ++ lib.optionalAttrs specialArgs.isLinux [
+    ./firefox
     ./virt-manager
     ./waybar
-    ./zsh
   ];
+
+  nixpkgs.config = {
+    warpd = {
+      withWayland = true;
+      withX = false;
+    };
+  };
 
   home.packages = with pkgs; [
     # === gui ===
-    swaynotificationcenter
-    hyprpaper
-    albert
     bitwarden
     zathura
-    netflix
     spotify
     discord
     betterdiscordctl
     libreoffice
-    networkmanagerapplet
-    planify
-    wlogout
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    swayimg
+    vscodium
 
     # === tui ===
-    neofetch
-    unzip
-    comma
-    warpd
     ripgrep
+    eza
+    highlight
 
     # === media ===
     mpv
     popcorntime
 
     # === dev tools ===
-    virt-manager
     git
     gh
     tree-sitter
-    # kvm-osx ===
-    #libguestfs
-    #p7zip
-    #dmg2img
     # nix ===
     nil
     nixfmt
@@ -72,14 +64,39 @@
     auctex
     # lua ===
     lua-language-server
+    # js ===
+    nodejs
+    nodePackages.npm
+    biome
 
     # === games ===
-    dwarf-fortress
     heroic
     wineWowPackages.stagingFull
     winetricks
     protontricks
-    steam    
-    crispy-doom
+    steam
+  ] ++ lib.optionalAttrs specialArgs.isLinux [
+    # hyprland things
+
+    swaynotificationcenter
+    hyprpaper
+    swayimg
+    networkmanagerapplet
+    wlogout
+
+    albert
+    xfce.thunar
+    xfce.thunar-archive-plugin
+
+    # linux specifics
+
+    netflix
+    ranger
+    neofetch
+    warpd
+    comma
+    unzip
+    virt-manager
+    widevine-cdm
   ];
 }

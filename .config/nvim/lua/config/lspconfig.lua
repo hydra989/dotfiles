@@ -7,10 +7,10 @@ function M.setup()
 
     local lspconfig = require('lspconfig')
     local coq = require('coq')
-    local luasnip = require('luasnip.loaders.from_snipmate').lazy_load({ paths = { "./snippets" }})
 
+    lspconfig.biome.setup { coq.lsp_ensure_capabilities() }
     lspconfig.gopls.setup { coq.lsp_ensure_capabilities() }
-    lspconfig.jdtls.setup { coq.lsp_ensure_capabilities()  }
+    lspconfig.jdtls.setup { coq.lsp_ensure_capabilities() }
 
     lspconfig.nil_ls.setup {
         settings = {
@@ -42,7 +42,6 @@ function M.setup()
         },
         coq.lsp_ensure_capabilities()
     }
-    lspconfig.tsserver.setup { coq.lsp_ensure_capabilities() }
 
     lspconfig.lua_ls.setup {
         settings = {

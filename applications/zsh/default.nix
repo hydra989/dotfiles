@@ -31,6 +31,7 @@
         dots = "cd ~/s/dotfiles";
         dvim = "cd ~/s/dotfiles && vim";
         rebuild = "sudo nixos-rebuild switch";
+        ls = "eza --icons";
     };
   };
 }

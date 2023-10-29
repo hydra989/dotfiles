@@ -25,7 +25,12 @@
       homeConfigurations.hydra = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
+        extraSpecialArgs = {
+            isLinux = true;
+        };
+
         modules = [
+            # home.nix is specific to linux hosts
             ./home.nix
             ./applications
         ];
