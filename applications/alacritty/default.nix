@@ -7,7 +7,7 @@
         bold.family = "JetBrains Mono";
         italic.family = "JetBrains Mono";
         bold_italic.family = "JetBrains Mono";
-        size = 11.0;
+        size = 10.0;
       };
       window = {
         decorations = "none";
@@ -15,7 +15,10 @@
       };
       shell = {
         program = "zsh";
-        args = [ "--login" ];
+        #args = [ "-l" "-c" "tmux attach || tmux" ];
+      };
+      env = {
+        term = "alacritty-direct";
       };
 
       # oxocarbon-alacritty, tweaked for darker background

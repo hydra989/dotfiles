@@ -20,7 +20,6 @@ in
         keyMode = "vi";
         prefix = "C-a";
         mouse = true;
-        terminal = "alacritty";
         shell = "${pkgs.zsh}/bin/zsh";
 
         plugins = [ 
@@ -31,6 +30,8 @@ in
         ];
 
         extraConfig = ''
+            set -a terminal-overrides ",alacritty:RGB"
+
             bind | split-window -h
             bind - split-window -v
             unbind '"'
@@ -41,13 +42,13 @@ in
             bind -n M-Up select-pane -U
             bind -n M-Down select-pane -D
 
-            bind b set-option status
-
             # statusbar
-            set -g status-position bottom
-            set -g status-style 'bg=default fg=colour137 dim'
-            set -g status-right-length 50
-            set -g status-left-length 20
+            set-option -g status-style bg=default,fg=default
+            #set-option -g status-justify centre
+            set-option -g status-left '#[bg=default,fg=default,bold]#{?client_prefix,,  tmux  }#[bg=#698DDA,fg=black,bold]#{?client_prefix,  tmux  ,}'
+            #set-option -g status-right '#S'
+            set-option -g window-status-format ' #I:#W '
+            set-option -g window-status-current-format '#[bg=#698DDA,fg=default] #I:#W#{?window_zoomed_flag,  , }'
         '';
     };
 }

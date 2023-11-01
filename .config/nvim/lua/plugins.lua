@@ -36,12 +36,12 @@ function M.setup()
     local function plugins(use)
         use { "wbthomason/packer.nvim" }
 
+        use { "ms-jpq/chadtree" }
+
         -- themes
         use { "hhydraa/oxocarbon-black.nvim" }
         use { "vimoxide/vim-cinnabar" }
-        use { "ray-x/starry.nvim", setup = function()
-        vim.g.starry_deep_black = true
-        end}
+        use { "EdenEast/nightfox.nvim" }
 
         if packer_bootstrap then
             print "Restart Neovim required after installation!"

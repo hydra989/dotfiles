@@ -1,11 +1,12 @@
 { pkgs, lib, specialArgs, ... }: {
   imports = [
-    ./alacritty
+    #./alacritty
     ./nvim
     ./tmux
     ./zsh
   ] ++ lib.optionalAttrs specialArgs.isLinux [
     ./firefox
+    ./foot
     ./virt-manager
     ./waybar
   ];
