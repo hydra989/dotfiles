@@ -2,7 +2,15 @@
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.allowUnfreePredicate = _: true;
+    overlays = [
+        (import (builtins.fetchTarball {
+            url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+        }))
+    ];
+  };
 
   networking = {
     useDHCP = false;
@@ -23,6 +31,7 @@
     bluetooth.enable = true;
 
     enableAllFirmware = true;
+    enableRedistributableFirmware = true;
 
     opengl = {
       enable = true;
@@ -56,14 +65,13 @@
       home-manager
       git
       gh
-      gnome-multi-writer
       greetd.tuigreet
 
       libsForQt5.qt5.qtwayland
       qt6.qtwayland
 
       # === custom packages ===
-      (pkgs.callPackage ./packages/deity.nix { })
+      # (pkgs.callPackage ./packages/deity.nix { })
     ];
 
     # as per zsh home-manager module

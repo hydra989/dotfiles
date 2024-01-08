@@ -1,12 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
+  nixpkgs.config.allowUnfree = true;
+
+  programs = {
+    home-manager.enable = true;
+    zsh.enable = true;
+  };
+
   home = {
     username = "hydra";
     homeDirectory = "/home/hydra";
-
-    file = {
-      ".config/hypr".source = ./.config/hypr;
-      ".config/nvim".source = ./.config/nvim;
-    };
 
     sessionVariables = {
       CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
@@ -28,8 +31,9 @@
     };
   };
 
-  programs = {
-    home-manager.enable = true;
-    zsh.enable = true;
+  xdg.configFile = {
+    "hypr".source = ./.config/hypr;
+    "nvim".source = ./.config/nvim;
+    "tofi".source = ./.config/tofi;
   };
 }

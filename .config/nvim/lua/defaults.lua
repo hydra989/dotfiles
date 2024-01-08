@@ -33,6 +33,7 @@ function M.setup()
         set autoindent
         set backspace=indent,eol,start
         set shiftround
+        set cmdheight=0
 
         nnoremap j gj
         nnoremap k gk

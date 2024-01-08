@@ -32,7 +32,7 @@ function M.setup()
         vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
     end
 
-    -- Plugins
+    -- Plugins (that don't play nice with home-manager)
     local function plugins(use)
         use { "wbthomason/packer.nvim" }
 

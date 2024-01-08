@@ -10,12 +10,9 @@
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nur
-    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { nixpkgs, home-manager, nur, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};

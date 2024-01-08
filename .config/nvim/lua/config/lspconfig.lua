@@ -1,16 +1,51 @@
 local M = {}
 
 function M.setup()
-    vim.g.coq_settings = {
-        auto_start = 'shut-up',
-    }
-
     local lspconfig = require('lspconfig')
-    local coq = require('coq')
 
-    lspconfig.biome.setup { coq.lsp_ensure_capabilities() }
-    lspconfig.gopls.setup { coq.lsp_ensure_capabilities() }
-    lspconfig.jdtls.setup { coq.lsp_ensure_capabilities() }
+    local cmp = require('cmp')
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
+
+    -- cmp setup
+
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+                vim.fn["UltiSnips#Anon"](args.body)
+            end,
+        },
+        mapping = {
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ["<Tab>"] = cmp.mapping(function(fallback)
+                    cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+                end,
+                { 'i', 's' }
+            ),
+            ['<S-tab>'] = cmp.mapping(function(fallback)
+               if cmp.visible() then
+                   cmp.select_prev_item()
+               else
+                   cmp_ultisnips_mappings.jump_backwards(fallback)
+               end
+               end, { 'i', 's' }),
+        },
+        sources = cmp.config.sources({
+            { name = "ultisnips" },
+            { name = 'nvim_lsp' },
+        })
+    })
+
+    -- lsp setup
+
+    lspconfig.biome.setup { capabilities = capabilities }
+    lspconfig.clangd.setup { capabilities = capabilities }
+    lspconfig.gopls.setup { capabilities = capabilities }
+    lspconfig.jdtls.setup { capabilities = capabilities }
 
     lspconfig.nil_ls.setup {
         settings = {
@@ -21,7 +56,7 @@ function M.setup()
                 },
             },
         },
-        coq.lsp_ensure_capabilities()
+        capabilities = capablities
     }
 
     lspconfig.pylsp.setup {
@@ -40,7 +75,7 @@ function M.setup()
                 },
             },
         },
-        coq.lsp_ensure_capabilities()
+        capabilities = capablities
     }
 
     lspconfig.lua_ls.setup {
@@ -51,7 +86,7 @@ function M.setup()
                 },
             },
         },
-        coq.lsp_ensure_capabilities()
+        capabilities = capablities
     }
 
     vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)

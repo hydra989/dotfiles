@@ -19,6 +19,7 @@ My NixOS & home-manager configurations, managed as a flake.
  - applications/ -> nix configs for various applications
   - alacritty/
   - firefox/
+  - foot/
   - neovim/
   - tmux/
   - virt-manager/

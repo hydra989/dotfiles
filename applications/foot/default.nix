@@ -6,7 +6,7 @@
                 font = "JetBrains Mono:size=11";
             };
 
-            # oxocarbon
+            # oxocarbon coloring
             colors = {
                 foreground = "ffffff";
                 background = "000000";

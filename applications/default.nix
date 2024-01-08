@@ -1,6 +1,5 @@
 { pkgs, lib, specialArgs, ... }: {
   imports = [
-    #./alacritty
     ./nvim
     ./tmux
     ./zsh
@@ -11,10 +10,15 @@
     ./waybar
   ];
 
-  nixpkgs.config = {
-    warpd = {
-      withWayland = true;
-      withX = false;
+  nixpkgs = {
+    config = {
+        permittedInsecurePackages = [
+            "electron-24.8.6"
+        ];
+        warpd = {
+            withWayland = true;
+            withX = false;
+        };
     };
   };
 
@@ -26,7 +30,8 @@
     discord
     betterdiscordctl
     libreoffice
-    vscodium
+    morgen
+    pywal
 
     # === tui ===
     ripgrep
@@ -85,12 +90,13 @@
     networkmanagerapplet
     wlogout
 
-    albert
+    ulauncher
     xfce.thunar
     xfce.thunar-archive-plugin
 
     # linux specifics
 
+    tofi
     netflix
     ranger
     neofetch

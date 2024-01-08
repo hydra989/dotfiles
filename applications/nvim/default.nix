@@ -7,10 +7,12 @@
     vimAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-        coq_nvim
-        coq-artifacts
+        nvim-cmp
+        cmp-nvim-lsp
+        cmp-nvim-ultisnips
+
         leap-nvim
-        luasnip
+        ultisnips
         telescope-nvim
         alpha-nvim
         lualine-nvim
@@ -21,6 +23,9 @@
 
         # themes
         nvim-base16
+
+        # language plugins
+        vimtex
     ];
   };
 }
