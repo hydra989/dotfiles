@@ -1,6 +1,8 @@
 { pkgs, lib, specialArgs, ... }: {
   imports = [
+    ./emacs
     ./nvim
+    ./vscode
     ./tmux
     ./zsh
   ] ++ lib.optionalAttrs specialArgs.isLinux [
@@ -13,7 +15,7 @@
   nixpkgs = {
     config = {
         permittedInsecurePackages = [
-            "electron-24.8.6"
+            "electron-25.9.0"
         ];
         warpd = {
             withWayland = true;
@@ -30,8 +32,8 @@
     discord
     betterdiscordctl
     libreoffice
-    morgen
     pywal
+    obsidian
 
     # === tui ===
     ripgrep
@@ -65,15 +67,12 @@
     gopls
     # java ===
     jdk11
+    jdt-language-server
     # latex ===
     texlive.combined.scheme-full
     auctex
     # lua ===
     lua-language-server
-    # js ===
-    nodejs
-    nodePackages.npm
-    biome
 
     # === games ===
     heroic
@@ -86,17 +85,15 @@
 
     swaynotificationcenter
     hyprpaper
-    swayimg
     networkmanagerapplet
     wlogout
 
-    ulauncher
     xfce.thunar
     xfce.thunar-archive-plugin
 
     # linux specifics
 
-    tofi
+    albert
     netflix
     ranger
     neofetch
@@ -105,5 +102,8 @@
     unzip
     virt-manager
     widevine-cdm
+  ] ++ [
+    # class-specifics
+    jetbrains.idea-community
   ];
 }

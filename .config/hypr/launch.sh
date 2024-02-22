@@ -8,4 +8,4 @@ waybar &
 nm-applet --indicator &
 blueman-applet &
 swaync &
-morgen &
+albert &

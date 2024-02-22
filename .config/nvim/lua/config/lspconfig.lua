@@ -24,8 +24,7 @@ function M.setup()
             ["<Tab>"] = cmp.mapping(function(fallback)
                     cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
                 end,
-                { 'i', 's' }
-            ),
+                { 'i', 's' }),
             ['<S-tab>'] = cmp.mapping(function(fallback)
                if cmp.visible() then
                    cmp.select_prev_item()
@@ -37,12 +36,13 @@ function M.setup()
         sources = cmp.config.sources({
             { name = "ultisnips" },
             { name = 'nvim_lsp' },
-        })
+        }, {
+            { name = 'buffer' },
+        }),
     })
 
     -- lsp setup
 
-    lspconfig.biome.setup { capabilities = capabilities }
     lspconfig.clangd.setup { capabilities = capabilities }
     lspconfig.gopls.setup { capabilities = capabilities }
     lspconfig.jdtls.setup { capabilities = capabilities }

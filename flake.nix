@@ -7,12 +7,14 @@
 
     # home-manager
     home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, nix-flatpak, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -23,45 +25,36 @@
         inherit pkgs;
 
         extraSpecialArgs = {
-            isLinux = true;
+          isLinux = true;
         };
 
         modules = [
-            # home.nix is specific to linux hosts
-            ./home.nix
-            ./applications
+          # home.nix is specific to linux hosts
+          ./home.nix
+          ./applications
         ];
       };
 
       # machine configurations
       nixosConfigurations = {
         nightingale = nixpkgs.lib.nixosSystem {
-            inherit system;
-            inherit pkgs;
-            modules = [
-                ./hardware/nightingale.nix
-                ./machines/nightingale.nix
-                ./configuration.nix
-            ];
+          inherit system;
+          inherit pkgs;
+          modules = [
+            ./hardware/nightingale.nix
+            ./machines/nightingale.nix
+            ./configuration.nix
+          ];
         };
 
         songbird = nixpkgs.lib.nixosSystem {
-            inherit system;
-            inherit pkgs;
-            modules = [
-                ./hardware/songbird.nix
-                ./machines/songbird.nix
-                ./configuration.nix
-            ];
-        };
-
-        marv = nixpkgs.lib.nixosSystem {
-            inherit system;
-            inherit pkgs;
-            modules = [
-                ./hardware/marv.nix
-                ./machines/marv.nix
-            ];
+          inherit system;
+          inherit pkgs;
+          modules = [
+            ./hardware/songbird.nix
+            ./machines/songbird.nix
+            ./configuration.nix
+          ];
         };
       };
     };

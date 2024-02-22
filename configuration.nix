@@ -2,16 +2,6 @@
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    config.allowUnfreePredicate = _: true;
-    overlays = [
-        (import (builtins.fetchTarball {
-            url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-        }))
-    ];
-  };
-
   networking = {
     useDHCP = false;
     networkmanager = {
@@ -30,8 +20,7 @@
   hardware = {
     bluetooth.enable = true;
 
-    enableAllFirmware = true;
-    enableRedistributableFirmware = true;
+    pulseaudio.enable = false;
 
     opengl = {
       enable = true;
@@ -65,14 +54,32 @@
       home-manager
       git
       gh
-      greetd.tuigreet
 
-      libsForQt5.qt5.qtwayland
-      qt6.qtwayland
+      gnome.gnome-tweaks
+      gnomeExtensions.appindicator
+      gnomeExtensions.forge
 
       # === custom packages ===
       # (pkgs.callPackage ./packages/deity.nix { })
     ];
+
+    gnome.excludePackages = (with pkgs; [
+      gedit
+      gnome-photos
+      gnome-tour
+    ]) ++ (with pkgs.gnome; [
+      #cheese
+      gnome-music
+      gnome-terminal
+      epiphany
+      geary
+      evince
+      gnome-characters
+      totem
+      tali
+      iagno
+      hitori
+    ]);
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
@@ -89,8 +96,6 @@
       # note: this doesn't replace PATH, it just adds this to it
       PATH = [ "\${XDG_BIN_HOME}" ];
     };
-
-    variables.EDITOR = "nvim";
   };
 
   virtualisation = {
@@ -121,18 +126,17 @@
 
     dbus.enable = true;
 
-    greetd = {
+    xserver = {
       enable = true;
-      settings = {
-        default_session.command = ''
-          ${pkgs.greetd.tuigreet}/bin/tuigreet \
-            --time \
-            --asterisks \
-            --user-menu \
-            --cmd Hyprland
-        '';
-      };
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
     };
+
+    flatpak = {
+      enable = true;
+    };
+
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     udisks2.enable = true;
 
@@ -143,18 +147,13 @@
     };
 
     printing.enable = true;
-  };
 
-  environment.etc."greetd/environments".text = '' hyprland '';
-
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal";
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
+    # autodiscovery for network printers
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
   };
 
   xdg = {
@@ -163,7 +162,6 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal
-        xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
       ];
     };

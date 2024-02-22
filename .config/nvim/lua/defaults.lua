@@ -34,6 +34,7 @@ function M.setup()
         set backspace=indent,eol,start
         set shiftround
         set cmdheight=0
+        set lazyredraw
 
         nnoremap j gj
         nnoremap k gk

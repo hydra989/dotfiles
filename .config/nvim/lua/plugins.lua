@@ -39,7 +39,7 @@ function M.setup()
         use { "ms-jpq/chadtree" }
 
         -- themes
-        use { "hhydraa/oxocarbon-black.nvim" }
+        use { "hcur/oxocarbon-black.nvim" }
         use { "vimoxide/vim-cinnabar" }
         use { "EdenEast/nightfox.nvim" }
 

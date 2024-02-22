@@ -14,18 +14,17 @@
         leap-nvim
         ultisnips
         telescope-nvim
-        alpha-nvim
         lualine-nvim
         nvim-web-devicons
         nvim-lspconfig
-        nvim-treesitter.withAllGrammars
-        neogit
+        #nvim-treesitter.withAllGrammars
 
         # themes
         nvim-base16
 
         # language plugins
         vimtex
+        vim-nix
     ];
   };
 }
