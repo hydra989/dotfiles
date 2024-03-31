@@ -1,5 +1,5 @@
 {
-  description = "hhydraa's nix flake";
+  description = "hayden's nix flake";
 
   inputs = {
     # nixpkgs
@@ -10,11 +10,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { nixpkgs, home-manager, nix-flatpak, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};

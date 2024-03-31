@@ -17,10 +17,9 @@
         lualine-nvim
         nvim-web-devicons
         nvim-lspconfig
-        #nvim-treesitter.withAllGrammars
 
         # themes
-        nvim-base16
+        base16-nvim
 
         # language plugins
         vimtex

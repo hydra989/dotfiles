@@ -1,26 +1,27 @@
 { pkgs, lib, specialArgs, ... }: {
   imports = [
+    ./alacritty
     ./emacs
     ./nvim
-    ./vscode
     ./tmux
     ./zsh
   ] ++ lib.optionalAttrs specialArgs.isLinux [
     ./firefox
-    ./foot
+    ./qutebrowser
+    ./picom
+    ./rofi
     ./virt-manager
-    ./waybar
   ];
 
   nixpkgs = {
     config = {
-        permittedInsecurePackages = [
-            "electron-25.9.0"
-        ];
-        warpd = {
-            withWayland = true;
-            withX = false;
-        };
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+      ];
+      warpd = {
+        withWayland = false;
+        withX = true;
+      };
     };
   };
 
@@ -81,29 +82,20 @@
     protontricks
     steam
   ] ++ lib.optionalAttrs specialArgs.isLinux [
-    # hyprland things
-
-    swaynotificationcenter
-    hyprpaper
-    networkmanagerapplet
-    wlogout
-
-    xfce.thunar
-    xfce.thunar-archive-plugin
-
-    # linux specifics
-
-    albert
+    scrot
+    nitrogen
     netflix
     ranger
     neofetch
     warpd
     comma
+    zip
     unzip
     virt-manager
     widevine-cdm
   ] ++ [
     # class-specifics
+    bluej
     jetbrains.idea-community
   ];
 }

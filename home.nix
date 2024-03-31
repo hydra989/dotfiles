@@ -13,11 +13,12 @@
     file = {
         ".emacs.d/init.el".source = ./.emacs.d/init.el;
         ".emacs.d/themes".source = ./.emacs.d/themes;
+        ".config/rofi/launchpad-theme.rasi".source = ./applications/rofi/launchpad-theme.rasi;
+        ".xinitrc".source = ./.xinitrc;
     };
 
     sessionVariables = {
       CALIBRE_USE_DARK_PALETTE = "1"; # 1 = dark theme calibre
-      MOZ_ENABLE_WAYLAND = 1; # hint at firefox that we're on wayland
     };
 
     stateVersion = "23.11";
@@ -26,17 +27,16 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
+      name = "WhiteSur";
+      package = pkgs.whitesur-icon-theme;
     };
     theme = {
-      name = "Equilux";
-      package = pkgs.equilux-theme;
+      name = "WhiteSur";
+      package = pkgs.whitesur-gtk-theme;
     };
   };
 
   xdg.configFile = {
-    "hypr".source = ./.config/hypr;
     "nvim".source = ./.config/nvim;
   };
 }

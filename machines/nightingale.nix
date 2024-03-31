@@ -11,10 +11,6 @@
   services = {
     xserver = {
       videoDrivers = [ "nvidia" ];
-      xrandrHeads = [
-        { output = "DP-4"; primary = true; }
-        "HDMI-0"
-      ];
     };
   };
 }

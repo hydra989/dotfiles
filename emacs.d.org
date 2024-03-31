@@ -30,7 +30,16 @@
    native-comp-deferred-compilation t
    comp-async-report-warnings-errors nil
    scroll-preserve-screen-position 1
+   scroll-conservatively 10000
    )
+#+end_src
+
+*** indentation settings
+
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode t)
+  (setq-default tab-width 4)
+  (setq backward-delete-char-untabify-method 'hungry)
 #+end_src
 
 *** custom-set-variables
@@ -43,6 +52,13 @@
 
 ** Function & Hook Definitions
 
+Enable relative line numbers, but only when I'm programming:
+
+#+begin_src emacs-lisp
+  (setq display-line-numbers 'relative)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+#+end_src
+
 *** emacsclient-gui-setup
 
 A setup function for GUI related things that needs run after emacsclient is opened.
@@ -50,7 +66,11 @@ A setup function for GUI related things that needs run after emacsclient is open
 #+begin_src emacs-lisp
   (defun emacsclient-gui-setup (frame)
     (select-frame frame)
-    (load-theme 'wintermute t)
+    (load-theme 'oxocarbon)
+    ;; transparency 
+    (set-frame-parameter (selected-frame) 'alpha '(90 . 70))
+    (add-to-list 'default-frame-alist '(alpha . (90 . 70)))
+
     (remove-hook 'after-make-frame-functions #'emacsclient-gui-setup)
     )
 
@@ -110,6 +130,24 @@ Split a window either direction and follow with focus. Stolen from [[https://git
     (other-window 1))
 #+end_src
 
+*** toggle-transparency
+
+Define the function from [[https://www.emacswiki.org/emacs/TransparentEmacs][Emacs Wiki:]]
+
+#+begin_src emacs-lisp
+  (defun toggle-transparency ()
+    (interactive)
+    (let ((alpha (frame-parameter nil 'alpha)))
+      (set-frame-parameter
+       nil 'alpha
+       (if (eql (cond ((numberp alpha) alpha)
+                      ((numberp (cdr alpha)) (cdr alpha))
+                      ;; Also handle undocumented (<active> <inactive>) form.
+                      ((numberp (cadr alpha)) (cadr alpha)))
+                100)
+           '(85 . 50) '(100 . 100)))))
+#+end_src
+
 ** Packages
 
 Set up package archives:
@@ -121,27 +159,130 @@ Set up package archives:
 
 *** themes
 
-Set up custom theme directory, currently home to [[https://github.com/rhipsalis-paradoxa/wintermute-theme][wintermute]] and [[https://github.com/konrad1977/oxocarbon-emacs][oxocarbon]]:
+Set all themes as being safe, because NixOS doesn't like when I try to set it that way
+on a theme-by-theme basis (and neither do I):
 
 #+begin_src emacs-lisp
-    (add-to-list 'custom-theme-load-path "/home/hydra/.emacs.d/themes")
+  (setq custom-safe-themes t)
 #+end_src
 
-Install the necessary theme packages:
+Set up custom theme directory, currently home to:
+
+ - [[https://github.com/rhipsalis-paradoxa/wintermute-theme][wintermute]]
+ - [[https://github.com/konrad1977/oxocarbon-emacs][oxocarbon]]
+
+#+begin_src emacs-lisp
+  (add-to-list 'custom-theme-load-path "/home/hydra/.emacs.d/themes")
+#+end_src
+
+Install the theme packages I want:
 
 #+begin_src emacs-lisp
   (use-package autothemer
     :ensure t)
+  (use-package catppuccin-theme
+    :init
+    (setq catpuccin-flavor 'frappe))
   (use-package cyberpunk-theme
     :defer t)
+  (use-package doom-emacs
+    :ensure t
+    :defer t
+    :config
+    (setq doom-themes-enable-bold t
+          doom-themes-enable-italic t
+          doom-themes-treemacs-theme "doom-atom")
+    (doom-themes-treemacs-config)
+    (doom-themes-org-config)
   (use-package nordic-night-theme
     :defer t)
 #+end_src
 
-*** languages
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
+#+end_src
+
+*** magit
+
+Install magit, half the reason I use emacs in the first place:
 
 #+begin_src emacs-lisp
-  (use-package nix-mode
+  (use-package magit
+    :ensure t)
+#+end_src
+
+*** evil
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :ensure t
+    :init
+    ;; evil-collection wants this set
+    (setq evil-want-keybinding nil)
+    :config
+    (evil-mode 1))
+#+end_src
+
+and bindings for org-mode:
+
+#+begin_src emacs-lisp
+  (use-package evil-org
+    :ensure t
+    :after org
+    :hook (org-mode . (lambda () evil-org-mode))
+    :config
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
+#+end_src
+
+plus a bunch of other stuff:
+
+#+begin_src emacs-lisp
+  (use-package evil-collection
+    :after evil
+    :ensure t
+    :config
+    (evil-collection-init))
+#+end_src
+
+Set the redo system (assumes emacs v28+, a requirement met by emacs within my flake):
+
+#+begin_src emacs-lisp
+  (evil-set-undo-system 'undo-redo)
+#+end_src
+
+*** helm
+
+#+begin_src emacs-lisp
+  (use-package helm
+    :ensure t
+    :config
+    (require 'helm-autoloads)
+    (helm-mode 1)
+
+    ;; bindings
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    )
+#+end_src
+
+*** treemacs
+
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :ensure t
+    :defer t
+    :bind
+    (:map global-map
+          ("C-' t" . treemacs)))
+
+  (use-package treemacs-evil
+    :after (treemacs evil)
+    :ensure t)
+
+  (use-package treemacs-magit
+    :after (treemacs magit)
     :ensure t)
 #+end_src
 
@@ -173,6 +314,7 @@ org-indent-mode is problematic if it loads before the theme:
 #+begin_src emacs-lisp
   (setq treesit-language-source-alist
         '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (c "https://github.com/tree-sitter/tree-sitter-c")
           (css "https://github.com/tree-sitter/tree-sitter-css")
           (elisp "https://github.com/Wilfred/tree-sitter-elisp")
           (go "https://github.com/tree-sitter/tree-sitter-go")
@@ -180,12 +322,14 @@ org-indent-mode is problematic if it loads before the theme:
           (java "https://github.com/tree-sitter/tree-sitter-java")
           (make "https://github.com/alemuller/tree-sitter-make")
           (markdown "https://github.com/ikatyung/tree-sitter-markdown")
+          (nix "https://github.com/nix-community/tree-sitter-nix")
           (python "https://github.com/tree-sitter/tree-sitter-python")
           )
         )
 
   (setq major-mode-remap-alist
         '((bash-mode . bash-ts-mode)
+          (c-mode . c-ts-mode)
           (css-mode . css-ts-mode)
           (elisp-mode . elisp-ts-mode)
           (go-mode . go-ts-mode)
@@ -193,11 +337,27 @@ org-indent-mode is problematic if it loads before the theme:
           (java-mode . java-ts-mode)
           (make-mode . make-ts-mode)
           (markdown-mode . markdown-ts-mode)
+          (nix-mode . nix-ts-mode)
           (python-mode . python-ts-mode)
           ))
 
-  (use-package nix-ts-mode
+  (use-package nix-mode
     :mode "\\.nix'")
+  (use-package nix-ts-mode)
+#+end_src
+
+** eglot
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :ensure t
+    :defer t
+    :hook ((java-mode . eglot-ensure)
+           (nix-mode . eglot-ensure)
+           (lua-mode . eglot-ensure)
+           (python-mode . eglot-ensure)
+           )
+    )
 #+end_src
 
 ** Keybindings
@@ -216,4 +376,5 @@ Set some keybinds for the functions defined earlier:
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
   (global-set-key (kbd "C-' c") 'config-visit)
   (global-set-key (kbd "C-' s") 'full-auto-save)
+  (global-set-key (kbd "C-' t") 'toggle-transparency)
 #+end_src

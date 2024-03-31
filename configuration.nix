@@ -35,16 +35,15 @@
       experimental-features = nix-command flakes
     '';
     settings.trusted-users = [ "root" "hydra" ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 
   programs = {
     dconf.enable = true;
-
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-
     zsh.enable = true;
   };
 
@@ -54,32 +53,9 @@
       home-manager
       git
       gh
-
-      gnome.gnome-tweaks
-      gnomeExtensions.appindicator
-      gnomeExtensions.forge
-
       # === custom packages ===
       # (pkgs.callPackage ./packages/deity.nix { })
     ];
-
-    gnome.excludePackages = (with pkgs; [
-      gedit
-      gnome-photos
-      gnome-tour
-    ]) ++ (with pkgs.gnome; [
-      #cheese
-      gnome-music
-      gnome-terminal
-      epiphany
-      geary
-      evince
-      gnome-characters
-      totem
-      tali
-      iagno
-      hitori
-    ]);
 
     # as per zsh home-manager module
     pathsToLink = [ "/share/zsh" ];
@@ -113,7 +89,6 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      dejavu_fonts
       hack-font
       font-awesome
       nerdfonts
@@ -128,15 +103,16 @@
 
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
 
-    flatpak = {
-      enable = true;
+      windowManager = {
+        dwm = {
+          enable = true;
+          package = pkgs.dwm.override {
+            conf = ./config.def.h;
+          };
+        };
+      };
     };
-
-    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     udisks2.enable = true;
 
@@ -151,26 +127,15 @@
     # autodiscovery for network printers
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
-    };
-  };
-
-  xdg = {
-    autostart.enable = true;
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal
-        xdg-desktop-portal-hyprland
-      ];
     };
   };
 
   security = {
     sudo = {
       enable = true;
-      wheelNeedsPassword = true;
+      wheelNeedsPassword = false;
     };
   };
 

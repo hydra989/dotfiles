@@ -1,0 +1,16 @@
+#+TITLE: dotfiles
+#+AUTHOR: Hayden Curfman
+#+EMAIL: hcurfman@keemail.me
+#+OPTIONS: num:nil
+
+* my dotfiles
+
+My NixOS & home-manager configurations, stored as a flake.
+
+- /distro/: nixos
+- /wm/: dwm
+- /shell/: zsh + oh-my-zsh
+- /terminal/: alacritty
+- /editor/: emacs, neovim
+- /launcher/: rofi
+- /browser/: firefox

@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   version = "20220725.1";
 
   src = fetchFromGitHub {
-    owner = "hhydraa";
+    owner = "hcur";
     repo = "deity";
     rev = "v${version}";
     sha256 = "Nryq4SpVWqtfQMostbOM2AoKpHJEC2xBlhKlHgOE6B0=";
